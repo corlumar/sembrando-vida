@@ -7,55 +7,82 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Plataforma Sembrando Vida – Sistema de Gestión en Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este sistema permite la administración integral de técnicos, sembradores, Centros de Acopio Comunitario (CAC), territorios, cultivos, cosechas y otros elementos vinculados al programa *Sembrando Vida*.  
+Está desarrollado en **Laravel**, siguiendo principios de escalabilidad, seguridad y gestión por roles.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Características principales
 
-## Learning Laravel
+- Inicio de sesión con control de acceso basado en roles.
+- Paneles personalizados de acuerdo con el tipo de usuario.
+- Registro y administración de territorios, CAC y personal técnico.
+- Gestión de cultivos, cosechas y productos semiprocesados.
+- Exportación de información en formatos Excel, PDF e impresión.
+- Arquitectura modular para futuras ampliaciones.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Instalación en entorno local (Windows / XAMPP)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/corlumar/sembrando-vida.git
+cd sembrando-vida
 
-## Laravel Sponsors
+# 2. Instalar dependencias PHP
+composer install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# 3. Instalar dependencias JavaScript
+npm install
 
-### Premium Partners
+# 4. Configurar archivo de entorno
+cp .env.example .env
+php artisan key:generate
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# 5. Configurar base de datos en .env
+# 6. Ejecutar migraciones y datos iniciales
+php artisan migrate --seed
 
-## Contributing
+# Ambiente de desarrollo
+npm run dev
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Ambiente de producción
+npm run build
 
-## Code of Conduct
+| Rol                  | Descripción general de permisos            |
+| -------------------- | ------------------------------------------ |
+| Administrador        | Control total del sistema y configuración  |
+| Técnico              | Gestión de sembradores y CAC asignados     |
+| Coordinador          | Supervisión por territorio                 |
+| Enlace / Funcionario | Acceso a reportes e información agregada   |
+| Sembrador            | Registro de cultivos y cosechas personales |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+app/
+├── Http/
+│   ├── Controllers/    # Controladores del sistema
+│   ├── Middleware/     # Middleware de control de roles
+│   └── Requests/       # Validaciones de formularios
+├── Models/             # Modelos principales de datos
+resources/views/
+├── layouts/            # Plantillas base de interfaz
+├── dashboards/         # Vistas específicas por rol
+└── auth/               # Autenticación y registro
+database/
+├── migrations/         # Estructura de tablas
+└── seeders/            # Carga inicial de datos
 
-## Security Vulnerabilities
+main      → Rama estable (producción)
+develop   → Rama de integración
+feature/* → Ramas para nuevas funcionalidades
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+git checkout -b feature/gestion-cultivos
+git add .
+git commit -m "Implementa módulo de cultivos"
+git push
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
