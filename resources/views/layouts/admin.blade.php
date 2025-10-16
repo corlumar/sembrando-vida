@@ -90,6 +90,76 @@
     </section>
 </div>
 
+<!-- Fila de gráficas -->
+<div class="row">
+  <div class="col-lg-6 col-12">
+    <div class="card card-outline card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Cosechas por mes (últimos 12)</h3>
+      </div>
+      <div class="card-body">
+        <canvas id="chartCosechas" height="140"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-12">
+    <div class="card card-outline card-success">
+      <div class="card-header">
+        <h3 class="card-title">Sembradores por mes (últimos 12)</h3>
+      </div>
+      <div class="card-body">
+        <canvas id="chartSembradores" height="140"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CDN Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<script>
+  // Datos desde el servidor
+  const labels = @json($chartLabels);
+  const cosechasData = @json($cosechasSeries);
+  const sembradoresData = @json($sembradoresSeries);
+
+  // Cosechas (línea)
+  const ctx1 = document.getElementById('chartCosechas').getContext('2d');
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Cosechas',
+        data: cosechasData,
+        tension: 0.25,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+
+  // Sembradores (barras)
+  const ctx2 = document.getElementById('chartSembradores').getContext('2d');
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Sembradores',
+        data: sembradoresData
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+</script>
 
 
   <!-- Footer -->

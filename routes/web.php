@@ -13,13 +13,14 @@ Route::get('/', function () {
 // =================================
 
 // Administrativo
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Middleware\RoleMiddleware;
 
 Route::middleware(['auth', RoleMiddleware::class . ':Administrativo'])->group(function () {
-
-    Route::get('/admin/dashboard', fn() => view('dashboards.admin'))
-        ->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+         ->name('admin.dashboard');
 });
+
 
 // Coordinador Territorial
 Route::middleware(['auth', 'role:Coordinador Territorial'])->group(function () {
