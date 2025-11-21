@@ -88,6 +88,63 @@
         data: { labels, datasets: [{ label: 'Sembradores', data: sembradoresData }] },
         options: { responsive: true, maintainAspectRatio: false }
       });
-    }
+    }<div class="row">
+  <div class="col-12">
+    <div class="card card-outline card-success">
+      <div class="card-header">
+        <h3 class="card-title">Mapa de CACs</h3>
+      </div>
+      <div class="card-body p-0">
+        <div id="mapCAC" style="height: 480px; width: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Datos desde el servidor
+  const cacs = @json($cacs ?? []);
+
+  // Coordenadas de centro (México aprox). Ajusta si quieres centrar en tu estado.
+  const center = [23.6345, -102.5528];
+  const map = L.map('mapCAC').setView(center, 5);
+
+  // Capa base (OSM)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  // Icono verde para CAC (opcional)
+  const greenIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -28],
+    shadowSize: [41, 41]
+  });
+
+  // Poner marcadores
+  cacs.forEach(c => {
+    // Ajusta claves si usaste 'lat'/'lng'
+    if (!c.latitud || !c.longitud) return;
+    const marker = L.marker([parseFloat(c.latitud), parseFloat(c.longitud)], { icon: greenIcon })
+      .addTo(map);
+
+    const title = c.nombre ? `<strong>${c.nombre}</strong><br>` : '';
+    const lugar = [c.municipio, c.estado].filter(Boolean).join(', ');
+    marker.bindPopup(`${title}${lugar}`);
+  });
+
+  // Si hay puntos, ajusta el zoom al grupo
+  if (cacs.length) {
+    const pts = cacs
+      .filter(c => c.latitud && c.longitud)
+      .map(c => [parseFloat(c.latitud), parseFloat(c.longitud)]);
+    if (pts.length) map.fitBounds(pts, { padding: [30,30] });
+  }
+</script>
+
   </script>
 @endsection

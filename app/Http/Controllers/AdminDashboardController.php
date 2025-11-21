@@ -9,42 +9,43 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
+        $ROL_TECNICO   = 4;
         $ROL_SEMBRADOR = 5;
 
-        // ====== KPIs rápidos (ya los tenías) ======
-        $totalCac       = DB::table('cacs')->count();
-        $totalCultivos  = DB::table('cultivos')->count();
-        $totalCosechas  = DB::table('cosechas')->count();
+        // ===== KPIs =====
+        $totalCac         = DB::table('cacs')->count();
+        $totalCultivos    = DB::table('cultivos')->count();
+        $totalCosechas    = DB::table('cosechas')->count();
+        $totalTecnicos    = DB::table('users')->where('role_id', $ROL_TECNICO)->count();
+
         $totalSembradores = DB::table('sembradores')->count();
         if ($totalSembradores === 0) {
             $totalSembradores = DB::table('users')->where('role_id', $ROL_SEMBRADOR)->count();
         }
-        $avanceProductivo  = $totalCultivos > 0
+
+        $avanceProductivo = $totalCultivos > 0
             ? min(100, (int) round(($totalCosechas / max(1, $totalCultivos)) * 100))
             : 0;
 
-        // ====== Rango últimos 12 meses ======
-        $end   = Carbon::now()->startOfMonth();         // ej. 2025-10-01
-        $start = (clone $end)->subMonths(11);           // 12 meses atrás
+        // ===== Últimos 12 meses =====
+        $end   = Carbon::now()->startOfMonth();
+        $start = (clone $end)->subMonths(11);
 
-        // Helper de meses formateados "YYYY-MM" -> "Mes YYYY" (para etiquetas)
+        // Etiquetas "M Y" (ej. "oct 2025")
         $labels = [];
         $cursor = $start->copy();
         while ($cursor <= $end) {
-            $labels[] = $cursor->translatedFormat('M Y'); // ej. "oct 2025"
+            $labels[] = $cursor->translatedFormat('M Y');
             $cursor->addMonth();
         }
 
-        // ====== Serie: Cosechas por mes (usa created_at) ======
+        // Cosechas por mes
         $rawCosechas = DB::table('cosechas')
             ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') ym, COUNT(*) total")
             ->whereBetween('created_at', [$start, (clone $end)->endOfMonth()])
-            ->groupBy('ym')
-            ->orderBy('ym')
-            ->pluck('total', 'ym')
-            ->toArray();
+            ->groupBy('ym')->orderBy('ym')
+            ->pluck('total', 'ym')->toArray();
 
-        // Normaliza a 12 posiciones
         $cosechasSeries = [];
         $cursor = $start->copy();
         while ($cursor <= $end) {
@@ -53,23 +54,21 @@ class AdminDashboardController extends Controller
             $cursor->addMonth();
         }
 
-        // ====== Serie: Sembradores por mes ======
-        $rawSembradores = DB::table('sembradores')->count() > 0
-            ? DB::table('sembradores')
+        // Sembradores por mes (prefiere tabla sembradores; si está vacía, users con role_id=5)
+        if (DB::table('sembradores')->count() > 0) {
+            $rawSembradores = DB::table('sembradores')
                 ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') ym, COUNT(*) total")
                 ->whereBetween('created_at', [$start, (clone $end)->endOfMonth()])
-                ->groupBy('ym')
-                ->orderBy('ym')
-                ->pluck('total', 'ym')
-                ->toArray()
-            : DB::table('users')
+                ->groupBy('ym')->orderBy('ym')
+                ->pluck('total', 'ym')->toArray();
+        } else {
+            $rawSembradores = DB::table('users')
                 ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') ym, COUNT(*) total")
                 ->where('role_id', $ROL_SEMBRADOR)
                 ->whereBetween('created_at', [$start, (clone $end)->endOfMonth()])
-                ->groupBy('ym')
-                ->orderBy('ym')
-                ->pluck('total', 'ym')
-                ->toArray();
+                ->groupBy('ym')->orderBy('ym')
+                ->pluck('total', 'ym')->toArray();
+        }
 
         $sembradoresSeries = [];
         $cursor = $start->copy();
@@ -79,16 +78,34 @@ class AdminDashboardController extends Controller
             $cursor->addMonth();
         }
 
+        // ===== CACs para el mapa (JOIN municipio/estado) =====
+        $cacs = DB::table('cacs')
+            ->leftJoin('municipios', 'municipios.id', '=', 'cacs.municipio_id')
+            ->leftJoin('estados', 'estados.id', '=', 'municipios.estado_id')
+            ->select(
+                'cacs.id',
+                'cacs.nombre',
+                'cacs.latitud',
+                'cacs.longitud',
+                DB::raw('municipios.nombre as municipio'),
+                DB::raw('estados.nombre as estado')
+            )
+            ->whereNotNull('cacs.latitud')
+            ->whereNotNull('cacs.longitud')
+            ->get();
+
+        // ===== ÚNICO return =====
         return view('dashboards.admin', [
+            'totalTecnicos'      => $totalTecnicos,
+            'totalSembradores'   => $totalSembradores,
             'totalCac'           => $totalCac,
             'totalCultivos'      => $totalCultivos,
             'totalCosechas'      => $totalCosechas,
-            'totalSembradores'   => $totalSembradores,
             'avanceProductivo'   => $avanceProductivo,
-            // Gráficas
-            'chartLabels'        => $labels,               // e.g. ["nov 2024", ...]
-            'cosechasSeries'     => $cosechasSeries,       // 12 valores
-            'sembradoresSeries'  => $sembradoresSeries,    // 12 valores
+            'chartLabels'        => $labels,
+            'cosechasSeries'     => $cosechasSeries,
+            'sembradoresSeries'  => $sembradoresSeries,
+            'cacs'               => $cacs,
         ]);
     }
 }
