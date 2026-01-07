@@ -51,23 +51,22 @@ class MasterSeeder extends Seeder
         // =======================
         //  Usuario Admin
         // =======================
-        if (!User::where('email', 'admin@sembrando-vida.org')->exists()) {
-            User::create([
-                'name' => 'Admin',
-                'apellido_paterno' => 'General',
-    'apellido_materno' => 'Sistema',
-    'curp' => 'ADMIN000000000000',
-    'email' => 'admin@sembrando-vida.org',
-    'celular' => '9610000000',
-    'estado_id' => 1, // Chiapas
-    'municipio_id' => 10, // Tuxtla Gutiérrez
-    'region_id' => 2, // Región Centro
-    'territorio_id' => 5, // Territorio 1
-    'ruta' => 'Ruta 001 - Centro',
-    'password' => Hash::make('123456'),
-    'role_id' => $rolesMap['Administrativo'],
-            ]);
-        }
+        // Insert using DB to match actual users table columns
+        $adminEmail = 'admin@sembrando-vida.org';
+        $adminData = [
+            'nombre(s)' => 'Admin',
+            'apellido_paterno' => 'General',
+            'apellido_materno' => 'Sistema',
+            'curp' => 'ADMIN000000000000',
+            'email' => $adminEmail,
+            'celular' => '9610000000',
+            'password' => Hash::make('123456'),
+            'role_id' => $rolesMap['Administrativo'] ?? null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        DB::table('users')->updateOrInsert(['email' => $adminEmail], $adminData);
     }
 }
 

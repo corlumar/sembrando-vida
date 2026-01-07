@@ -68,10 +68,21 @@ class DemoUsersSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::updateOrCreate(
-                ['email' => $user['email']],
-                $user
-            );
+            // Use DB to avoid mass-assignment / mismatched model fillable
+            $insert = [
+                'nombre(s)' => $user['name'],
+                'apellido_paterno' => $user['apellido_paterno'],
+                'apellido_materno' => $user['apellido_materno'],
+                'curp' => $user['curp'],
+                'email' => $user['email'],
+                'celular' => $user['celular'],
+                'password' => $user['password'],
+                'role_id' => $user['role_id'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+            DB::table('users')->updateOrInsert(['email' => $user['email']], $insert);
         }
     }
 }
