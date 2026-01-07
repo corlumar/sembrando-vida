@@ -69,5 +69,42 @@ Proyecto interno para gestión del programa Sembrando Vida — Uso institucional
 
 ---
 
+## Nota sobre migraciones duplicadas
+
+Se detectaron migraciones con timestamps duplicados/solapados en `database/migrations`.
+Para evitar que Artisan intente crear tablas que ya existen, en el repositorio se movieron temporalmente los archivos duplicados a `database/migrations/duplicates/`.
+
+Si trabajas localmente y encuentras errores tipo "Table 'xyz' already exists":
+
+- Verifica la conexión activa en `.env` (`DB_CONNECTION`) y limpia la caché de configuración:
+
+```bash
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+```
+
+- Revisa el estado de las migraciones:
+
+```bash
+php artisan migrate:status
+```
+
+- Si las tablas ya existen y no quieres volver a crearlas, marca las migraciones como ejecutadas (opción segura para entornos con datos):
+
+```bash
+php artisan tinker --execute="DB::table('migrations')->insert(['migration'=>'FILENAME','batch'=>X]);"
+```
+
+- Si estás en desarrollo y puedes perder datos, recrea la BD:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+Si tienes dudas, pregunta antes de borrar o renombrar migraciones; puedo ayudarte a revisar los archivos afectados.
+
+
 
 
