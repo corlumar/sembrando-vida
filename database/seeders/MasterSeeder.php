@@ -65,7 +65,7 @@ class MasterSeeder extends Seeder
     'territorio_id' => 5, // Territorio 1
     'ruta' => 'Ruta 001 - Centro',
     'password' => Hash::make('123456'),
-    'role_id' => $rolesMap['Administrador'],
+    'role_id' => $rolesMap['Administrativo'],
             ]);
         }
     }
