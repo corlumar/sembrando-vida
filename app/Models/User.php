@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'nombre(s)',
+        'name',
         'apellido_paterno',
         'apellido_materno',
         'curp',
@@ -56,16 +56,7 @@ class User extends Authenticatable
         ];
     }
     
-    // Map virtual attribute `name` to the physical column `nombre(s)`.
-    public function getNameAttribute(): ?string
-    {
-        return $this->attributes['nombre(s)'] ?? null;
-    }
 
-    public function setNameAttribute(?string $value): void
-    {
-        $this->attributes['nombre(s)'] = $value;
-    }
 
     public function role()
     {

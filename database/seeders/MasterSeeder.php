@@ -54,7 +54,7 @@ class MasterSeeder extends Seeder
         // Insert using DB to match actual users table columns
         $adminEmail = 'admin@sembrando-vida.org';
         $adminData = [
-            'nombre(s)' => 'Admin',
+            'name' => 'Admin',
             'apellido_paterno' => 'General',
             'apellido_materno' => 'Sistema',
             'curp' => 'ADMIN000000000000',

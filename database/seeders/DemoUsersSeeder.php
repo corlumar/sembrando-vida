@@ -69,8 +69,9 @@ class DemoUsersSeeder extends Seeder
 
         foreach ($users as $user) {
             // Use DB to avoid mass-assignment / mismatched model fillable
+            // After renaming the column to `name`, insert into `name`.
             $insert = [
-                'nombre(s)' => $user['name'],
+                'name' => $user['name'],
                 'apellido_paterno' => $user['apellido_paterno'],
                 'apellido_materno' => $user['apellido_materno'],
                 'curp' => $user['curp'],
