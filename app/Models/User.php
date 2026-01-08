@@ -18,9 +18,19 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nombre(s)',
+        'apellido_paterno',
+        'apellido_materno',
+        'curp',
         'email',
+        'celular',
         'password',
+        'role_id',
+        'estado_id',
+        'municipio_id',
+        'region_id',
+        'territorio_id',
+        'ruta',
     ];
 
     /**
@@ -46,9 +56,20 @@ class User extends Authenticatable
         ];
     }
     
+    // Map virtual attribute `name` to the physical column `nombre(s)`.
+    public function getNameAttribute(): ?string
+    {
+        return $this->attributes['nombre(s)'] ?? null;
+    }
+
+    public function setNameAttribute(?string $value): void
+    {
+        $this->attributes['nombre(s)'] = $value;
+    }
+
     public function role()
-{
-    return $this->belongsTo(\App\Models\Role::class);
-}
+    {
+        return $this->belongsTo(\App\Models\Role::class);
+    }
 
 }
