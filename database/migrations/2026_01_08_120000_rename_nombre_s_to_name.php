@@ -12,19 +12,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $driver = config('database.default');
+        // Make migration resilient: if old column exists, rename it; otherwise ensure `name` exists.
+        if (Schema::hasColumn('users', 'nombre(s)')) {
+            $driver = config('database.default');
 
-        if ($driver === 'mysql') {
-            // MySQL: CHANGE column (preserve varchar(150) NOT NULL)
-            DB::statement("ALTER TABLE `users` CHANGE `nombre(s)` `name` VARCHAR(150) NOT NULL");
-        } elseif ($driver === 'sqlite') {
-            // SQLite 3.25+ supports RENAME COLUMN
-            DB::statement('ALTER TABLE users RENAME COLUMN "nombre(s)" TO name');
+            if ($driver === 'mysql') {
+                DB::statement("ALTER TABLE `users` CHANGE `nombre(s)` `name` VARCHAR(150) NOT NULL");
+            } elseif ($driver === 'sqlite') {
+                DB::statement('ALTER TABLE users RENAME COLUMN "nombre(s)" TO name');
+            } else {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->renameColumn('nombre(s)', 'name');
+                });
+            }
         } else {
-            // Fallback to schema builder (may require doctrine/dbal)
-            Schema::table('users', function (Blueprint $table) {
-                $table->renameColumn('nombre(s)', 'name');
-            });
+            if (!Schema::hasColumn('users', 'name')) {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->string('name', 150)->nullable();
+                });
+            }
         }
     }
 
@@ -33,16 +39,25 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $driver = config('database.default');
+        // Reverse: if `name` exists and `nombre(s)` does not, try to rename back. Otherwise drop `name` if it was added by up().
+        if (Schema::hasColumn('users', 'name') && !Schema::hasColumn('users', 'nombre(s)')) {
+            $driver = config('database.default');
 
-        if ($driver === 'mysql') {
-            DB::statement("ALTER TABLE `users` CHANGE `name` `nombre(s)` VARCHAR(150) NOT NULL");
-        } elseif ($driver === 'sqlite') {
-            DB::statement('ALTER TABLE users RENAME COLUMN name TO "nombre(s)"');
+            if ($driver === 'mysql') {
+                DB::statement("ALTER TABLE `users` CHANGE `name` `nombre(s)` VARCHAR(150) NOT NULL");
+            } elseif ($driver === 'sqlite') {
+                DB::statement('ALTER TABLE users RENAME COLUMN name TO "nombre(s)"');
+            } else {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->renameColumn('name', 'nombre(s)');
+                });
+            }
         } else {
-            Schema::table('users', function (Blueprint $table) {
-                $table->renameColumn('name', 'nombre(s)');
-            });
+            if (Schema::hasColumn('users', 'name')) {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->dropColumn('name');
+                });
+            }
         }
     }
 };
