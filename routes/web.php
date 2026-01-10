@@ -15,10 +15,16 @@ Route::get('/', function () {
 // Administrativo
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\UserController;
 
 Route::middleware(['auth', RoleMiddleware::class . ':Administrativo'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
          ->name('admin.dashboard');
+    // Usuarios: crear
+    Route::get('/usuarios/create', [UserController::class, 'create'])
+        ->name('usuarios.create');
+    Route::post('/usuarios', [UserController::class, 'store'])
+        ->name('usuarios.store');
 });
 
 
