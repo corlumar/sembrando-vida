@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('apellido_materno', 150)->nullable();
             $table->string('curp', 18)->unique()->nullable();
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('celular', 20)->unique()->nullable();
             $table->string('password');
             $table->unsignedBigInteger('role_id')->nullable();
