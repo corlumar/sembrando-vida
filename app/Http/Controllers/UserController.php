@@ -33,13 +33,4 @@ class UserController extends Controller
         return redirect()->route('usuarios.create')->with('success', 'Usuario creado correctamente.');
     }
 }
-<?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-class UserController extends Controller
-{
-    //
-}
