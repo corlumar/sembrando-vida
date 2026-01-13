@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('sembradores', function (Blueprint $table) {
             $table->id();
-            // Usuario asociado. Crear como columna nullable sin constraint
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->foreignId('cac_id')->constrained('cacs');
             $table->foreignId('subrol_id')->nullable()->constrained('subroles');
             $table->enum('genero',['M','F'])->nullable();
