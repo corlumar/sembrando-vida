@@ -36,3 +36,11 @@ Si deseas, puedo:
 
 - Revertir las ediciones a las migraciones originales y documentar el motivo en un CHANGELOG adicional.
 - Crear migraciones adicionales si deseas reglas `ON DELETE` distintas.
+
+Actualización (2026-01-13):
+
+- Restauré `foreignId()->constrained()` en `cacs` y `sembradores` para mantener el estilo original de las migraciones.
+- Mantengo las migraciones de corrección `2026_01_13_204500_add_missing_foreign_keys.php` y `2026_01_13_210000_normalize_foreign_keys.php` en el repositorio; sirven para asegurar integridad referencial al ejecutar `php artisan migrate` en distintos entornos y órdenes de migración.
+- Recomendación: conservar las migraciones de corrección en el historial y ejecutar `php artisan migrate` regularmente en un entorno local limpio para validar el orden y las constraints.
+
+Commit: restauración aplicada y nota añadida.
