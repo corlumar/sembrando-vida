@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('cacs', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->foreignId('representante_id')->nullable()->constrained('users');
+            // Representante (usuario). Creado como columna nullable sin constraint
+            // para evitar errores si la tabla `users` aún no existe en el orden
+            // de migraciones. Se puede añadir la FK en una migración posterior.
+            $table->unsignedBigInteger('representante_id')->nullable();
             $table->decimal('latitud',10,7)->nullable();
             $table->decimal('longitud',10,7)->nullable();
             $table->foreignId('ruta_id')->constrained('rutas');

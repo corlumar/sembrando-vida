@@ -21,6 +21,9 @@ Route::middleware(['auth', RoleMiddleware::class . ':Administrativo'])->group(fu
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
          ->name('admin.dashboard');
     // Usuarios: crear
+    // Lista de usuarios
+    Route::get('/usuarios', [UserController::class, 'index'])
+        ->name('usuarios.index');
     Route::get('/usuarios/create', [UserController::class, 'create'])
         ->name('usuarios.create');
     Route::post('/usuarios', [UserController::class, 'store'])

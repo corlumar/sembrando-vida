@@ -14,12 +14,19 @@ class UserController extends Controller
     public function create()
     {
         $roles = DB::table('roles')->orderBy('name')->get();
-        $regiones = DB::table('regiones')->orderBy('name')->get();
-        $estados = DB::table('estados')->orderBy('name')->get();
-        $municipios = DB::table('municipios')->orderBy('name')->get();
-        $territorios = DB::table('territorios')->orderBy('name')->get();
+        $regiones = DB::table('regiones')->orderBy('nombre')->get();
+        $estados = DB::table('estados')->orderBy('nombre')->get();
+        $municipios = DB::table('municipios')->orderBy('nombre')->get();
+        $territorios = DB::table('territorios')->orderBy('nombre')->get();
 
         return view('usuarios.create', compact('roles', 'regiones', 'estados', 'municipios', 'territorios'));
+    }
+
+    public function index()
+    {
+        $users = User::with('role')->orderBy('name')->paginate(25);
+
+        return view('usuarios.index', compact('users'));
     }
 
     public function store(StoreUserRequest $request): RedirectResponse

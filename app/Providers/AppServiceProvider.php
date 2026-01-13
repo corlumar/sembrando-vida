@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Gate para controlar la gestión de usuarios desde las vistas
+        Gate::define('manage-users', function (?User $user) {
+            if (! $user) return false;
+            return optional($user->role)->name === 'Administrativo';
+        });
     }
 }

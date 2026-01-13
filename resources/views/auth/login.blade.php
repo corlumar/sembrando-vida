@@ -107,6 +107,11 @@
         @if (Route::has('password.request'))
           <a class="small-text" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
         @endif>
+        
+        {{-- Link para administradores: acceso rápido a gestión/creación de usuarios (visible solo si ya estás autenticado como Administrativo) --}}
+        @can('manage-users')
+          <a class="small-text" href="{{ route('usuarios.create') }}">¿Eres administrador? Crear usuario</a>
+        @endcan
 
         <button type="submit" class="btn btn-success">
           Entrar
