@@ -12,6 +12,12 @@ class AdminDashboardController extends Controller
         $ROL_TECNICO   = 4;
         $ROL_SEMBRADOR = 5;
 
+        // Helper: Get date format function based on database driver
+        $driver = config('database.default');
+        $dateFormatFn = $driver === 'sqlite'
+            ? "strftime('%Y-%m', created_at)"
+            : "DATE_FORMAT(created_at, '%Y-%m')";
+
         // ===== KPIs =====
         $totalCac         = DB::table('cacs')->count();
         $totalCultivos    = DB::table('cultivos')->count();
@@ -41,7 +47,7 @@ class AdminDashboardController extends Controller
 
         // Cosechas por mes
         $rawCosechas = DB::table('cosechas')
-            ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') ym, COUNT(*) total")
+            ->selectRaw("{$dateFormatFn} ym, COUNT(*) total")
             ->whereBetween('created_at', [$start, (clone $end)->endOfMonth()])
             ->groupBy('ym')->orderBy('ym')
             ->pluck('total', 'ym')->toArray();
@@ -57,13 +63,13 @@ class AdminDashboardController extends Controller
         // Sembradores por mes (prefiere tabla sembradores; si está vacía, users con role_id=5)
         if (DB::table('sembradores')->count() > 0) {
             $rawSembradores = DB::table('sembradores')
-                ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') ym, COUNT(*) total")
+                ->selectRaw("{$dateFormatFn} ym, COUNT(*) total")
                 ->whereBetween('created_at', [$start, (clone $end)->endOfMonth()])
                 ->groupBy('ym')->orderBy('ym')
                 ->pluck('total', 'ym')->toArray();
         } else {
             $rawSembradores = DB::table('users')
-                ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') ym, COUNT(*) total")
+                ->selectRaw("{$dateFormatFn} ym, COUNT(*) total")
                 ->where('role_id', $ROL_SEMBRADOR)
                 ->whereBetween('created_at', [$start, (clone $end)->endOfMonth()])
                 ->groupBy('ym')->orderBy('ym')

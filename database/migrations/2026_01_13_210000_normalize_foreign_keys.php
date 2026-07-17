@@ -11,6 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // MySQL-specific foreign key normalization
+        // Skip for SQLite (not needed, foreign keys are handled in migration definitions)
+        if (config('database.default') !== 'mysql') {
+            return;
+        }
+
         $relations = [
             // table, column, referenced table, referenced column, onDelete, onUpdate
             ['users','role_id','roles','id','SET NULL','CASCADE'],
@@ -67,6 +73,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // MySQL-specific rollback; no-op for SQLite
+        if (config('database.default') !== 'mysql') {
+            return;
+        }
+
         $columns = [
             ['cacs','representante_id'],
             ['sembradores','user_id'],

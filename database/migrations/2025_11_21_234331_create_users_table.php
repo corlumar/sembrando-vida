@@ -11,20 +11,31 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 150);
-            $table->string('apellido_paterno', 150)->nullable();
-            $table->string('apellido_materno', 150)->nullable();
-            $table->string('curp', 18)->unique()->nullable();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('celular', 20)->unique()->nullable();
-            $table->string('password');
-            $table->unsignedBigInteger('role_id')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
-        });
+       Schema::create('users', function (Blueprint $table) {
+    $table->id();
+
+    $table->string('name', 150);
+    $table->string('apellido_paterno', 150)->nullable();
+    $table->string('apellido_materno', 150)->nullable();
+
+    $table->string('curp', 18)->nullable()->unique();
+    $table->string('email')->unique();
+    $table->string('celular', 20)->nullable()->unique();
+    $table->string('password');
+
+    $table->boolean('activo')->default(true);
+
+    $table->unsignedBigInteger('role_id')->nullable();
+    $table->unsignedBigInteger('estado_id')->nullable();
+    $table->unsignedBigInteger('municipio_id')->nullable();
+    $table->unsignedBigInteger('region_id')->nullable();
+    $table->unsignedBigInteger('territorio_id')->nullable();
+    $table->string('ruta', 255)->nullable();
+
+    $table->rememberToken();
+    $table->timestamps();
+});
+
     }
 
     /**

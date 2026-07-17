@@ -12,26 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Make migration resilient: if old column exists, rename it; otherwise ensure `name` exists.
-        if (Schema::hasColumn('users', 'nombre(s)')) {
-            $driver = config('database.default');
-
-            if ($driver === 'mysql') {
-                DB::statement("ALTER TABLE `users` CHANGE `nombre(s)` `name` VARCHAR(150) NOT NULL");
-            } elseif ($driver === 'sqlite') {
-                DB::statement('ALTER TABLE users RENAME COLUMN "nombre(s)" TO name');
-            } else {
-                Schema::table('users', function (Blueprint $table) {
-                    $table->renameColumn('nombre(s)', 'name');
-                });
-            }
-        } else {
-            if (!Schema::hasColumn('users', 'name')) {
-                Schema::table('users', function (Blueprint $table) {
-                    $table->string('name', 150)->nullable();
-                });
-            }
-        }
+        // No-op: Migration now creates 'name' directly, no renaming needed.
+        // This migration is kept for backwards compatibility with existing databases.
     }
 
     /**
@@ -39,25 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Reverse: if `name` exists and `nombre(s)` does not, try to rename back. Otherwise drop `name` if it was added by up().
-        if (Schema::hasColumn('users', 'name') && !Schema::hasColumn('users', 'nombre(s)')) {
-            $driver = config('database.default');
-
-            if ($driver === 'mysql') {
-                DB::statement("ALTER TABLE `users` CHANGE `name` `nombre(s)` VARCHAR(150) NOT NULL");
-            } elseif ($driver === 'sqlite') {
-                DB::statement('ALTER TABLE users RENAME COLUMN name TO "nombre(s)"');
-            } else {
-                Schema::table('users', function (Blueprint $table) {
-                    $table->renameColumn('name', 'nombre(s)');
-                });
-            }
-        } else {
-            if (Schema::hasColumn('users', 'name')) {
-                Schema::table('users', function (Blueprint $table) {
-                    $table->dropColumn('name');
-                });
-            }
-        }
+        // No-op: This migration is safe to rollback (it's now a no-op).
     }
 };
