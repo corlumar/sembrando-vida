@@ -1,0 +1,9 @@
+{
+    "name": "Organizacion",
+    "slug": "organizacion",
+    "version": "0.1.0",
+    "description": "Módulo Organizacion del ERP",
+    "provider": "App\\Modules\\Organizacion\\Providers\\OrganizacionServiceProvider",
+    "enabled": true,
+    "dependencies": []
+}
