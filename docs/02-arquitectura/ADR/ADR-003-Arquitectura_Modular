@@ -1,0 +1,301 @@
+# ADR-003
+
+# Adopción de una Arquitectura Modular Basada en Dominios
+
+**Estado:** Aprobado
+
+**Versión:** 1.0
+
+**Fecha:** 2026
+
+**Autor:** Equipo de Arquitectura ERP Core
+
+---
+
+# Contexto
+
+El ERP Core tiene como objetivo convertirse en una plataforma empresarial reutilizable, capaz de soportar múltiples aplicaciones y dominios de negocio sin comprometer la mantenibilidad, escalabilidad ni la independencia entre sus componentes.
+
+El sistema no estará orientado únicamente al proyecto **Sembrando Vida**, sino que deberá servir como base para futuras soluciones empresariales, gubernamentales y privadas.
+
+Por ello, resulta necesario establecer una arquitectura que permita:
+
+- incorporar nuevos módulos sin modificar el núcleo del sistema;
+- reutilizar funcionalidades entre diferentes aplicaciones;
+- reducir el acoplamiento entre componentes;
+- facilitar el mantenimiento y la evolución del software;
+- soportar equipos de desarrollo trabajando en paralelo.
+
+---
+
+# Problema
+
+La estructura estándar de Laravel organiza el código principalmente por tipo técnico (Controllers, Models, Requests, Policies, etc.).
+
+Aunque este enfoque resulta adecuado para aplicaciones pequeñas o medianas, en plataformas empresariales de gran tamaño suele provocar:
+
+- alta dependencia entre módulos;
+- duplicación de lógica de negocio;
+- dificultad para localizar funcionalidades;
+- crecimiento desordenado del proyecto;
+- aumento del costo de mantenimiento.
+
+Era necesario definir una organización del código que reflejara el dominio del negocio y favoreciera la modularidad.
+
+---
+
+# Alternativas evaluadas
+
+## Alternativa 1 — Estructura estándar de Laravel
+
+### Ventajas
+
+- Simplicidad.
+- Compatible con la documentación oficial.
+- Baja curva de aprendizaje.
+
+### Desventajas
+
+- Escalabilidad limitada.
+- Organización centrada en aspectos técnicos y no en el negocio.
+- Mayor riesgo de acoplamiento.
+
+---
+
+## Alternativa 2 — Arquitectura por módulos funcionales
+
+Organizar el sistema por módulos como CRM, Inventarios, Compras y Recursos Humanos.
+
+### Ventajas
+
+- Mejor organización.
+- Separación funcional.
+
+### Desventajas
+
+- Los módulos pueden terminar compartiendo demasiadas dependencias si no existe una estructura superior.
+
+---
+
+## Alternativa 3 — Arquitectura Modular Basada en Dominios
+
+Organizar el ERP en capas claramente diferenciadas, donde cada dominio representa una capacidad de negocio independiente y reutilizable.
+
+### Ventajas
+
+- Alta cohesión.
+- Bajo acoplamiento.
+- Escalabilidad.
+- Reutilización.
+- Evolución independiente de los dominios.
+- Facilita pruebas y mantenimiento.
+
+### Desventajas
+
+- Mayor esfuerzo inicial de diseño.
+- Requiere disciplina arquitectónica.
+
+---
+
+# Decisión
+
+Se adopta una **Arquitectura Modular Basada en Dominios** como modelo oficial para el ERP Core.
+
+La plataforma se organizará en cinco grandes capas:
+
+```
+ERP Core
+│
+├── Core
+├── Platform
+├── Domains
+├── Modules
+└── Apps
+```
+
+---
+
+# Descripción de las capas
+
+## Core
+
+Contendrá los componentes fundamentales del ERP.
+
+Ejemplos:
+
+- autenticación;
+- autorización;
+- auditoría;
+- configuración;
+- eventos;
+- notificaciones;
+- contratos;
+- excepciones;
+- utilidades comunes.
+
+El Core no dependerá de ningún dominio de negocio.
+
+---
+
+## Platform
+
+Proporcionará servicios técnicos compartidos.
+
+Ejemplos:
+
+- almacenamiento;
+- correo electrónico;
+- caché;
+- colas;
+- integración con terceros;
+- APIs;
+- monitoreo;
+- observabilidad.
+
+---
+
+## Domains
+
+Representarán las capacidades de negocio del ERP.
+
+Cada dominio será autónomo y encapsulará:
+
+- entidades;
+- reglas de negocio;
+- servicios;
+- repositorios;
+- eventos;
+- casos de uso.
+
+Ejemplos:
+
+- CRM
+- Recursos Humanos
+- Inventarios
+- Compras
+- Ventas
+- Comercialización
+- Gestión Documental
+- Sembrando Vida
+
+---
+
+## Modules
+
+Implementarán funcionalidades reutilizables construidas sobre uno o varios dominios.
+
+Ejemplos:
+
+- Dashboard
+- Reportes
+- Importadores
+- Exportadores
+- Flujos de aprobación
+- Gestión documental
+- Motor de búsqueda
+
+---
+
+## Apps
+
+Representarán implementaciones específicas para un cliente, institución o proyecto.
+
+Ejemplos:
+
+- Sembrando Vida
+- Corporativo Lumar
+- Centro de Desarrollo Humano
+- Municipio Digital
+
+Cada aplicación podrá extender el comportamiento del ERP sin modificar el Core.
+
+---
+
+# Principios arquitectónicos
+
+La arquitectura deberá cumplir los siguientes principios:
+
+- separación de responsabilidades;
+- bajo acoplamiento;
+- alta cohesión;
+- inversión de dependencias;
+- reutilización;
+- extensibilidad;
+- escalabilidad;
+- mantenibilidad.
+
+---
+
+# Reglas de dependencia
+
+Las dependencias permitidas serán:
+
+```
+Apps
+   ↓
+Modules
+   ↓
+Domains
+   ↓
+Platform
+   ↓
+Core
+```
+
+No estarán permitidas dependencias inversas.
+
+---
+
+# Beneficios esperados
+
+- incorporación de nuevos módulos con menor esfuerzo;
+- reutilización entre diferentes proyectos;
+- menor impacto de los cambios;
+- mayor facilidad para realizar pruebas;
+- desarrollo paralelo por distintos equipos;
+- reducción de deuda técnica.
+
+---
+
+# Consecuencias
+
+## Positivas
+
+- Arquitectura preparada para crecimiento.
+- Mayor claridad organizacional.
+- Código más mantenible.
+- Mejor separación entre negocio e infraestructura.
+
+## Negativas
+
+- Mayor complejidad inicial.
+- Necesidad de disciplina en el desarrollo.
+- Curva de aprendizaje superior para nuevos integrantes.
+
+---
+
+# Impacto arquitectónico
+
+Esta decisión impacta directamente en:
+
+- ARQ-002 — Arquitectura Empresarial.
+- ARQ-003 — Arquitectura de Aplicaciones.
+- ARQ-004 — Arquitectura de Datos.
+- DEV-001 — Estructura del Proyecto.
+- DEV-002 — Convenciones de Desarrollo.
+
+---
+
+# Revisión
+
+La arquitectura podrá evolucionar conforme aumenten las capacidades del ERP Core, siempre respetando los principios establecidos en este ADR.
+
+Toda modificación estructural deberá documentarse mediante un nuevo Architecture Decision Record.
+
+---
+
+# Referencias
+
+- ADR-001 — Adopción de Laravel como Framework Principal.
+- ADR-002 — Selección del Sistema de Gestión de Base de Datos.
+- ARQ-001 — Fundamentos Arquitectónicos.
