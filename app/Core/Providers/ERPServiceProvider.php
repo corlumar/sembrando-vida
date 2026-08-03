@@ -1,10 +1,12 @@
-<?php
+﻿<?php
 
 declare(strict_types=1);
 
 namespace App\Core\Providers;
 
 use App\Core\Contracts\ERPKernelContract;
+use App\Core\Contracts\FileWriterContract;
+use App\Core\FileSystem\FileWriter;
 use App\Core\Kernel\ERPKernel;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +32,11 @@ final class ERPServiceProvider extends ServiceProvider
         $this->app->alias(
             ERPKernelContract::class,
             ERPKernel::class
+        );
+
+        $this->app->singleton(
+            FileWriterContract::class,
+            FileWriter::class
         );
     }
 

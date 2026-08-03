@@ -4,7 +4,7 @@
 
 # 🌱 Plataforma Sembrando Vida
 
-Sistema web para la operación y seguimiento del programa **Sembrando Vida**, desarrollado en **Laravel 12** con **AdminLTE**, enfocado en facilitar la gestión operativa entre diferentes perfiles de usuario.
+Sistema web para la operación y seguimiento del programa **Sembrando Vida**, desarrollado en **Laravel 12** con **AdminLTE4**, enfocado en facilitar la gestión operativa entre diferentes perfiles de usuario.
 
 ---
 
