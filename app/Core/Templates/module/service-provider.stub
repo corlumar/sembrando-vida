@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ModuleNamespace}}\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+final class {{ProviderClass}} extends ServiceProvider
+{
+    public function register(): void
+    {
+        //
+    }
+
+    public function boot(): void
+    {
+        $this->loadRoutesFrom(
+            __DIR__.'/../Presentation/Routes/web.php'
+        );
+
+        $this->loadRoutesFrom(
+            __DIR__.'/../Presentation/Routes/api.php'
+        );
+
+        $this->loadViewsFrom(
+            __DIR__.'/../Presentation/Views',
+            '{{ModuleSlug}}'
+        );
+
+        $this->loadMigrationsFrom(
+            __DIR__.'/../Infrastructure/Database/Migrations'
+        );
+    }
+}

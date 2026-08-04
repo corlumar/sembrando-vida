@@ -1,0 +1,19 @@
+# Módulo {{Module}}
+
+## Identificación
+
+- Nombre: `{{Module}}`
+- Slug: `{{ModuleSlug}}`
+- Namespace: `{{ModuleNamespace}}`
+- Provider: `{{ProviderClass}}`
+- Versión inicial: `0.1.0`
+
+## Estructura
+
+```text
+Application/
+Domain/
+Infrastructure/
+Presentation/
+Providers/
+Tests/

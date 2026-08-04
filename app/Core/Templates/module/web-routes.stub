@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Rutas web del módulo {{Module}}
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['web', 'auth'])
+    ->prefix('{{ModuleSlug}}')
+    ->name('{{ModuleSlug}}.')
+    ->group(function (): void {
+        //
+    });
