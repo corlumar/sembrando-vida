@@ -1,110 +1,280 @@
+# MEF - Modular ERP Framework
+
 <p align="center">
-  <img src="public/img/logosv.png" width="120" alt="Sembrando Vida Logo">
+  <img src="docs/assets/logo-mef.png" alt="MEF Logo" width="180">
 </p>
 
-# 🌱 Plataforma Sembrando Vida
+<p align="center">
 
-Sistema web para la operación y seguimiento del programa **Sembrando Vida**, desarrollado en **Laravel 12** con **AdminLTE4**, enfocado en facilitar la gestión operativa entre diferentes perfiles de usuario.
+**Modular ERP Framework**
 
----
+*Build enterprise applications with a modular architecture powered by Laravel.*
 
-## ✅ Roles y Funcionalidades Principales
+![Version](https://img.shields.io/badge/version-v0.2.0--alpha-blue)
+![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20)
+![License](https://img.shields.io/badge/license-Proprietary-red)
 
-| Rol                    | Funcionalidad Principal                                 |
-|------------------------|----------------------------------------------------------|
-| Administrativo          | Administración general, usuarios, reportes y métricas   |
-| Coordinador Territorial | Supervisión de CACs, Técnicos y Sembradores por región |
-| Enlace Comercial        | Gestión de Tianguis y comercialización de productos     |
-| Técnico                 | Registro de cultivos, cosechas y avances de campo      |
-| Sembrador              | Acceso personal a su información y actividades          |
+</p>
 
 ---
 
-## 🚀 Instalación Rápida
+# What is MEF?
 
-Clonar el repositorio:
+**MEF (Modular ERP Framework)** is an enterprise application framework built on top of Laravel.
+
+Its goal is to provide a solid foundation for developing scalable, modular, maintainable ERP systems using Domain-Driven Design, modular architecture and reusable business components.
+
+Instead of building a single ERP, MEF provides the infrastructure to build many ERP solutions from the same framework.
+
+---
+
+# Vision
+
+Create a modern, modular and extensible ERP Framework that allows organizations to rapidly develop enterprise software through reusable modules.
+
+---
+
+# Main Features
+
+- Modular Architecture
+- Automatic Module Discovery
+- Module Registry
+- Service Providers
+- Dependency Injection
+- Template Engine
+- Builder System
+- File System Abstractions
+- JSON Manifest Engine
+- CLI Tools
+- PHPUnit Support
+- Architecture Decision Records (ADR)
+
+---
+
+# Architecture
+
+```
+Applications
+        │
+        ▼
+
+Business Modules
+        │
+        ▼
+
+Platform Services
+        │
+        ▼
+
+MEF Core
+```
+
+The Core never contains business logic.
+
+Business functionality lives inside independent modules.
+
+---
+
+# Project Structure
+
+```
+app/
+
+Core/
+Platform/
+Modules/
+
+config/
+
+docs/
+
+templates/
+
+tests/
+
+artisan
+```
+
+---
+
+# Current Components
+
+## Core
+
+- ERPKernel
+- Module Registry
+- Auto Discovery
+
+## FileSystem
+
+- DirectoryManager
+- FileWriter
+- JsonWriter
+- StubWriter
+- GitKeepGenerator
+
+## Builders
+
+- ModuleBuilder
+
+---
+
+# Installation
 
 ```bash
-git clone https://github.com/corlumar/sembrando-vida.git
-cd sembrando-vida
+git clone https://github.com/corlumar/modular-erp-framework.git
+
+cd modular-erp-framework
+
 composer install
-npm install && npm run build
+
 cp .env.example .env
+
 php artisan key:generate
-php artisan migrate
-php artisan serve
-
-📌 Tecnologías Utilizadas
-
-Laravel 12
-
-PHP 8.4
-
-MySQL
-
-AdminLTE / Bootstrap 4
-
-Chart.js (Gráficas en panel administrativo)
-
-LeafletJS (Mapa de CACs - próximamente)
-
-🔧 Próximos Módulos
-
-📍 Mapa interactivo con CACs y técnicos
-
-📊 Reportes PDF / Excel exportables
-
-📱 Versión móvil progresiva (PWA)
-
-🗂️ Importación masiva CSV / Excel de usuarios y sembradores
-
-📷 Capturas (por agregar)
-
-En desarrollo — se agregarán imágenes de los dashboards cuando avance la interfaz final.
-
-🧾 Licencia
-
-Proyecto interno para gestión del programa Sembrando Vida — Uso institucional.
-
+```
 
 ---
 
-## Nota sobre migraciones duplicadas
-
-Se detectaron migraciones con timestamps duplicados/solapados en `database/migrations`.
-Para evitar que Artisan intente crear tablas que ya existen, en el repositorio se movieron temporalmente los archivos duplicados a `database/migrations/duplicates/`.
-
-Si trabajas localmente y encuentras errores tipo "Table 'xyz' already exists":
-
-- Verifica la conexión activa en `.env` (`DB_CONNECTION`) y limpia la caché de configuración:
+# Verify Installation
 
 ```bash
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
-php artisan route:clear
+php artisan erp:status
 ```
 
-- Revisa el estado de las migraciones:
+(Currently `erp:*` commands are maintained for compatibility. They will evolve to `mef:*` in a future release.)
+
+---
+
+# Create your first module
 
 ```bash
-php artisan migrate:status
+php artisan erp:make-module CRM
 ```
 
-- Si las tablas ya existen y no quieres volver a crearlas, marca las migraciones como ejecutadas (opción segura para entornos con datos):
+Generated structure:
 
-```bash
-php artisan tinker --execute="DB::table('migrations')->insert(['migration'=>'FILENAME','batch'=>X]);"
+```
+Modules/
+
+CRM/
+
+Application/
+Domain/
+Infrastructure/
+Presentation/
+Providers/
+Tests/
+
+module.json
+README.md
 ```
 
-- Si estás en desarrollo y puedes perder datos, recrea la BD:
+---
 
-```bash
-php artisan migrate:fresh --seed
+# Development Workflow
+
+Every contribution follows the same workflow.
+
+```
+Design
+
+↓
+
+Implementation
+
+↓
+
+Tests
+
+↓
+
+Documentation
+
+↓
+
+Commit
 ```
 
-Si tienes dudas, pregunta antes de borrar o renombrar migraciones; puedo ayudarte a revisar los archivos afectados.
+---
 
+# Documentation
 
+The documentation lives inside:
 
+```
+docs/
+```
 
+Main sections:
+
+- Architecture
+- ADR
+- Development
+- Roadmap
+- Release Notes
+
+---
+
+# Roadmap
+
+## v0.2
+
+- Core
+- Builders
+- CLI
+
+## v0.3
+
+- Manifest Engine
+- Registry Engine
+- Dependency Resolver
+
+## v0.4
+
+- Event Bus
+- Marketplace
+- Installer
+
+## v0.5
+
+- Business Modules
+
+## v1.0
+
+Stable Framework
+
+---
+
+# Contributing
+
+Every contribution should include:
+
+- Tests
+- Documentation
+- PHPDoc
+- Clean Architecture
+
+Please read:
+
+```
+CONTRIBUTING.md
+```
+
+---
+
+# License
+
+Currently proprietary.
+
+Future Open Source licensing is under evaluation.
+
+---
+
+# Author
+
+**CorLumar**
+
+MEF - Modular ERP Framework
+
+2026
