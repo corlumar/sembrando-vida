@@ -1,27 +1,27 @@
 ---
-id: ARQ-005
-titulo: Kernel
+id: ARQ-007
+titulo: Service Container
 tipo: Architecture
 nivel: L1
 categoria: Núcleo
-subcategoria: Kernel
+subcategoria: Composition
 estado: Accepted
 version: 2.0.0
 responsable: MEF Architecture Team
 ultima_revision: 2026-08-06
 dependencias:
   - ARQ-002
-  - ARQ-003
-  - ARQ-004
-relacionados:
+  - ARQ-005
   - ARQ-006
-  - ARQ-007
+relacionados:
   - ARQ-008
+  - ARQ-011
+  - ARQ-012
   - ARQ-014
 keywords:
-  - kernel
-  - bootstrap
-  - lifecycle
-  - framework
-  - startup
+  - container
+  - dependency injection
+  - composition
+  - runtime
+  - services
 ---

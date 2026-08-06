@@ -1,27 +1,26 @@
 ---
-id: ARQ-005
-titulo: Kernel
+id: ARQ-008
+titulo: Event Bus
 tipo: Architecture
 nivel: L1
 categoria: Núcleo
-subcategoria: Kernel
+subcategoria: Comunicación
 estado: Accepted
 version: 2.0.0
 responsable: MEF Architecture Team
 ultima_revision: 2026-08-06
 dependencias:
   - ARQ-002
-  - ARQ-003
   - ARQ-004
-relacionados:
-  - ARQ-006
+  - ARQ-005
   - ARQ-007
-  - ARQ-008
+relacionados:
   - ARQ-014
+  - ARQ-015
 keywords:
-  - kernel
-  - bootstrap
-  - lifecycle
-  - framework
-  - startup
+  - event bus
+  - events
+  - messaging
+  - communication
+  - integration
 ---

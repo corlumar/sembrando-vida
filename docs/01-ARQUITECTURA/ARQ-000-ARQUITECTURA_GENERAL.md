@@ -1,25 +1,26 @@
 ---
-id: ARQ-README
-titulo: Arquitectura
+id: ARQ-000
+titulo: Arquitectura General
 tipo: Architecture
 nivel: L1
 categoria: Arquitectura
-subcategoria: Índice
+subcategoria: Visión General
 estado: Accepted
-version: 2.0.0
+version: 1.0.0
 responsable: MEF Architecture Team
 ultima_revision: 2026-08-06
 dependencias:
+  - FND-000
   - FND-004
   - FND-011
-  - FND-012
 relacionados:
-  - ARQ-000
   - ARQ-001
+  - ARQ-002
+  - ARQ-003
 keywords:
   - arquitectura
   - framework
-  - diseño
+  - capas
   - modularidad
-  - especificaciones
+  - visión
 ---
