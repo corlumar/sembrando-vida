@@ -1,3 +1,10 @@
+> [!WARNING]
+> Documento LEGACY NO CANÓNICO.
+> Conservado únicamente como evidencia histórica.
+> No debe utilizarse para resolver identificadores MEF-DIC.
+> La autoridad terminológica vigente corresponde a DIC-001A → DIC-001G.
+
+---
 # MEF-DIC-0001
 
 # Module

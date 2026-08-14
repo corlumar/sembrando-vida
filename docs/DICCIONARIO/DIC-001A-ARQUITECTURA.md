@@ -426,7 +426,7 @@ Estable
 
 ### Definición
 
-**MEF (Modular ERP Framework)** es un Framework modular orientado a la construcción de aplicaciones empresariales.
+**MEF (Modular Enterprise Framework)** es un Framework modular orientado a la construcción de aplicaciones empresariales.
 
 Proporciona una arquitectura, un conjunto de componentes reutilizables y convenciones de desarrollo que permiten crear sistemas complejos de forma consistente.
 
