@@ -148,7 +148,7 @@ El conocimiento oficial del producto se organiza en las siguientes áreas:
         │
 01-ARQUITECTURA
         │
-02-DICCIONARIO
+DICCIONARIO
         │
 03-CONOCIMIENTO
         │

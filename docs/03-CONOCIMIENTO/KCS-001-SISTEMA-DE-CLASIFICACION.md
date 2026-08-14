@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-08-06
 relacionados:
   - 00-FUNDACION
   - 01-ARQUITECTURA
-  - 02-DICCIONARIO
+  - DICCIONARIO
 ---
 
 # KCS-001
