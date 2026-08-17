@@ -1,4371 +1,3643 @@
 ---
-categoria: Ingeniería
-dependencias:
-- ENG-005
-- ENG-009
-- ENG-011
-- ENG-016
-- ENG-021
-- ENG-023
-- ENG-024
-- ENG-025
-- ENG-026
-- ENG-027
-- ENG-028
-- ENG-031
-- ENG-032
-- ENG-033
-- ENG-034
-- ENG-036
-- ENG-037
-- ENG-038
-- ENG-039
-- ENG-043
-estado: Accepted
-id: ENG-044
-keywords:
-- api
-- rest
-- http
-- endpoint
-- resource
-- request
-- response
-- api-contract
-- versioning
-- idempotency
-- pagination
-- filtering
-- sorting
-- rate-limit
-- openapi
-- cors
-- etag
-- compatibility
-- deprecation
-- mef
-nivel: L2
-relacionados:
-- ENG-006
-- ENG-007
-- ENG-012
-- ENG-018
-- ENG-019
-- ENG-020
-- ENG-022
-- ENG-030
-- ENG-035
-- ENG-040
-- ENG-041
-- ENG-042
-- ENG-045
-responsable: MEF Engineering Team
-subcategoria: API Engineering
+id: ENG-043
+titulo: Data Access Engineering
 tipo: Engineering
-titulo: API Engineering
-ultima_revision: 2026-08-13
+nivel: L2
+categoria: Ingeniería
+subcategoria: Data Access Engineering
+estado: Accepted
 version: 1.0.0
+responsable: MEF Engineering Team
+ultima_revision: 2026-08-10
+dependencias:
+  - ENG-005
+  - ENG-009
+  - ENG-011
+  - ENG-016
+  - ENG-018
+  - ENG-019
+  - ENG-020
+  - ENG-021
+  - ENG-023
+  - ENG-024
+  - ENG-025
+  - ENG-026
+  - ENG-027
+  - ENG-028
+  - ENG-030
+  - ENG-034
+  - ENG-035
+  - ENG-036
+  - ENG-037
+  - ENG-038
+  - ENG-039
+  - ENG-042
+relacionados:
+  - ENG-006
+  - ENG-007
+  - ENG-012
+  - ENG-031
+  - ENG-032
+  - ENG-033
+  - ENG-040
+  - ENG-041
+  - ENG-044
+keywords:
+  - data-access
+  - repository
+  - query
+  - query-object
+  - criteria
+  - specification
+  - data-mapper
+  - identity-map
+  - pagination
+  - cursor
+  - projection
+  - read-model
+  - eager-loading
+  - lazy-loading
+  - n-plus-one
+  - sql
+  - tenant-filter
+  - query-budget
+  - mef
 ---
 
-# ENG-044
+# ENG-043
 
-# API Engineering
+# Data Access Engineering
 
 ## Estado
 
 Accepted.
 
-------------------------------------------------------------------------
+---
 
 # 1. Propósito
 
-Definir el modelo de **API Engineering** de **MEF (Modular Enterprise
-Framework)**.
+Definir el modelo de **Data Access Engineering** de **MEF (Modular Enterprise Framework)**.
 
-ENG-044 establece las reglas para:
+ENG-043 establece las reglas para:
 
-``` text
-API
-API Boundary
-API Contract
-Endpoint
-Resource
-Operation
-Request
-Response
-HTTP Semantics
-HTTP Method
-Status Code
-Header
-Content Type
-Content Negotiation
-Representation
-API Version
-Compatibility
-Deprecation
-Pagination
+```text
+Repository
+Repository Contract
+Data Mapper
+Identity Map
+Query
+Query Object
+Criteria
+Specification
 Filtering
 Sorting
-Field Selection
-Validation
-Error Contract
-Problem Details
-Idempotency
-Conditional Request
-ETag
-Caching
-Authentication Integration
-Authorization Integration
-Tenant Context
-Rate Limiting
-Quota
-CORS
-OpenAPI
-API Discovery
-API Observability
-API Security
-API Testing
-API Lifecycle
+Pagination
+Cursor Pagination
+Projection
+Read Model
+Aggregate Loading
+Aggregate Persistence
+Lazy Loading
+Eager Loading
+Batch Loading
+N+1 Detection
+Query Budget
+Query Timeout
+Database Round Trips
+Raw Query
+SQL Safety
+Parameter Binding
+Tenant Filtering
+Soft Delete
+Data Scope
+Read/Write Separation
+Query Observability
+Query Performance
+Data Access Testing
 ```
 
-------------------------------------------------------------------------
+---
 
 # 2. Declaración
 
 La regla fundamental será:
 
-> **Toda API pública deberá ser tratada como un contrato versionado,
-> seguro, observable y evolutivo, independiente de la estructura interna
-> de Application, Domain, Persistence y Transport.**
+> **Todo acceso a datos deberá atravesar una Boundary explícita, segura, observable y alineada con el modelo que consume los datos, sin permitir que detalles del mecanismo de persistencia contaminen Domain o Application.**
 
-Arquitectura conceptual:
+La arquitectura conceptual será:
 
-``` text
-External Consumer
-       │
-       ▼
-   API Boundary
-       │
-       ├── Authentication
-       ├── Authorization
-       ├── Rate Limit
-       ├── Validation
-       ├── Versioning
-       └── Contract
-       │
-       ▼
-    Endpoint
-       │
-       ▼
-  Application
-       │
-       ▼
-    Domain
-       │
-       ▼
-Infrastructure
+```text
+Application
+    │
+    ├──────────────┐
+    │              │
+    ▼              ▼
+Repository      Query Service
+    │              │
+    ▼              ▼
+Domain Model     Read Model
+    │              │
+    └──────┬───────┘
+           ▼
+     Data Access
+           │
+           ▼
+       Adapter
+           │
+           ▼
+     Data Source
 ```
 
-------------------------------------------------------------------------
+---
 
-# 3. API
+# 3. Data Access
 
-Una `API` representa una interfaz explícita ofrecida a Consumers.
+`Data Access` representa el conjunto de mecanismos utilizados para consultar y modificar información persistida.
 
-------------------------------------------------------------------------
+---
 
-# 4. API ≠ Application
-
-API expone Application Capabilities.
-
-No deberá contener Business Logic sustantiva.
-
-------------------------------------------------------------------------
-
-# 5. API ≠ Transport
+# 4. Data Access ≠ Persistence
 
 La separación será:
 
-``` text
-ENG-032 Transport
-→ cómo viaja la información
+```text
+ENG-030 Persistence
+→ cómo se almacena el estado
 
-ENG-044 API
-→ qué contrato se expone
+ENG-043 Data Access
+→ cómo el software consulta y modifica ese estado
 ```
 
-------------------------------------------------------------------------
+---
 
-# 6. API ≠ Serialization
+# 5. Data Access ≠ Transaction
 
-``` text
-ENG-031 Serialization
-→ representación física
+```text
+ENG-042 Transaction
+→ consistency boundary
 
-ENG-044 API
-→ semántica pública
+ENG-043 Data Access
+→ operations performed against persisted state
 ```
 
-------------------------------------------------------------------------
+---
 
-# 7. API ≠ Domain
+# 6. Data Access ≠ Domain
 
-Domain no deberá conocer:
+Domain deberá expresar:
 
-``` text
-HTTP
-URL
-status codes
-headers
-JSON
-OpenAPI
-controllers
+```text
+business concepts
+business invariants
+aggregate behavior
 ```
 
-------------------------------------------------------------------------
+y no:
 
-# 8. API Boundary
-
-Toda entrada externa deberá atravesar una Boundary controlada.
-
-------------------------------------------------------------------------
-
-# 9. Boundary Responsibilities
-
-Podrá incluir:
-
-``` text
-routing
-authentication
-authorization
-tenant resolution
-rate limiting
-request parsing
-validation
-contract translation
-response translation
-observability
-```
-
-------------------------------------------------------------------------
-
-# 10. API Contract
-
-Un `API Contract` define comportamiento observable por Consumers.
-
-Incluye:
-
-``` text
-operations
-inputs
-outputs
-errors
-status semantics
-headers
-pagination
-compatibility guarantees
-```
-
-------------------------------------------------------------------------
-
-# 11. Contract First
-
-APIs públicas deberán diseñarse preferentemente desde Contract antes de
-exponer implementación.
-
-------------------------------------------------------------------------
-
-# 12. Implementation First
-
-Podrá utilizarse internamente, pero no deberá permitir que estructuras
-accidentales se conviertan automáticamente en contratos públicos.
-
-------------------------------------------------------------------------
-
-# 13. Public Contract Stability
-
-Una vez publicada una API estable, cambios incompatibles deberán
-gobernarse mediante Versioning/Deprecation.
-
-------------------------------------------------------------------------
-
-# 14. Endpoint
-
-Un `Endpoint` representa una operación direccionable de API.
-
-------------------------------------------------------------------------
-
-# 15. Endpoint Definition
-
-Conceptualmente:
-
-``` text
-EndpointDefinition
-├── id
-├── method
-├── path
-├── version
-├── request
-├── response
-├── errors
-├── authorization
-└── metadata
-```
-
-------------------------------------------------------------------------
-
-# 16. Endpoint ID
-
-Todo Endpoint deberá poseer identificador lógico estable.
-
-Ejemplo:
-
-``` text
-orders.create
-orders.get
-orders.list
-orders.cancel
-```
-
-------------------------------------------------------------------------
-
-# 17. Endpoint ID ≠ URL
-
-La URL podrá evolucionar independientemente del identificador lógico.
-
-------------------------------------------------------------------------
-
-# 18. Resource
-
-En APIs Resource-Oriented deberá modelarse un concepto estable del
-negocio.
-
-Ejemplo:
-
-``` text
-/orders
-/customers
-/invoices
-```
-
-------------------------------------------------------------------------
-
-# 19. Resource ≠ Table
-
-No deberá reflejar automáticamente Database Schema.
-
-------------------------------------------------------------------------
-
-# 20. Resource ≠ Domain Entity Always
-
-Una API podrá exponer:
-
-``` text
-resource
-projection
-workflow
-operation
-```
-
-sin mapear 1:1 a Domain Entity.
-
-------------------------------------------------------------------------
-
-# 21. URI Design
-
-URIs deberán ser:
-
-``` text
-stable
-predictable
-resource-oriented
-implementation-neutral
-```
-
-------------------------------------------------------------------------
-
-# 22. Internal Technology in URI
-
-No deberá exponerse:
-
-``` text
-/php/
-mysql
-repository
-controller
-serviceImpl
-```
-
-------------------------------------------------------------------------
-
-# 23. Resource Naming
-
-Deberá ser consistente.
-
-------------------------------------------------------------------------
-
-# 24. HTTP Methods
-
-Para HTTP APIs deberán respetarse semánticas estándar.
-
-------------------------------------------------------------------------
-
-# 25. GET
-
-Deberá utilizarse para lectura.
-
-------------------------------------------------------------------------
-
-# 26. GET Safety
-
-GET no deberá modificar Business State intencionalmente.
-
-------------------------------------------------------------------------
-
-# 27. GET Idempotency
-
-Múltiples GET equivalentes deberán preservar semántica de lectura.
-
-------------------------------------------------------------------------
-
-# 28. POST
-
-Normalmente representa:
-
-``` text
-create
-command
-process
-```
-
-cuando no exista semántica mejor.
-
-------------------------------------------------------------------------
-
-# 29. PUT
-
-Normalmente representa reemplazo o escritura idempotente sobre Resource
-conocido.
-
-------------------------------------------------------------------------
-
-# 30. PATCH
-
-Representa modificación parcial.
-
-------------------------------------------------------------------------
-
-# 31. DELETE
-
-Representa solicitud de eliminación según Business Semantics.
-
-------------------------------------------------------------------------
-
-# 32. DELETE ≠ Physical Delete
-
-Puede significar:
-
-``` text
-deactivate
-archive
-cancel
-soft-delete
-```
-
-------------------------------------------------------------------------
-
-# 33. OPTIONS
-
-Podrá utilizarse para capacidades HTTP/CORS.
-
-------------------------------------------------------------------------
-
-# 34. HEAD
-
-Deberá comportarse coherentemente con GET sin Body.
-
-------------------------------------------------------------------------
-
-# 35. Method Semantics
-
-No deberá elegirse HTTP Method únicamente por conveniencia del
-Framework.
-
-------------------------------------------------------------------------
-
-# 36. Safe Methods
-
-Deberá respetarse el concepto HTTP de Safe Method.
-
-------------------------------------------------------------------------
-
-# 37. Idempotent Methods
-
-Deberá respetarse la semántica de:
-
-``` text
-GET
-HEAD
-PUT
-DELETE
-```
-
-según Contract.
-
-------------------------------------------------------------------------
-
-# 38. POST Idempotency
-
-POST podrá hacerse Idempotent mediante Idempotency Key.
-
-------------------------------------------------------------------------
-
-# 39. Request
-
-Un `Request` contiene Input externo.
-
-------------------------------------------------------------------------
-
-# 40. Request DTO
-
-Deberá utilizarse Contract específico.
-
-Ejemplo:
-
-``` text
-CreateOrderRequest
-```
-
-------------------------------------------------------------------------
-
-# 41. Request DTO ≠ Domain Entity
-
-No deberá deserializarse Input directamente a Aggregate.
-
-------------------------------------------------------------------------
-
-# 42. Mass Assignment
-
-No deberá permitirse automáticamente.
-
-------------------------------------------------------------------------
-
-# 43. Explicit Mapping
-
-La transformación deberá ser:
-
-``` text
-API Request
-   │
-   ▼
-Application Input
-   │
-   ▼
-Domain
-```
-
-------------------------------------------------------------------------
-
-# 44. Unknown Fields
-
-La Policy deberá definirse explícitamente:
-
-``` text
-reject
-ignore
-```
-
-------------------------------------------------------------------------
-
-# 45. Strict Input
-
-Para APIs críticas deberá favorecerse rechazo de campos desconocidos.
-
-------------------------------------------------------------------------
-
-# 46. Required Field
-
-Deberá distinguirse de:
-
-``` text
-optional
-nullable
-missing
-```
-
-------------------------------------------------------------------------
-
-# 47. Null Semantics
-
-Deberán definirse.
-
-Especialmente para PATCH.
-
-------------------------------------------------------------------------
-
-# 48. PATCH Missing
-
-Puede significar:
-
-``` text
-do not modify
-```
-
-------------------------------------------------------------------------
-
-# 49. PATCH Null
-
-Puede significar:
-
-``` text
-clear value
-```
-
-si Contract lo permite.
-
-------------------------------------------------------------------------
-
-# 50. Response
-
-Una `Response` representa Output público.
-
-------------------------------------------------------------------------
-
-# 51. Response DTO
-
-No deberá exponer Domain Object o ORM Entity directamente.
-
-------------------------------------------------------------------------
-
-# 52. Explicit Projection
-
-La Response deberá utilizar representación pública explícita.
-
-------------------------------------------------------------------------
-
-# 53. Internal Field Leakage
-
-No deberán exponerse accidentalmente:
-
-``` text
-password_hash
-internal flags
-database ids not intended as public
-audit secrets
-tenant internals
-```
-
-------------------------------------------------------------------------
-
-# 54. Stable Response Shape
-
-Cambios deberán respetar Compatibility Policy.
-
-------------------------------------------------------------------------
-
-# 55. Response Envelope
-
-No será obligatorio universalmente.
-
-------------------------------------------------------------------------
-
-# 56. Envelope Use
-
-Podrá utilizarse cuando aporte:
-
-``` text
-metadata
-pagination
-links
-warnings
-```
-
-------------------------------------------------------------------------
-
-# 57. Envelope Consistency
-
-Si se adopta deberá ser uniforme.
-
-------------------------------------------------------------------------
-
-# 58. HTTP Status
-
-Deberá representar resultado protocolario, no sustituir Error Contract.
-
-------------------------------------------------------------------------
-
-# 59. 2xx
-
-Representan Success.
-
-------------------------------------------------------------------------
-
-# 60. 200 OK
-
-Adecuado para respuesta exitosa general.
-
-------------------------------------------------------------------------
-
-# 61. 201 Created
-
-Deberá utilizarse cuando se crea Resource.
-
-------------------------------------------------------------------------
-
-# 62. Location
-
-Una creación podrá retornar:
-
-``` text
-Location
-```
-
-del Resource creado.
-
-------------------------------------------------------------------------
-
-# 63. 202 Accepted
-
-Deberá utilizarse cuando trabajo fue aceptado pero aún no completado.
-
-------------------------------------------------------------------------
-
-# 64. 204 No Content
-
-No deberá incluir Body.
-
-------------------------------------------------------------------------
-
-# 65. 3xx
-
-Redirections deberán utilizarse únicamente con semántica explícita.
-
-------------------------------------------------------------------------
-
-# 66. 400 Bad Request
-
-Deberá reservarse para Request inválida a nivel general cuando no exista
-código más preciso.
-
-------------------------------------------------------------------------
-
-# 67. 401 Unauthorized
-
-Representa falta o invalidez de Authentication.
-
-------------------------------------------------------------------------
-
-# 68. 403 Forbidden
-
-Representa Authentication válida pero autorización insuficiente.
-
-------------------------------------------------------------------------
-
-# 69. 404 Not Found
-
-Podrá utilizarse también para evitar Resource Enumeration según Security
-Policy.
-
-------------------------------------------------------------------------
-
-# 70. 405 Method Not Allowed
-
-Deberá utilizarse para Method no permitido sobre Resource conocido.
-
-------------------------------------------------------------------------
-
-# 71. 409 Conflict
-
-Podrá representar:
-
-``` text
-state conflict
-optimistic concurrency conflict
-duplicate operation
-```
-
-------------------------------------------------------------------------
-
-# 72. 412 Precondition Failed
-
-Adecuado para Conditional Requests fallidas.
-
-------------------------------------------------------------------------
-
-# 73. 415 Unsupported Media Type
-
-Deberá utilizarse cuando Request Media Type no sea soportado.
-
-------------------------------------------------------------------------
-
-# 74. 422 Unprocessable Content
-
-Podrá utilizarse para Input sintácticamente válido pero semánticamente
-inválido.
-
-------------------------------------------------------------------------
-
-# 75. 429 Too Many Requests
-
-Representa Rate Limit excedido.
-
-------------------------------------------------------------------------
-
-# 76. 5xx
-
-Representan Failure del servidor o dependencia que no debe atribuirse al
-Consumer.
-
-------------------------------------------------------------------------
-
-# 77. 500 Internal Server Error
-
-No deberá exponer detalles internos.
-
-------------------------------------------------------------------------
-
-# 78. 503 Service Unavailable
-
-Podrá utilizarse para incapacidad temporal.
-
-------------------------------------------------------------------------
-
-# 79. Status Mapping
-
-ENG-023 deberá gobernar traducción Error → API Response.
-
-------------------------------------------------------------------------
-
-# 80. Error Contract
-
-Toda API deberá poseer formato de Error estable.
-
-------------------------------------------------------------------------
-
-# 81. Problem Details
-
-Para HTTP deberá favorecerse un modelo compatible conceptualmente con:
-
-``` text
-application/problem+json
-```
-
-------------------------------------------------------------------------
-
-# 82. Problem Shape
-
-Conceptualmente:
-
-``` text
-type
-title
-status
-detail
-instance
-code
-traceId
-errors
-```
-
-------------------------------------------------------------------------
-
-# 83. Stable Error Code
-
-Deberá existir código machine-readable estable.
-
-------------------------------------------------------------------------
-
-# 84. Human Message
-
-No deberá utilizarse como identificador programático.
-
-------------------------------------------------------------------------
-
-# 85. Validation Errors
-
-Podrán contener:
-
-``` text
-field
-code
-message
-```
-
-------------------------------------------------------------------------
-
-# 86. Error Detail Security
-
-No deberá revelar:
-
-``` text
-stack trace
+```text
 SQL
-filesystem path
-secret
-credential
-internal topology
+table names
+ORM queries
+joins
+database connections
 ```
 
-------------------------------------------------------------------------
+---
 
-# 87. Internal Error
+# 7. Data Access Boundary
 
-Deberá traducirse a Error público apropiado.
-
-------------------------------------------------------------------------
-
-# 88. Error Correlation
-
-Response podrá incluir:
-
-``` text
-traceId
-requestId
-```
-
-------------------------------------------------------------------------
-
-# 89. Stack Trace
-
-No deberá enviarse al Consumer en Production.
-
-------------------------------------------------------------------------
-
-# 90. Content Type
-
-Toda representación deberá declarar Media Type apropiado.
-
-------------------------------------------------------------------------
-
-# 91. JSON
-
-Podrá ser representación Default.
-
-------------------------------------------------------------------------
-
-# 92. JSON Contract
-
-ENG-031 gobernará detalles de Serialization.
-
-------------------------------------------------------------------------
-
-# 93. Content Negotiation
-
-Podrá utilizar:
-
-``` text
-Accept
-Content-Type
-```
-
-------------------------------------------------------------------------
-
-# 94. Unsupported Representation
-
-Deberá rechazarse explícitamente.
-
-------------------------------------------------------------------------
-
-# 95. Charset
-
-Deberá utilizarse encoding interoperable, normalmente UTF-8.
-
-------------------------------------------------------------------------
-
-# 96. Date/Time
-
-Deberá utilizar formato estándar e inequívoco.
-
-------------------------------------------------------------------------
-
-# 97. Timezone
-
-No deberá omitirse cuando el instante lo requiera.
-
-------------------------------------------------------------------------
-
-# 98. Decimal
-
-Valores monetarios no deberán depender de Float binario cuando precisión
-sea crítica.
-
-------------------------------------------------------------------------
-
-# 99. Enum
-
-Valores públicos deberán tratarse como parte del Contract.
-
-------------------------------------------------------------------------
-
-# 100. Enum Evolution
-
-Agregar nuevos valores puede ser Breaking para Consumers no tolerantes.
-
-------------------------------------------------------------------------
-
-# 101. Identifier
-
-Los identificadores públicos deberán tener representación estable.
-
-------------------------------------------------------------------------
-
-# 102. Internal Sequential ID
-
-No deberá exponerse cuando genere riesgo innecesario.
-
-------------------------------------------------------------------------
-
-# 103. Versioning
-
-Toda API estable deberá poseer estrategia explícita de Versioning.
-
-------------------------------------------------------------------------
-
-# 104. Version ≠ Release
-
-``` text
-Framework Release
-≠
-API Contract Version
-```
-
-------------------------------------------------------------------------
-
-# 105. Versioning Strategies
-
-Podrán incluir:
-
-``` text
-URI
-Header
-Media Type
-```
-
-------------------------------------------------------------------------
-
-# 106. First Version Strategy
-
-La primera implementación deberá favorecer una estrategia única y
-consistente.
-
-------------------------------------------------------------------------
-
-# 107. URI Versioning
-
-Ejemplo:
-
-``` text
-/api/v1/orders
-```
-
-------------------------------------------------------------------------
-
-# 108. Header Versioning
-
-Podrá utilizarse cuando exista necesidad clara.
-
-------------------------------------------------------------------------
-
-# 109. Mixed Versioning
-
-No deberá utilizarse sin justificación.
-
-------------------------------------------------------------------------
-
-# 110. Version Scope
-
-Deberá definirse si Version aplica a:
-
-``` text
-whole API
-module
-resource
-operation
-```
-
-------------------------------------------------------------------------
-
-# 111. Compatibility
-
-ENG-016 gobernará Compatibility general.
-
-------------------------------------------------------------------------
-
-# 112. API Compatibility
-
-Deberá analizarse desde perspectiva del Consumer.
-
-------------------------------------------------------------------------
-
-# 113. Breaking Change
+Toda operación deberá atravesar una Boundary conocida.
 
 Ejemplos:
 
-``` text
-remove endpoint
-remove field
-rename field
-change field type
-make optional field required
-change semantics
-remove enum value
-change error meaning
+```text
+Repository
+Query Service
+Read Model Provider
+Persistence Gateway
 ```
 
-------------------------------------------------------------------------
+---
 
-# 114. Potentially Breaking Change
+# 8. Boundary Ownership
 
-Agregar:
+Application deberá seleccionar la abstracción apropiada según el Use Case.
 
-``` text
-enum value
-required response behavior
-new validation
+---
+
+# 9. Repository
+
+Un `Repository` representa una colección conceptual de Aggregates o Domain Objects.
+
+---
+
+# 10. Repository Purpose
+
+Deberá permitir a Domain/Application trabajar con conceptos del modelo sin conocer Storage Mechanics.
+
+---
+
+# 11. Repository Contract
+
+Ejemplo conceptual:
+
+```text
+OrderRepository
+    findById(OrderId)
+    save(Order)
+    remove(Order)
 ```
 
-puede romper Consumers.
+---
 
-------------------------------------------------------------------------
+# 12. Repository Language
 
-# 115. Usually Compatible Change
+Deberá utilizar lenguaje del Domain.
 
-Podrá incluir:
+Preferir:
 
-``` text
-new optional request field
-new endpoint
-new optional response field
+```text
+findActiveCustomerById()
 ```
 
-si Consumer Contract lo permite.
+sobre:
 
-------------------------------------------------------------------------
-
-# 116. Consumer Robustness
-
-No deberá utilizarse como excusa para cambios arbitrarios.
-
-------------------------------------------------------------------------
-
-# 117. API Compatibility Matrix
-
-Podrá documentarse:
-
-``` text
-API version
-framework version
-support status
-deprecation date
-removal date
+```text
+selectCustomerWhereStatusEquals1()
 ```
 
-------------------------------------------------------------------------
+---
 
-# 118. Deprecation
+# 13. Repository Scope
 
-Toda funcionalidad pública retirada deberá pasar por Lifecycle
-explícito.
+Un Repository deberá normalmente corresponder a:
 
-------------------------------------------------------------------------
-
-# 119. Deprecation States
-
-Conceptualmente:
-
-``` text
-ACTIVE
-DEPRECATED
-SUNSET
-REMOVED
+```text
+Aggregate Root
 ```
 
-------------------------------------------------------------------------
+y no necesariamente a cada tabla.
 
-# 120. Deprecation Notice
+---
 
-Podrá comunicarse mediante:
+# 14. Repository per Table
 
-``` text
-documentation
-headers
-release notes
-telemetry
+No deberá ser Pattern Default.
+
+---
+
+# 15. Generic Repository
+
+Un Repository genérico universal:
+
+```text
+Repository<T>
+    find()
+    insert()
+    update()
+    delete()
 ```
 
-------------------------------------------------------------------------
+no deberá sustituir Contracts significativos del Domain.
 
-# 121. Sunset
+---
 
-Podrá declararse fecha prevista de retiro.
+# 16. Repository Contract Stability
 
-------------------------------------------------------------------------
+No deberá exponer tipos específicos del ORM.
 
-# 122. Immediate Removal
+---
 
-Solo deberá ocurrir ante:
+# 17. ORM Leakage
 
-``` text
-critical security issue
-legal requirement
-unrecoverable operational risk
+No deberá retornar:
+
+```text
+QueryBuilder
+EntityManager
+DatabaseConnection
+ORMCollection
 ```
 
-o contrato explícito que lo permita.
+hacia Domain.
 
-------------------------------------------------------------------------
+---
 
-# 123. Deprecated Endpoint Telemetry
+# 18. Persistence Entity
 
-Deberá poder medirse su uso.
+Si la implementación utiliza Persistence Models separados, éstos no deberán escapar de Infrastructure.
 
-------------------------------------------------------------------------
+---
 
-# 124. Removal Decision
+# 19. Aggregate Loading
 
-Deberá basarse en:
+Un Repository deberá reconstruir un Aggregate válido.
 
-``` text
-support policy
-consumer usage
-migration readiness
-security
-```
+---
 
-------------------------------------------------------------------------
+# 20. Partial Aggregate
 
-# 125. Pagination
+No deberá devolverse un Aggregate incompleto que pueda violar Invariants.
 
-ENG-043 gobernará mecanismo interno.
+---
 
-ENG-044 gobernará Contract externo.
+# 21. Aggregate Persistence
 
-------------------------------------------------------------------------
+`save(Aggregate)` deberá respetar la Transaction Boundary de ENG-042.
 
-# 126. Pagination Request
+---
 
-Podrá exponer:
+# 22. Save Semantics
 
-``` text
-page
-pageSize
+Deberá definirse si `save()`:
+
+```text
+registers change
 ```
 
 o:
 
-``` text
-cursor
-limit
+```text
+immediately writes
 ```
 
-------------------------------------------------------------------------
+---
 
-# 127. Pagination Response
+# 23. Flush
 
-Podrá contener:
+Cuando exista Unit of Work:
 
-``` text
-items
-nextCursor
-previousCursor
-hasMore
-total
+```text
+save()
+→ register
+
+flush()
+→ synchronize
+
+commit()
+→ durable
 ```
 
-según estrategia.
+---
 
-------------------------------------------------------------------------
+# 24. Flush ≠ Commit
 
-# 128. Pagination Strategy
+No deberán confundirse.
 
-No deberá mezclar Offset y Cursor arbitrariamente en un mismo Endpoint.
+---
 
-------------------------------------------------------------------------
+# 25. Delete
 
-# 129. Maximum Page Size
+La semántica deberá distinguir:
 
-Deberá aplicarse.
-
-------------------------------------------------------------------------
-
-# 130. Client Page Size
-
-No deberá superar Maximum configurado.
-
-------------------------------------------------------------------------
-
-# 131. Default Page Size
-
-Deberá documentarse.
-
-------------------------------------------------------------------------
-
-# 132. Total Count
-
-No deberá prometerse cuando resulte costoso o inconsistente.
-
-------------------------------------------------------------------------
-
-# 133. Cursor Opaqueness
-
-El Consumer deberá tratar Cursor como valor opaco.
-
-------------------------------------------------------------------------
-
-# 134. Cursor Tampering
-
-Deberá detectarse cuando Cursor contenga State verificable.
-
-------------------------------------------------------------------------
-
-# 135. Filtering
-
-API deberá exponer únicamente Filters permitidos.
-
-------------------------------------------------------------------------
-
-# 136. Filter Contract
-
-Cada Filter deberá documentar:
-
-``` text
-name
-type
-operators
-cardinality expectations
+```text
+physical delete
+soft delete
+business deactivation
 ```
 
-------------------------------------------------------------------------
+---
 
-# 137. Internal Field Mapping
+# 26. Business Deactivation
 
-Public Filter Name no deberá requerir coincidir con Database Column.
+No deberá implementarse automáticamente como Database Delete.
 
-------------------------------------------------------------------------
+---
 
-# 138. Sorting
+# 27. Data Mapper
 
-Solo campos permitidos deberán ser Sortable.
+Un `Data Mapper` transforma entre:
 
-------------------------------------------------------------------------
-
-# 139. Default Sort
-
-Deberá ser determinístico.
-
-------------------------------------------------------------------------
-
-# 140. Multi-Sort
-
-Podrá permitirse con límites.
-
-------------------------------------------------------------------------
-
-# 141. Arbitrary SQL Sort
-
-No deberá existir.
-
-------------------------------------------------------------------------
-
-# 142. Field Selection
-
-Podrá soportarse:
-
-``` text
-fields=id,name,status
+```text
+Domain Representation
+↕
+Persistence Representation
 ```
 
-cuando sea seguro.
+---
 
-------------------------------------------------------------------------
-
-# 143. Field Allowlist
-
-Será obligatoria.
-
-------------------------------------------------------------------------
-
-# 144. Sensitive Field Selection
-
-No deberá ser posible mediante Field Selection genérico.
-
-------------------------------------------------------------------------
-
-# 145. Expansion
-
-Podrá soportarse:
-
-``` text
-include
-expand
-```
-
-------------------------------------------------------------------------
-
-# 146. Expansion Limit
-
-Deberá evitar Graph Explosion y N+1.
-
-------------------------------------------------------------------------
-
-# 147. Nested Expansion
-
-Deberá limitarse en profundidad.
-
-------------------------------------------------------------------------
-
-# 148. Validation
-
-ENG-036 gobernará Validation.
-
-------------------------------------------------------------------------
-
-# 149. API Validation
-
-Deberá distinguir:
-
-``` text
-syntax validation
-schema validation
-semantic validation
-business validation
-```
-
-------------------------------------------------------------------------
-
-# 150. Syntax Validation
-
-Ocurre en API Boundary.
-
-------------------------------------------------------------------------
-
-# 151. Schema Validation
-
-Verifica Contract.
-
-------------------------------------------------------------------------
-
-# 152. Semantic Validation
-
-Podrá ocurrir en Application.
-
-------------------------------------------------------------------------
-
-# 153. Business Invariant
-
-Permanece en Domain.
-
-------------------------------------------------------------------------
-
-# 154. Validation Duplication
-
-Podrá existir únicamente cuando proteja Boundaries diferentes.
-
-------------------------------------------------------------------------
-
-# 155. Validation Error Stability
-
-Error Codes deberán ser estables.
-
-------------------------------------------------------------------------
-
-# 156. Authentication
-
-ENG-024 gobernará Security.
-
-------------------------------------------------------------------------
-
-# 157. Authentication Boundary
-
-Deberá ejecutarse antes de operaciones protegidas.
-
-------------------------------------------------------------------------
-
-# 158. Anonymous Endpoint
-
-Deberá declararse explícitamente.
-
-------------------------------------------------------------------------
-
-# 159. Default Security
-
-Deberá favorecer:
-
-``` text
-deny by default
-```
-
-------------------------------------------------------------------------
-
-# 160. Authorization
-
-Cada operación protegida deberá declarar Authorization Requirement.
-
-------------------------------------------------------------------------
-
-# 161. Authorization ≠ Routing
-
-Ocultar Endpoint no sustituye autorización.
-
-------------------------------------------------------------------------
-
-# 162. Resource Authorization
-
-Podrá depender de Resource específico.
-
-------------------------------------------------------------------------
-
-# 163. Field Authorization
-
-Podrá limitar campos de Response.
-
-------------------------------------------------------------------------
-
-# 164. Tenant Context
-
-Deberá derivarse de identidad/contexto autorizado.
-
-------------------------------------------------------------------------
-
-# 165. Tenant Header
-
-No deberá confiarse por sí solo.
-
-------------------------------------------------------------------------
-
-# 166. Cross-Tenant API
-
-Deberá requerir privilegio explícito.
-
-------------------------------------------------------------------------
-
-# 167. Authentication Error
-
-No deberá revelar información que facilite Account Enumeration.
-
-------------------------------------------------------------------------
-
-# 168. Authorization Error
-
-Podrá utilizar 403 o 404 según Security Policy.
-
-------------------------------------------------------------------------
-
-# 169. Rate Limiting
-
-Toda API pública susceptible de abuso deberá soportar Rate Limiting.
-
-------------------------------------------------------------------------
-
-# 170. Rate Limit Scope
-
-Podrá aplicarse por:
-
-``` text
-identity
-tenant
-API key
-IP
-endpoint
-resource
-```
-
-------------------------------------------------------------------------
-
-# 171. IP Rate Limit
-
-No deberá ser único mecanismo para Consumers autenticados.
-
-------------------------------------------------------------------------
-
-# 172. Rate Limit Algorithm
-
-Podrá utilizar:
-
-``` text
-token bucket
-leaky bucket
-fixed window
-sliding window
-```
-
-------------------------------------------------------------------------
-
-# 173. Rate Limit Headers
-
-Podrán exponerse cuando formen parte del Contract.
-
-------------------------------------------------------------------------
-
-# 174. Retry-After
-
-Deberá utilizarse cuando sea apropiado.
-
-------------------------------------------------------------------------
-
-# 175. Rate Limit Storage
-
-Deberá considerar consistencia y distribución.
-
-------------------------------------------------------------------------
-
-# 176. Rate Limit Failure Mode
-
-Deberá definirse:
-
-``` text
-fail-open
-fail-closed
-```
-
-según riesgo.
-
-------------------------------------------------------------------------
-
-# 177. Quota
-
-`Quota` representa límite de consumo en periodo mayor.
-
-------------------------------------------------------------------------
-
-# 178. Quota ≠ Rate Limit
-
-``` text
-Rate Limit
-→ velocity
-
-Quota
-→ total allowance
-```
-
-------------------------------------------------------------------------
-
-# 179. Cost-Based Limit
-
-Endpoints costosos podrán consumir unidades distintas.
-
-------------------------------------------------------------------------
-
-# 180. Abuse Protection
-
-Podrá combinar:
-
-``` text
-rate limit
-quota
-payload limit
-query complexity
-concurrency limit
-```
-
-------------------------------------------------------------------------
-
-# 181. Request Size Limit
-
-Deberá existir.
-
-------------------------------------------------------------------------
-
-# 182. Header Size Limit
-
-Deberá existir en Transport/Server.
-
-------------------------------------------------------------------------
-
-# 183. Upload Limit
-
-Deberá ser explícito cuando exista Upload.
-
-------------------------------------------------------------------------
-
-# 184. Compression Bomb
-
-Deberá considerarse para Input comprimido.
-
-------------------------------------------------------------------------
-
-# 185. Idempotency
-
-Operaciones susceptibles de Retry deberán definir semántica de
-Idempotency.
-
-------------------------------------------------------------------------
-
-# 186. Idempotency Key
-
-Podrá utilizarse para Commands no naturalmente Idempotent.
-
-------------------------------------------------------------------------
-
-# 187. Idempotency Scope
-
-Deberá incluir contexto suficiente:
-
-``` text
-consumer
-tenant
-operation
-key
-```
-
-------------------------------------------------------------------------
-
-# 188. Idempotency Key Reuse
-
-Misma Key + misma operación deberá retornar resultado compatible.
-
-------------------------------------------------------------------------
-
-# 189. Key Payload Conflict
-
-Misma Key con Payload diferente deberá rechazarse.
-
-------------------------------------------------------------------------
-
-# 190. Idempotency Record
-
-Podrá contener:
-
-``` text
-key
-request fingerprint
-state
-response
-createdAt
-expiresAt
-```
-
-------------------------------------------------------------------------
-
-# 191. Idempotency States
-
-Conceptualmente:
-
-``` text
-PROCESSING
-COMPLETED
-FAILED
-```
-
-------------------------------------------------------------------------
-
-# 192. Concurrent Duplicate
-
-Solo una ejecución deberá adquirir Ownership.
-
-------------------------------------------------------------------------
-
-# 193. Idempotency Expiration
-
-Deberá documentarse.
-
-------------------------------------------------------------------------
-
-# 194. Idempotency ≠ Authentication
-
-La Key no deberá considerarse Credential.
-
-------------------------------------------------------------------------
-
-# 195. Transaction Integration
-
-ENG-042 deberá gobernar persistencia atómica cuando Idempotency State y
-Business Effect deban coordinarse.
-
-------------------------------------------------------------------------
-
-# 196. Retry
-
-ENG-039 gobernará Retry.
-
-------------------------------------------------------------------------
-
-# 197. Client Retry Guidance
-
-API podrá comunicar:
-
-``` text
-Retry-After
-retryable error code
-```
-
-cuando sea seguro.
-
-------------------------------------------------------------------------
-
-# 198. Unsafe Retry
-
-No deberá recomendarse Retry para operación no Idempotent sin
-protección.
-
-------------------------------------------------------------------------
-
-# 199. Conditional Request
-
-Permite ejecutar operación únicamente si una condición sobre Resource se
-cumple.
-
-------------------------------------------------------------------------
-
-# 200. ETag
-
-Podrá representar Version de una Representation.
-
-------------------------------------------------------------------------
-
-# 201. Strong ETag
-
-Representa equivalencia byte/representation apropiada según HTTP
-Semantics.
-
-------------------------------------------------------------------------
-
-# 202. Weak ETag
-
-Podrá utilizarse cuando equivalencia semántica sea suficiente.
-
-------------------------------------------------------------------------
-
-# 203. If-None-Match
-
-Podrá utilizarse para Cache Validation.
-
-------------------------------------------------------------------------
-
-# 204. If-Match
-
-Podrá utilizarse para Optimistic Concurrency.
-
-------------------------------------------------------------------------
-
-# 205. Lost Update Protection
-
-Ejemplo:
-
-``` text
-GET /orders/123
-ETag: "v7"
-
-PUT /orders/123
-If-Match: "v7"
-```
-
-------------------------------------------------------------------------
-
-# 206. Stale Version
-
-Deberá producir:
-
-``` text
-412 Precondition Failed
-```
-
-o Contract equivalente.
-
-------------------------------------------------------------------------
-
-# 207. ETag ≠ Secret
-
-No deberá contener datos sensibles.
-
-------------------------------------------------------------------------
-
-# 208. Cache
-
-ENG-037 gobernará Caching.
-
-------------------------------------------------------------------------
-
-# 209. Cache-Control
-
-API deberá definir Policy apropiada.
-
-------------------------------------------------------------------------
-
-# 210. Private Data
-
-No deberá marcarse como public cacheable accidentalmente.
-
-------------------------------------------------------------------------
-
-# 211. No-Store
-
-Deberá utilizarse cuando Response sensible no deba almacenarse.
-
-------------------------------------------------------------------------
-
-# 212. Vary
-
-Deberá utilizarse correctamente cuando Representation dependa de Request
-Headers.
-
-------------------------------------------------------------------------
-
-# 213. Cache Key Variation
-
-Deberá considerar:
-
-``` text
-authorization
-tenant
-language
-representation
-version
-```
-
-cuando corresponda.
-
-------------------------------------------------------------------------
-
-# 214. CORS
-
-CORS deberá configurarse explícitamente.
-
-------------------------------------------------------------------------
-
-# 215. CORS ≠ Authentication
-
-No es control de acceso del servidor.
-
-------------------------------------------------------------------------
-
-# 216. Allowed Origins
-
-No deberá utilizarse:
-
-``` text
-*
-```
-
-con Credentials sensibles sin evaluación explícita.
-
-------------------------------------------------------------------------
-
-# 217. Allowed Methods
-
-Deberán limitarse.
-
-------------------------------------------------------------------------
-
-# 218. Allowed Headers
-
-Deberán limitarse.
-
-------------------------------------------------------------------------
-
-# 219. Exposed Headers
-
-Deberán declararse cuando Client necesite accederlos.
-
-------------------------------------------------------------------------
-
-# 220. Preflight
-
-Deberá responder de forma consistente.
-
-------------------------------------------------------------------------
-
-# 221. CSRF
-
-Para Authentication basada en Cookie deberá evaluarse CSRF
-independientemente de CORS.
-
-------------------------------------------------------------------------
-
-# 222. API Key
-
-Deberá transmitirse únicamente mediante mecanismo seguro.
-
-------------------------------------------------------------------------
-
-# 223. API Key in URL
-
-No deberá utilizarse.
-
-------------------------------------------------------------------------
-
-# 224. Secret in Query String
-
-No deberá utilizarse.
-
-------------------------------------------------------------------------
-
-# 225. TLS
-
-APIs sensibles deberán utilizar transporte seguro.
-
-------------------------------------------------------------------------
-
-# 226. Security Headers
-
-Deberán aplicarse cuando sean relevantes al tipo de Consumer.
-
-------------------------------------------------------------------------
-
-# 227. OpenAPI
-
-Toda HTTP API pública estable deberá poder describirse mediante OpenAPI
-o Contract equivalente.
-
-------------------------------------------------------------------------
-
-# 228. OpenAPI Ownership
-
-La Specification deberá formar parte del Source Control.
-
-------------------------------------------------------------------------
-
-# 229. OpenAPI Generation
-
-Podrá ser:
-
-``` text
-contract-first
-code-first
-hybrid
-```
-
-------------------------------------------------------------------------
-
-# 230. Generated Specification
-
-Deberá validarse.
-
-------------------------------------------------------------------------
-
-# 231. OpenAPI Drift
-
-No deberá existir divergencia silenciosa entre Runtime y Specification.
-
-------------------------------------------------------------------------
-
-# 232. Schema Reuse
-
-Deberá evitar duplicación innecesaria.
-
-------------------------------------------------------------------------
-
-# 233. Operation ID
-
-Deberá ser estable y único.
-
-------------------------------------------------------------------------
-
-# 234. Examples
-
-Podrán incluirse ejemplos sanitizados.
-
-------------------------------------------------------------------------
-
-# 235. Secrets in Examples
-
-No deberán existir.
-
-------------------------------------------------------------------------
-
-# 236. Documentation
-
-Deberá explicar semántica que Schema por sí solo no puede expresar.
-
-------------------------------------------------------------------------
-
-# 237. API Discovery
-
-MEF podrá registrar APIs disponibles.
-
-------------------------------------------------------------------------
-
-# 238. API Registry
-
-ENG-020 podrá mantener:
-
-``` text
-ApiDefinition
-EndpointDefinition
-ApiVersion
-DeprecationMetadata
-```
-
-------------------------------------------------------------------------
-
-# 239. Duplicate Route
-
-Deberá detectarse durante Bootstrap.
-
-------------------------------------------------------------------------
-
-# 240. Ambiguous Route
-
-También.
-
-------------------------------------------------------------------------
-
-# 241. Route Priority
-
-No deberá depender de orden accidental de Module Discovery.
-
-------------------------------------------------------------------------
-
-# 242. Module API
-
-ENG-028 permitirá que cada Module declare Endpoints públicos.
-
-------------------------------------------------------------------------
-
-# 243. Private Module API
-
-Deberá distinguirse de Public API.
-
-------------------------------------------------------------------------
-
-# 244. Internal API
-
-Podrá poseer Contract diferente, pero no deberá considerarse sin
-gobernanza.
-
-------------------------------------------------------------------------
-
-# 245. API Exposure
-
-La visibilidad podrá ser:
-
-``` text
-PUBLIC
-PARTNER
-INTERNAL
-ADMIN
-```
-
-------------------------------------------------------------------------
-
-# 246. Exposure Policy
-
-Deberá afectar:
-
-``` text
-authentication
-documentation
-rate limits
-network exposure
-support policy
-```
-
-------------------------------------------------------------------------
-
-# 247. Admin API
-
-Deberá poseer controles reforzados.
-
-------------------------------------------------------------------------
-
-# 248. Internal ≠ Trusted
-
-Una API interna también deberá autenticar/autorizar según Threat Model.
-
-------------------------------------------------------------------------
-
-# 249. API Gateway
-
-Podrá existir delante de MEF.
-
-------------------------------------------------------------------------
-
-# 250. Gateway Responsibility
+# 28. Mapper Responsibility
 
 Podrá manejar:
 
-``` text
-TLS termination
-routing
-WAF
-coarse rate limiting
-authentication assistance
+```text
+field mapping
+value objects
+identifier mapping
+persistence metadata
 ```
 
-------------------------------------------------------------------------
+---
 
-# 251. Gateway ≠ Application Authorization
+# 29. Mapper Non-Responsibility
 
-Business Authorization deberá permanecer en Application/API Boundary.
+No deberá contener Business Rules sustantivas.
 
-------------------------------------------------------------------------
+---
 
-# 252. Proxy Awareness
+# 30. Mapping Failure
 
-Runtime deberá interpretar correctamente:
+Deberá producir Error explícito.
 
-``` text
-Forwarded
-X-Forwarded-For
-X-Forwarded-Proto
+---
+
+# 31. Mapping Invariant
+
+Un registro persistido inválido no deberá convertirse silenciosamente en un Domain Object válido.
+
+---
+
+# 32. Identity Map
+
+Un `Identity Map` garantiza, dentro de Scope apropiado:
+
+```text
+same identity
+→ same in-memory object instance
 ```
 
-solo desde Proxies confiables.
+cuando dicha semántica sea necesaria.
 
-------------------------------------------------------------------------
+---
 
-# 253. Client IP
+# 33. Identity Map Scope
 
-No deberá confiarse en Headers arbitrarios.
+Normalmente deberá estar acotado a:
 
-------------------------------------------------------------------------
+```text
+Unit of Work
+Transaction
+Request
+```
 
-# 254. Request ID
+según implementación.
 
-Toda Request deberá poseer identificador.
+---
 
-------------------------------------------------------------------------
+# 34. Global Identity Map
 
-# 255. Correlation ID
+No deberá existir.
 
-Podrá aceptar uno externo bajo Policy.
+---
 
-------------------------------------------------------------------------
+# 35. Identity Map Memory
 
-# 256. Trace Context
+Deberá liberarse al finalizar Scope.
 
-ENG-025 gobernará Distributed Tracing.
+---
 
-------------------------------------------------------------------------
+# 36. Query
 
-# 257. Observability
+Una `Query` representa una solicitud de lectura de datos.
 
-Toda operación deberá ser observable.
+---
 
-------------------------------------------------------------------------
+# 37. Query Side Effects
 
-# 258. API Metrics
+Una Query no deberá modificar Business State observable.
+
+---
+
+# 38. CQRS Principle
+
+MEF podrá separar:
+
+```text
+Command Model
+Read Model
+```
+
+sin requerir CQRS completo.
+
+---
+
+# 39. Query Service
+
+Un `Query Service` podrá acceder directamente a Read Models optimizados.
+
+---
+
+# 40. Query Service ≠ Repository
+
+```text
+Repository
+→ Aggregate/Domain access
+
+Query Service
+→ use-case-oriented reading
+```
+
+---
+
+# 41. Read Model
+
+Un `Read Model` representa datos preparados para consumo.
+
+---
+
+# 42. Read Model Shape
+
+Podrá coincidir directamente con necesidades de:
+
+```text
+API
+UI
+Report
+Export
+Dashboard
+```
+
+---
+
+# 43. Read Model Domain Independence
+
+No deberá forzarse la construcción de Aggregates completos para consultas que no requieren comportamiento de Domain.
+
+---
+
+# 44. Projection
+
+Una `Projection` contiene únicamente campos requeridos.
+
+---
+
+# 45. Projection Example
+
+```text
+CustomerSummary
+├── id
+├── name
+├── status
+└── totalOrders
+```
+
+---
+
+# 46. Projection Benefit
+
+Reduce:
+
+```text
+data transfer
+memory
+mapping
+database work
+```
+
+---
+
+# 47. Query Object
+
+Un `Query Object` encapsula una consulta compleja o reutilizable.
+
+---
+
+# 48. Query Object Contract
+
+Conceptualmente:
+
+```text
+Query<TCriteria, TResult>
+```
+
+---
+
+# 49. Query Object Purpose
+
+Deberá evitar dispersar lógica compleja de consulta en Controllers o Services.
+
+---
+
+# 50. Criteria
+
+`Criteria` representa restricciones estructuradas de una Query.
+
+---
+
+# 51. Criteria Example
+
+```text
+CustomerCriteria
+├── status
+├── region
+├── createdAfter
+└── createdBefore
+```
+
+---
+
+# 52. Criteria Validation
+
+ENG-036 deberá validar Criteria antes de construir Query física.
+
+---
+
+# 53. Criteria ≠ SQL Fragment
+
+No deberá aceptar SQL arbitrario.
+
+---
+
+# 54. Specification
+
+Una `Specification` representa una condición reusable y composable.
+
+---
+
+# 55. Specification Example
+
+```text
+ActiveCustomer
+AND
+LocatedInRegion
+AND
+CreatedAfterDate
+```
+
+---
+
+# 56. Domain Specification
+
+Podrá representar Business Predicate.
+
+---
+
+# 57. Query Specification
+
+Podrá representar Predicate traducible a Data Source.
+
+---
+
+# 58. Specification Leakage
+
+No deberá acoplar Domain Specification a sintaxis SQL.
+
+---
+
+# 59. Specification Composition
+
+Podrá soportar:
+
+```text
+AND
+OR
+NOT
+```
+
+---
+
+# 60. Specification Complexity
+
+No deberá convertirse en un lenguaje de consultas universal innecesario.
+
+---
+
+# 61. Filtering
+
+Filtering deberá utilizar campos permitidos explícitamente.
+
+---
+
+# 62. Arbitrary Field Filtering
+
+No deberá exponerse automáticamente.
+
+---
+
+# 63. Filter Registry
+
+Podrá existir:
+
+```text
+allowed filter
+→ field/expression
+```
+
+---
+
+# 64. Filter Type
+
+Cada Filter deberá conocer:
+
+```text
+type
+operator
+validation
+```
+
+---
+
+# 65. Operators
 
 Podrán incluir:
 
-``` text
-mef.api.requests.total
-mef.api.request.duration
-mef.api.errors.total
-mef.api.inflight
+```text
+EQ
+NE
+GT
+GTE
+LT
+LTE
+IN
+BETWEEN
+CONTAINS
+STARTS_WITH
 ```
 
-------------------------------------------------------------------------
+cuando sean seguros y necesarios.
 
-# 259. Metric Dimensions
+---
 
-Podrán incluir:
+# 66. Arbitrary Operator
 
-``` text
-endpointId
-method
-statusClass
+No deberá aceptarse directamente desde Input sin Allowlist.
+
+---
+
+# 67. Sorting
+
+Sorting deberá utilizar campos permitidos.
+
+---
+
+# 68. Sort Direction
+
+Normalmente:
+
+```text
+ASC
+DESC
+```
+
+---
+
+# 69. Stable Sorting
+
+Toda Pagination deberá utilizar orden determinístico.
+
+---
+
+# 70. Tie Breaker
+
+Deberá agregarse identificador estable cuando el campo principal no sea único.
+
+Ejemplo:
+
+```text
+ORDER BY created_at DESC, id DESC
+```
+
+---
+
+# 71. Pagination
+
+Deberá evitar cargar colecciones ilimitadas.
+
+---
+
+# 72. Offset Pagination
+
+Conceptualmente:
+
+```text
+LIMIT
+OFFSET
+```
+
+---
+
+# 73. Offset Pagination Use
+
+Adecuada para:
+
+```text
+small/medium datasets
+administrative tables
+random page navigation
+```
+
+---
+
+# 74. Offset Cost
+
+Offsets altos pueden degradar Performance.
+
+---
+
+# 75. Offset Consistency
+
+Inserciones/eliminaciones concurrentes pueden provocar:
+
+```text
+duplicates
+missing rows
+```
+
+entre páginas.
+
+---
+
+# 76. Cursor Pagination
+
+Deberá favorecerse para:
+
+```text
+large datasets
+feeds
+streams
+high write rates
+```
+
+---
+
+# 77. Cursor
+
+Un Cursor deberá representar posición lógica estable.
+
+---
+
+# 78. Cursor Opaqueness
+
+El cliente no deberá depender de su estructura interna.
+
+---
+
+# 79. Cursor Integrity
+
+Deberá impedir manipulación cuando contenga State sensible.
+
+---
+
+# 80. Cursor Contents
+
+Podrá contener:
+
+```text
+sort values
+tie-breaker id
+direction
 version
 ```
 
-con Cardinality acotada.
+---
 
-------------------------------------------------------------------------
+# 81. Cursor Encoding
 
-# 260. Raw Path Label
+ENG-031 podrá gobernar Encoding.
 
-No deberá utilizarse cuando contenga IDs.
+---
 
-------------------------------------------------------------------------
+# 82. Cursor Expiration
 
-# 261. User ID Metric Label
+Podrá aplicarse cuando corresponda.
 
-No deberá utilizarse.
+---
 
-------------------------------------------------------------------------
+# 83. Page Size
 
-# 262. Tenant ID Metric Label
+Deberá tener:
 
-No deberá utilizarse salvo arquitectura controlada de Cardinality y
-Privacy.
+```text
+default
+maximum
+```
 
-------------------------------------------------------------------------
+---
 
-# 263. Logs
+# 84. Unlimited Page Size
+
+No deberá permitirse.
+
+---
+
+# 85. Total Count
+
+No deberá calcularse automáticamente cuando sea costoso y no necesario.
+
+---
+
+# 86. Count Query
+
+Deberá observarse como Query independiente.
+
+---
+
+# 87. Projection Pagination
+
+Deberá ejecutarse sobre Projection cuando sea posible.
+
+---
+
+# 88. Lazy Loading
+
+Carga datos cuando se accede a una relación.
+
+---
+
+# 89. Lazy Loading Risk
+
+Puede ocultar Database Round Trips.
+
+---
+
+# 90. Default Policy
+
+MEF deberá evitar Lazy Loading implícito en Boundaries críticas.
+
+---
+
+# 91. Lazy Loading Outside Transaction
+
+Puede fallar o producir comportamiento impredecible.
+
+---
+
+# 92. Serialization + Lazy Loading
+
+No deberá provocar Queries accidentales durante Serialization.
+
+---
+
+# 93. Eager Loading
+
+Carga relaciones requeridas anticipadamente.
+
+---
+
+# 94. Eager Loading Risk
+
+Cargar demasiadas relaciones puede producir:
+
+```text
+large joins
+row multiplication
+memory growth
+```
+
+---
+
+# 95. Explicit Fetch Plan
+
+Deberá favorecerse.
+
+---
+
+# 96. Fetch Plan
+
+Conceptualmente:
+
+```text
+OrderFetchPlan
+├── customer
+├── lines
+└── payments
+```
+
+---
+
+# 97. Fetch Plan Scope
+
+Deberá responder a un Use Case concreto.
+
+---
+
+# 98. Batch Loading
+
+Permite cargar múltiples relaciones en pocas Queries.
+
+---
+
+# 99. Batch Loading Example
+
+```text
+100 orders
++
+1 query customers
++
+1 query lines
+```
+
+en lugar de:
+
+```text
+1 + 100 + 100 queries
+```
+
+---
+
+# 100. N+1
+
+El problema N+1 ocurre cuando:
+
+```text
+1 query parent
++
+N queries children
+```
+
+---
+
+# 101. N+1 Policy
+
+Deberá detectarse y evitarse en caminos críticos.
+
+---
+
+# 102. N+1 Detection
+
+Podrá utilizar:
+
+```text
+query counter
+tracing
+test assertions
+development diagnostics
+```
+
+---
+
+# 103. Query Budget
+
+Un Use Case podrá declarar número máximo razonable de Queries.
+
+---
+
+# 104. Query Budget Example
+
+```text
+GET /orders
+≤ 5 database round trips
+```
+
+---
+
+# 105. Query Budget Purpose
+
+Detectar regresiones antes de Production.
+
+---
+
+# 106. Query Budget ≠ Universal Constant
+
+Deberá depender del Use Case.
+
+---
+
+# 107. Database Round Trip
+
+Deberá tratarse como operación costosa.
+
+---
+
+# 108. Loop Query
+
+No deberá ejecutarse una Query remota dentro de un Loop cuando pueda utilizarse Batch.
+
+---
+
+# 109. Query Timeout
+
+Toda Query potencialmente costosa deberá poseer Timeout.
+
+---
+
+# 110. Query Timeout ≠ Transaction Timeout
+
+Podrán ser diferentes.
+
+---
+
+# 111. Statement Timeout
+
+Adapter podrá mapear Query Timeout a mecanismo del Provider.
+
+---
+
+# 112. Cancellation
+
+Deberá propagarse cuando el Driver lo soporte.
+
+---
+
+# 113. Abandoned Query
+
+Una Request cancelada no debería continuar consumiendo Database innecesariamente.
+
+---
+
+# 114. Query Deadline
+
+Podrá derivarse del Deadline del Use Case.
+
+---
+
+# 115. Query Complexity
+
+Deberá controlarse especialmente para Queries construidas desde Input.
+
+---
+
+# 116. Query Cost
+
+Podrá estimarse o limitarse cuando la infraestructura lo permita.
+
+---
+
+# 117. Query Plan
+
+Queries críticas deberán poder analizarse mediante Execution Plan.
+
+---
+
+# 118. Explain
+
+Herramientas de diagnóstico podrán ejecutar:
+
+```text
+EXPLAIN
+EXPLAIN ANALYZE
+```
+
+únicamente bajo controles apropiados.
+
+---
+
+# 119. Production Explain Analyze
+
+Deberá utilizarse con precaución.
+
+---
+
+# 120. Index Awareness
+
+Data Access deberá considerar índices requeridos por Queries críticas.
+
+---
+
+# 121. Index Ownership
+
+El diseño físico pertenece principalmente a Persistence/Database Engineering, pero Data Access deberá documentar necesidades.
+
+---
+
+# 122. Missing Index
+
+Podrá manifestarse mediante:
+
+```text
+slow query
+high scanned rows
+high CPU
+lock duration
+```
+
+---
+
+# 123. Over-Indexing
+
+También puede perjudicar Writes.
+
+---
+
+# 124. Select Star
+
+No deberá utilizarse indiscriminadamente en Read Models.
+
+---
+
+# 125. Column Projection
+
+Deberá seleccionar únicamente datos necesarios cuando sea razonable.
+
+---
+
+# 126. Large Column
+
+Campos grandes deberán cargarse únicamente cuando se necesiten.
+
+---
+
+# 127. BLOB
+
+No deberá viajar en List Queries salvo necesidad explícita.
+
+---
+
+# 128. Raw Query
+
+Podrá utilizarse cuando:
+
+```text
+ORM abstraction is insufficient
+performance requires it
+provider feature is needed
+```
+
+---
+
+# 129. Raw Query Boundary
+
+Deberá permanecer en Infrastructure/Data Access.
+
+---
+
+# 130. Raw SQL Review
+
+Queries críticas deberán revisarse.
+
+---
+
+# 131. Parameter Binding
+
+Todo valor no estructural deberá utilizar Binding.
+
+---
+
+# 132. SQL Concatenation
+
+No deberá concatenarse Input directamente.
+
+---
+
+# 133. Dynamic Identifier
+
+Table/Column/Order identifiers no pueden protegerse únicamente con Parameter Binding.
+
+---
+
+# 134. Identifier Allowlist
+
+Deberán mapearse mediante Allowlist.
+
+---
+
+# 135. SQL Injection
+
+ENG-024 gobernará controles de Security.
+
+---
+
+# 136. LIKE Input
+
+Deberá manejar correctamente Wildcards y Escaping según semántica.
+
+---
+
+# 137. IN Clause
+
+Listas deberán limitarse.
+
+---
+
+# 138. Large IN
+
+Podrá reemplazarse por:
+
+```text
+temporary table
+join
+batch
+provider-specific mechanism
+```
+
+cuando sea apropiado.
+
+---
+
+# 139. Empty IN
+
+Deberá poseer semántica determinística.
+
+---
+
+# 140. Query Builder
+
+Podrá utilizarse dentro de Adapter.
+
+---
+
+# 141. Query Builder Exposure
+
+No deberá escapar hacia Domain.
+
+---
+
+# 142. ORM
+
+MEF podrá integrarse con ORM.
+
+---
+
+# 143. ORM ≠ Architecture
+
+El ORM será implementación, no arquitectura del Domain.
+
+---
+
+# 144. ORM Model
+
+No deberá convertirse automáticamente en Domain Entity.
+
+---
+
+# 145. Active Record
+
+Podrá utilizarse en aplicaciones simples cuando esté explícitamente aceptado.
+
+---
+
+# 146. Active Record Restriction
+
+No deberá imponerse al Core arquitectónico.
+
+---
+
+# 147. Data Mapper Default
+
+Para Domain complejo deberá favorecerse separación mediante Mapper/Repository.
+
+---
+
+# 148. Read/Write Separation
+
+MEF podrá utilizar Data Sources distintos para:
+
+```text
+reads
+writes
+```
+
+---
+
+# 149. Primary
+
+Writes deberán dirigirse al Source autorizado.
+
+---
+
+# 150. Replica
+
+Reads podrán dirigirse a Replica cuando el Use Case tolere Replication Lag.
+
+---
+
+# 151. Read-After-Write
+
+No deberá asumirse consistencia inmediata desde Replica.
+
+---
+
+# 152. Consistency Requirement
+
+Cada Query crítica deberá poder declarar:
+
+```text
+STRONG
+EVENTUAL
+```
+
+o semántica equivalente.
+
+---
+
+# 153. Strong Read
+
+Podrá forzar Primary.
+
+---
+
+# 154. Eventual Read
+
+Podrá utilizar Replica.
+
+---
+
+# 155. Replica Lag
+
+Deberá ser observable.
+
+---
+
+# 156. Failover
+
+No deberá cambiar silenciosamente Consistency Semantics.
+
+---
+
+# 157. Read Routing
+
+Podrá depender de:
+
+```text
+consistency requirement
+transaction context
+tenant
+region
+```
+
+---
+
+# 158. Transaction Read Routing
+
+Una Query dentro de Transaction deberá utilizar Resource compatible con dicha Transaction.
+
+---
+
+# 159. Replica Inside Write Transaction
+
+No deberá utilizarse accidentalmente.
+
+---
+
+# 160. Sharding
+
+Podrá existir cuando sea necesario.
+
+---
+
+# 161. Shard Key
+
+Deberá ser explícita.
+
+---
+
+# 162. Cross-Shard Query
+
+Deberá considerarse operación especial.
+
+---
+
+# 163. Scatter-Gather
+
+No deberá utilizarse indiscriminadamente.
+
+---
+
+# 164. Shard Routing
+
+Deberá ocurrir antes de ejecutar Query.
+
+---
+
+# 165. Tenant as Shard Key
+
+Podrá utilizarse cuando el modelo lo permita.
+
+---
+
+# 166. Tenant Isolation
+
+Toda Query Tenant-Scoped deberá aplicar Tenant Boundary.
+
+---
+
+# 167. Tenant Filter
+
+Deberá ser estructural y difícil de omitir accidentalmente.
+
+---
+
+# 168. Tenant Filter Example
+
+Conceptualmente:
+
+```text
+TenantScopedRepository
+```
+
+o:
+
+```text
+TenantAwareQueryExecutor
+```
+
+---
+
+# 169. Tenant Input
+
+No deberá confiarse directamente en Tenant ID recibido del cliente.
+
+---
+
+# 170. Tenant Context
+
+ENG-024 deberá proporcionar Tenant Context autorizado.
+
+---
+
+# 171. Cross-Tenant Access
+
+Deberá requerir Capability administrativa explícita.
+
+---
+
+# 172. Cross-Tenant Query
+
+Deberá ser distinguible y auditable.
+
+---
+
+# 173. Global Scope
+
+No deberá utilizarse accidentalmente para operaciones administrativas Cross-Tenant.
+
+---
+
+# 174. Soft Delete
+
+Podrá utilizarse cuando exista necesidad.
+
+---
+
+# 175. Soft Delete Filter
+
+Los registros eliminados deberán excluirse por Default cuando corresponda.
+
+---
+
+# 176. Include Deleted
+
+Deberá ser operación explícita.
+
+---
+
+# 177. Soft Delete ≠ Security
+
+No deberá utilizarse como mecanismo de Authorization.
+
+---
+
+# 178. Soft Delete Uniqueness
+
+Deberá analizar restricciones únicas.
+
+---
+
+# 179. Restore
+
+Deberá preservar Business Invariants.
+
+---
+
+# 180. Data Scope
+
+Una Query podrá estar limitada por:
+
+```text
+tenant
+organization
+region
+ownership
+authorization
+```
+
+---
+
+# 181. Data Scope ≠ Filter UI
+
+Es un control de acceso, no una preferencia de visualización.
+
+---
+
+# 182. Authorization Filter
+
+Deberá aplicarse antes de retornar resultados.
+
+---
+
+# 183. Post-Filter Authorization
+
+No deberá utilizarse como estrategia principal para grandes conjuntos.
+
+---
+
+# 184. Row-Level Security
+
+Podrá reforzar Data Scope.
+
+---
+
+# 185. Defense in Depth
+
+Application Filtering + Database RLS podrán coexistir.
+
+---
+
+# 186. RLS Context
+
+Deberá limpiarse al reutilizar Connection.
+
+---
+
+# 187. Sensitive Columns
+
+No deberán seleccionarse si el Use Case no las necesita.
+
+---
+
+# 188. Field-Level Authorization
+
+Podrá requerirse para ciertos Read Models.
+
+---
+
+# 189. Data Masking
+
+Podrá aplicarse en:
+
+```text
+query
+projection
+serialization
+```
+
+según arquitectura.
+
+---
+
+# 190. Audit Query
+
+Accesos sensibles podrán requerir Audit.
+
+---
+
+# 191. Query Observability
+
+ENG-025 gobernará Telemetry.
+
+---
+
+# 192. Query Metrics
 
 Podrán incluir:
 
-``` text
-requestId
-traceId
-endpointId
-method
-status
-duration
+```text
+mef.data.queries.total
+mef.data.query.duration
+mef.data.query.failed.total
 ```
 
-------------------------------------------------------------------------
+---
 
-# 264. Request Body Logging
+# 193. Round Trip Metrics
 
-No deberá activarse indiscriminadamente.
+Podrán incluir:
 
-------------------------------------------------------------------------
+```text
+mef.data.roundtrips.total
+```
 
-# 265. Response Body Logging
+---
+
+# 194. Slow Query Metrics
+
+Podrán incluir:
+
+```text
+mef.data.slow_queries.total
+```
+
+---
+
+# 195. Timeout Metrics
+
+Podrán incluir:
+
+```text
+mef.data.query_timeout.total
+```
+
+---
+
+# 196. N+1 Metrics
+
+Podrán existir en Development/Test.
+
+---
+
+# 197. Query Labels
+
+Podrán incluir:
+
+```text
+queryName
+repository
+operation
+result
+```
+
+si poseen Cardinality acotada.
+
+---
+
+# 198. Raw SQL Metric Label
+
+No deberá utilizarse.
+
+---
+
+# 199. Parameter Metric Label
 
 Tampoco.
 
-------------------------------------------------------------------------
+---
 
-# 266. Sensitive Headers
+# 200. Query Name
 
-Deberán redactarse.
+Toda Query importante deberá poseer nombre lógico estable.
 
-Ejemplos:
+Ejemplo:
 
-``` text
-Authorization
-Cookie
-Set-Cookie
-API-Key
+```text
+orders.list-by-customer
 ```
 
-------------------------------------------------------------------------
+---
 
-# 267. Slow API
+# 201. Trace Span
 
-Deberá existir Threshold configurable.
+Cada Database Round Trip podrá producir Span.
 
-------------------------------------------------------------------------
+---
 
-# 268. SLI
+# 202. Trace Attributes
 
-Podrán definirse:
+Podrán incluir:
 
-``` text
-availability
-latency
-error rate
+```text
+db.system
+operation
+queryName
+rowCount
 ```
 
-por API/Endpoint.
+según Security Policy.
 
-------------------------------------------------------------------------
+---
 
-# 269. API Health
+# 203. SQL in Trace
 
-No deberá inferirse únicamente de que HTTP Server responda.
+Deberá obedecer Redaction Policy.
 
-------------------------------------------------------------------------
+---
 
-# 270. Dependency Failure
+# 204. Bind Parameters
 
-Deberá reflejarse mediante Error Contract apropiado.
+No deberán registrarse indiscriminadamente.
 
-------------------------------------------------------------------------
+---
 
-# 271. Performance
+# 205. PII
+
+No deberá aparecer en Telemetry sin necesidad.
+
+---
+
+# 206. Slow Query Log
+
+Podrá registrar Query Template sanitizado.
+
+---
+
+# 207. Query Fingerprint
+
+Podrá utilizarse para agrupar Queries equivalentes.
+
+---
+
+# 208. Cardinality
+
+No deberá generarse una métrica distinta por cada SQL dinámico.
+
+---
+
+# 209. Performance
 
 ENG-026 gobernará Performance.
 
-------------------------------------------------------------------------
+---
 
-# 272. Payload Size
+# 210. Performance Baseline
 
-Deberá limitarse.
+Queries críticas deberán poseer Baseline.
 
-------------------------------------------------------------------------
+---
 
-# 273. Response Size
+# 211. Query Regression
 
-Deberá limitarse o paginarse.
+Deberá detectarse mediante:
 
-------------------------------------------------------------------------
-
-# 274. Compression
-
-Podrá utilizarse según Payload y Transport.
-
-------------------------------------------------------------------------
-
-# 275. Compression Cost
-
-Deberá considerarse CPU.
-
-------------------------------------------------------------------------
-
-# 276. Streaming
-
-Podrá utilizarse para grandes Responses.
-
-------------------------------------------------------------------------
-
-# 277. Streaming Error
-
-Una vez iniciada Response puede no ser posible cambiar Status Code.
-
-------------------------------------------------------------------------
-
-# 278. Streaming Contract
-
-Deberá diseñarse explícitamente.
-
-------------------------------------------------------------------------
-
-# 279. Timeout
-
-Toda Request deberá tener Deadline apropiado.
-
-------------------------------------------------------------------------
-
-# 280. Deadline Propagation
-
-Deberá propagarse a:
-
-``` text
-Application
-Data Access
-Transport
-external dependencies
+```text
+duration
+round trips
+rows scanned
+rows returned
+query plan
 ```
 
 cuando sea posible.
 
-------------------------------------------------------------------------
+---
 
-# 281. Client Disconnect
+# 212. Query Result Size
 
-Deberá cancelar trabajo innecesario cuando Runtime lo soporte.
+Deberá limitarse.
 
-------------------------------------------------------------------------
+---
 
-# 282. Concurrency Limit
+# 213. Unbounded Collection
 
-Endpoints costosos podrán limitar ejecución simultánea.
+No deberá materializarse.
 
-------------------------------------------------------------------------
+---
 
-# 283. Backpressure
+# 214. Streaming Result
 
-ENG-039 gobernará Backpressure.
+Podrá utilizarse para grandes conjuntos.
 
-------------------------------------------------------------------------
+---
 
-# 284. Load Shedding
+# 215. Streaming Transaction
 
-Podrá rechazarse trabajo antes de saturación total.
+Deberá considerar duración de Connection/Transaction.
 
-------------------------------------------------------------------------
+---
 
-# 285. Bulk API
+# 216. Streaming Backpressure
 
-Podrá existir para reducir Round Trips.
+Deberá integrarse con ENG-039.
 
-------------------------------------------------------------------------
+---
 
-# 286. Bulk Request Limit
+# 217. Export
+
+Grandes Exportaciones deberán utilizar:
+
+```text
+cursor
+streaming
+batching
+background job
+```
+
+según volumen.
+
+---
+
+# 218. Report Query
+
+No deberá degradar Workload transaccional crítico.
+
+---
+
+# 219. Analytical Workload
+
+Podrá utilizar Data Source separado.
+
+---
+
+# 220. Connection Pool
+
+Data Access deberá utilizar Pool cuando corresponda.
+
+---
+
+# 221. Pool Ownership
+
+ENG-030/ENG-027 gobernarán Lifecycle.
+
+---
+
+# 222. Pool Exhaustion
+
+Deberá tratarse como Failure operacional explícito.
+
+---
+
+# 223. Connection Leak
+
+Deberá detectarse.
+
+---
+
+# 224. Query Cancellation
+
+Una Connection cancelada deberá volver a State reutilizable o descartarse.
+
+---
+
+# 225. Prepared Statement
+
+Podrá utilizarse para:
+
+```text
+security
+performance
+plan reuse
+```
+
+---
+
+# 226. Prepared Statement Cache
 
 Deberá ser acotado.
 
-------------------------------------------------------------------------
+---
 
-# 287. Bulk Atomicity
+# 227. Database Plan Cache
 
-Deberá definirse explícitamente:
+Queries altamente dinámicas deberán considerar impacto sobre Plan Cache.
 
-``` text
-all-or-nothing
-partial success
-per-item transaction
-```
+---
 
-------------------------------------------------------------------------
+# 228. Bulk Read
 
-# 288. Partial Success
+Deberá favorecerse sobre Reads individuales repetitivos.
 
-Deberá poseer Contract explícito.
+---
 
-------------------------------------------------------------------------
+# 229. Bulk Write
 
-# 289. Async API
+Podrá utilizarse cuando Business Invariants lo permitan.
 
-Operaciones largas deberán poder utilizar modelo asíncrono.
+---
 
-------------------------------------------------------------------------
+# 230. Bulk Write Warning
 
-# 290. Async Pattern
+No deberá saltarse Domain Rules accidentalmente.
 
-Ejemplo:
+---
 
-``` text
-POST /exports
-      │
-      ▼
-202 Accepted
-      │
-      ▼
-Operation Resource
-      │
-      ▼
-GET /operations/{id}
-```
+# 231. Bulk Update
 
-------------------------------------------------------------------------
+Deberá ser explícito.
 
-# 291. Operation Resource
+---
 
-Podrá contener:
-
-``` text
-id
-status
-progress
-result
-error
-createdAt
-completedAt
-```
-
-------------------------------------------------------------------------
-
-# 292. Operation State
-
-Conceptualmente:
-
-``` text
-PENDING
-RUNNING
-SUCCEEDED
-FAILED
-CANCELLED
-```
-
-------------------------------------------------------------------------
-
-# 293. Async Retry
-
-Deberá integrarse con ENG-040 y ENG-039.
-
-------------------------------------------------------------------------
-
-# 294. Webhook
-
-No forma parte obligatoria de la primera versión.
-
-------------------------------------------------------------------------
-
-# 295. Webhook Contract
-
-Cuando exista deberá cubrir:
-
-``` text
-delivery
-signature
-retry
-idempotency
-ordering
-replay
-```
-
-------------------------------------------------------------------------
-
-# 296. API Security
-
-ENG-024 gobernará Threat Model.
-
-------------------------------------------------------------------------
-
-# 297. Security Requirements
-
-Deberán contemplar:
-
-``` text
-broken access control
-injection
-mass assignment
-resource exhaustion
-credential leakage
-data exposure
-replay
-enumeration
-SSRF through API input
-```
-
-------------------------------------------------------------------------
-
-# 298. Input URL
-
-Si Endpoint acepta URLs externas deberá validarlas y proteger contra
-SSRF.
-
-------------------------------------------------------------------------
-
-# 299. File Upload
-
-Deberá validar:
-
-``` text
-size
-content
-media type
-storage location
-authorization
-```
-
-------------------------------------------------------------------------
-
-# 300. Filename
-
-No deberá confiarse como filesystem path.
-
-------------------------------------------------------------------------
-
-# 301. Content-Type Trust
-
-No deberá confiarse únicamente en Header enviado por cliente.
-
-------------------------------------------------------------------------
-
-# 302. Download
-
-Deberá aplicar Authorization en cada acceso.
-
-------------------------------------------------------------------------
-
-# 303. Object Reference
-
-No deberá equivaler automáticamente a permiso de acceso.
-
-------------------------------------------------------------------------
-
-# 304. BOLA
-
-Object-Level Authorization deberá proteger Resources.
-
-------------------------------------------------------------------------
-
-# 305. BFLA
-
-Function-Level Authorization deberá proteger Operations.
-
-------------------------------------------------------------------------
-
-# 306. Testing
-
-ENG-009 gobernará Testing.
-
-------------------------------------------------------------------------
-
-# 307. Contract Test
-
-Toda API pública deberá poseer Contract Tests.
-
-------------------------------------------------------------------------
-
-# 308. Request Schema Test
-
-Deberá probar:
-
-``` text
-valid
-missing
-null
-unknown
-wrong type
-oversized
-```
-
-------------------------------------------------------------------------
-
-# 309. Response Schema Test
-
-Deberá comprobar Contract publicado.
-
-------------------------------------------------------------------------
-
-# 310. Status Code Test
-
-Deberá comprobar Mapping correcto.
-
-------------------------------------------------------------------------
-
-# 311. Error Contract Test
-
-Deberá comprobar formato estable.
-
-------------------------------------------------------------------------
-
-# 312. Authentication Test
-
-Deberá probar:
-
-``` text
-missing
-invalid
-expired
-valid
-```
-
-------------------------------------------------------------------------
-
-# 313. Authorization Test
-
-Deberá probar permisos positivos y negativos.
-
-------------------------------------------------------------------------
-
-# 314. Tenant Isolation Test
-
-Será obligatorio.
-
-------------------------------------------------------------------------
-
-# 315. BOLA Test
-
-Deberá intentar acceder Resource de otro Owner/Tenant.
-
-------------------------------------------------------------------------
-
-# 316. Rate Limit Test
-
-Deberá comprobar límite y Recovery.
-
-------------------------------------------------------------------------
-
-# 317. Idempotency Test
-
-Deberá comprobar:
-
-``` text
-same key same payload
-same key different payload
-concurrent duplicate
-expired key
-```
-
-------------------------------------------------------------------------
-
-# 318. Pagination Test
-
-Deberá comprobar Boundaries.
-
-------------------------------------------------------------------------
-
-# 319. Cursor Test
-
-Deberá comprobar manipulación.
-
-------------------------------------------------------------------------
-
-# 320. Filter Test
-
-Deberá probar Allowlist.
-
-------------------------------------------------------------------------
-
-# 321. Sort Test
+# 232. Bulk Delete
 
 También.
 
-------------------------------------------------------------------------
+---
 
-# 322. Conditional Request Test
+# 233. Bulk Operation Audit
+
+Operaciones administrativas sensibles deberán ser auditables.
+
+---
+
+# 234. Query Cache
+
+ENG-037 gobernará Caching.
+
+---
+
+# 235. Cache ≠ Data Access Source of Truth
+
+Data Source autoritativo deberá permanecer definido.
+
+---
+
+# 236. Cached Read Model
+
+Podrá utilizarse.
+
+---
+
+# 237. Cache Key
+
+Deberá incluir Scope necesario:
+
+```text
+tenant
+query
+version
+```
+
+---
+
+# 238. Cache Invalidation
+
+Deberá alinearse con Transaction Commit.
+
+---
+
+# 239. Cache Stampede
+
+ENG-037/ENG-039 gobernarán mitigación.
+
+---
+
+# 240. Error Handling
+
+ENG-023 gobernará Error Translation.
+
+---
+
+# 241. Error Namespace
+
+ENG-043 utilizará:
+
+```text
+MEF-DAT-xxx
+```
+
+---
+
+# 242. Taxonomía ENG-043
+
+```text
+MEF-DAT-001 Data source unavailable
+MEF-DAT-002 Query execution failed
+MEF-DAT-003 Query timeout
+MEF-DAT-004 Query cancelled
+MEF-DAT-005 Mapping failed
+MEF-DAT-006 Invalid criteria
+MEF-DAT-007 Unsupported filter
+MEF-DAT-008 Unsupported sort
+MEF-DAT-009 Invalid pagination
+MEF-DAT-010 Invalid cursor
+MEF-DAT-011 Cursor expired
+MEF-DAT-012 Result limit exceeded
+MEF-DAT-013 Query budget exceeded
+MEF-DAT-014 N+1 detected
+MEF-DAT-015 Data scope violation
+MEF-DAT-016 Tenant scope missing
+MEF-DAT-017 Cross-tenant access denied
+MEF-DAT-018 Unsafe raw query
+MEF-DAT-019 Invalid parameter binding
+MEF-DAT-020 Read consistency unavailable
+MEF-DAT-021 Replica unavailable
+MEF-DAT-022 Replica lag exceeded
+MEF-DAT-023 Shard unavailable
+MEF-DAT-024 Shard routing failed
+MEF-DAT-025 Connection pool exhausted
+MEF-DAT-026 Connection state invalid
+MEF-DAT-027 Repository contract violation
+MEF-DAT-028 Query contract violation
+MEF-DAT-029 Data access security violation
+MEF-DAT-030 Data access invariant violation
+```
+
+---
+
+# 243. Query Timeout Example
+
+```text
+MEF-DAT-003
+
+Data query exceeded configured timeout.
+
+Query:
+orders.list-by-customer
+
+Timeout:
+2s
+```
+
+---
+
+# 244. N+1 Example
+
+```text
+MEF-DAT-014
+
+Potential N+1 query pattern detected.
+
+Operation:
+orders.list
+
+Queries:
+101
+
+Budget:
+5
+```
+
+---
+
+# 245. Tenant Scope Example
+
+```text
+MEF-DAT-016
+
+Tenant-scoped query executed without
+an authorized tenant context.
+
+Query:
+customers.list
+```
+
+---
+
+# 246. Unsafe Query Example
+
+```text
+MEF-DAT-018
+
+Unsafe raw query rejected.
+
+Reason:
+untrusted dynamic identifier
+```
+
+---
+
+# 247. Replica Lag Example
+
+```text
+MEF-DAT-022
+
+Replica lag exceeds query consistency policy.
+
+Query:
+order.read-after-create
+```
+
+---
+
+# 248. Security
+
+ENG-024 gobernará:
+
+```text
+SQL injection
+tenant isolation
+data authorization
+sensitive fields
+audit
+credentials
+```
+
+---
+
+# 249. Database Credentials
+
+No deberán almacenarse en Query Objects.
+
+---
+
+# 250. Credential Scope
+
+Deberá aplicarse Least Privilege.
+
+---
+
+# 251. Read Credentials
+
+Podrán diferenciarse de Write Credentials.
+
+---
+
+# 252. Administrative Credentials
+
+No deberán utilizarse para Runtime normal.
+
+---
+
+# 253. Parameterization
+
+Será obligatoria para valores externos.
+
+---
+
+# 254. Dynamic Query Structure
+
+Deberá construirse mediante Allowlist.
+
+---
+
+# 255. Tenant Enforcement
+
+No deberá depender únicamente de que cada Developer recuerde agregar:
+
+```text
+WHERE tenant_id = ?
+```
+
+---
+
+# 256. Data Exfiltration
+
+Query APIs deberán limitar:
+
+```text
+fields
+filters
+sorting
+page size
+scope
+```
+
+---
+
+# 257. Timing Leakage
+
+Podrá considerarse para Queries sensibles.
+
+---
+
+# 258. Query Error Exposure
+
+No deberá revelar:
+
+```text
+SQL
+schema names
+table names
+credentials
+internal topology
+```
+
+al cliente.
+
+---
+
+# 259. Testing
+
+ENG-009 gobernará Testing.
+
+---
+
+# 260. Repository Contract Test
+
+Cada Adapter deberá cumplir el mismo Repository Contract.
+
+---
+
+# 261. Mapper Test
 
 Deberá comprobar:
 
-``` text
-If-Match
-If-None-Match
-ETag
+```text
+persistence → domain
+domain → persistence
 ```
 
-------------------------------------------------------------------------
+---
 
-# 323. CORS Test
+# 262. Invalid Persistence Test
 
-Deberá comprobar Origins autorizados y no autorizados.
+Datos inválidos deberán producir Failure explícito.
 
-------------------------------------------------------------------------
+---
 
-# 324. Compatibility Test
+# 263. Query Object Test
 
-Deberá comparar Contract con versión publicada anterior.
+Deberá probar Criteria y resultados.
 
-------------------------------------------------------------------------
+---
 
-# 325. OpenAPI Test
+# 264. Filter Test
 
-Runtime y Specification deberán permanecer alineados.
+Deberá comprobar Allowlist.
 
-------------------------------------------------------------------------
+---
 
-# 326. Deprecated API Test
+# 265. Sort Test
 
-Deberá comprobar Headers/Metadata cuando aplique.
+También.
 
-------------------------------------------------------------------------
+---
 
-# 327. Payload Limit Test
+# 266. Pagination Test
 
-Deberá comprobar rechazo temprano.
+Deberá comprobar:
 
-------------------------------------------------------------------------
+```text
+first page
+middle page
+last page
+empty page
+maximum size
+```
 
-# 328. Timeout Test
+---
 
-Deberá comprobar Deadline y Cancellation.
+# 267. Cursor Test
 
-------------------------------------------------------------------------
+Deberá comprobar:
 
-# 329. Fault Injection
+```text
+forward
+backward
+invalid
+tampered
+expired
+```
+
+---
+
+# 268. Stable Pagination Test
+
+Inserciones concurrentes deberán analizarse.
+
+---
+
+# 269. N+1 Test
+
+Deberá comprobar Query Budget.
+
+---
+
+# 270. Batch Loading Test
+
+Deberá comprobar reducción de Round Trips.
+
+---
+
+# 271. Lazy Loading Test
+
+No deberá ejecutar Queries inesperadas fuera de Scope.
+
+---
+
+# 272. Query Timeout Test
+
+Deberá comprobar Cancellation.
+
+---
+
+# 273. SQL Injection Test
+
+Deberá comprobar:
+
+```text
+filter values
+sort fields
+dynamic identifiers
+raw query parameters
+```
+
+---
+
+# 274. Tenant Isolation Test
+
+Será obligatorio.
+
+---
+
+# 275. Cross-Tenant Test
+
+Deberá intentar acceder a datos de otro Tenant.
+
+---
+
+# 276. Soft Delete Test
+
+Deberá comprobar Default Scope y Restore.
+
+---
+
+# 277. Read Replica Test
+
+Deberá comprobar Consistency Policy.
+
+---
+
+# 278. Read-After-Write Test
+
+Deberá comprobar Routing al Source correcto.
+
+---
+
+# 279. Transaction Integration Test
+
+Queries dentro de Transaction deberán utilizar Connection compatible.
+
+---
+
+# 280. Connection Cleanup Test
+
+Deberá comprobar:
+
+```text
+transaction state
+tenant context
+session variables
+```
+
+---
+
+# 281. Pool Exhaustion Test
+
+Deberá comprobar Failure controlado.
+
+---
+
+# 282. Performance Test
+
+Queries críticas deberán probar:
+
+```text
+latency
+round trips
+result size
+memory
+```
+
+---
+
+# 283. Load Test
+
+Deberá medir:
+
+```text
+queries/sec
+pool utilization
+database saturation
+p95
+p99
+```
+
+---
+
+# 284. Fault Injection
 
 Podrá simular:
 
-``` text
-database failure
-dependency timeout
-message broker failure
-rate-limit store failure
-client disconnect
+```text
+database unavailable
+connection reset
+query timeout
+replica lag
+pool exhaustion
+shard unavailable
 ```
 
-------------------------------------------------------------------------
+---
 
-# 330. Fuzz Testing
-
-Podrá utilizarse para Parsers y Inputs complejos.
-
-------------------------------------------------------------------------
-
-# 331. Security Testing
-
-Deberá incluir:
-
-``` text
-injection
-authorization bypass
-mass assignment
-resource exhaustion
-invalid content type
-oversized input
-```
-
-------------------------------------------------------------------------
-
-# 332. Architecture Test
+# 285. Architecture Test
 
 Podrá impedir:
 
-``` text
-Controller → Database
-Controller → ORM
-API DTO → Domain Entity inheritance
-Domain → HTTP
-Domain → OpenAPI
+```text
+Domain → SQL
+Domain → ORM Query Builder
+Domain → Database Connection
+Application Controller → Raw SQL
 ```
 
-------------------------------------------------------------------------
+---
 
-# 333. Build Integration
+# 286. Build Integration
 
 ENG-012 podrá validar:
 
-``` text
-duplicate route
-duplicate operationId
-invalid OpenAPI
-missing authorization metadata
-missing response contract
-breaking API change
+```text
+unsafe dynamic query
+unbounded page size
+missing tenant scope
+unsupported sort
+invalid query definition
 ```
 
-------------------------------------------------------------------------
+cuando sea detectable estáticamente.
 
-# 334. CLI
+---
+
+# 287. CLI
 
 ENG-007 podrá proporcionar:
 
-``` text
-mef api:list
-mef api:routes
-mef api:describe <endpoint>
-mef api:openapi
-mef api:validate
-mef api:diff
-mef api:deprecated
-mef api:diagnose
+```text
+mef data:queries
+mef data:repositories
+mef data:sources
+mef data:status
+mef data:slow
+mef data:diagnose
+mef data:explain <query>
 ```
 
-------------------------------------------------------------------------
+---
 
-# 335. API Diff
+# 288. CLI Explain
 
-Deberá identificar:
+Deberá operar únicamente sobre Queries registradas/autorizadas.
 
-``` text
-breaking
-potentially-breaking
-compatible
-```
+---
 
-------------------------------------------------------------------------
+# 289. CLI Raw SQL
 
-# 336. Configuration
+No deberá formar parte del Core Default.
+
+---
+
+# 290. Configuration
 
 ENG-011 podrá definir:
 
-``` text
-api:
-  prefix: /api
-  versioning:
-    strategy: uri
-    default: v1
+```text
+data-access:
+  default-source: primary
 
-  request:
-    max-body-size: 10MB
-    timeout: 30s
+  query:
+    timeout: 2s
+    max-page-size: 100
+    slow-threshold: 500ms
 
   pagination:
     default-size: 25
-    max-size: 100
+    cursor:
+      enabled: true
 
-  security:
-    authentication-required: true
+  safety:
+    raw-query: restricted
+    tenant-scope: required
 
-  rate-limit:
-    enabled: true
-
-  cors:
-    enabled: true
-
-  openapi:
-    enabled: true
+  diagnostics:
+    query-budget: true
+    n-plus-one: development
 ```
 
-------------------------------------------------------------------------
+---
 
-# 337. Configuration Validation
+# 291. Configuration Validation
 
 Deberá comprobar:
 
-``` text
-valid prefix
-valid version
-bounded body size
-positive timeout
-bounded pagination
-valid CORS policy
-valid rate-limit policy
+```text
+timeout > 0
+page size bounded
+valid source
+valid consistency policy
+valid tenant policy
 ```
 
-------------------------------------------------------------------------
+---
 
-# 338. API Definition
-
-Conceptualmente:
-
-``` text
-ApiDefinition
-├── id
-├── version
-├── exposure
-├── endpoints
-├── security
-└── metadata
-```
-
-------------------------------------------------------------------------
-
-# 339. API Version
-
-Conceptualmente:
-
-``` text
-ApiVersion
-├── value
-├── status
-├── introducedAt
-├── deprecatedAt
-└── sunsetAt
-```
-
-------------------------------------------------------------------------
-
-# 340. Endpoint Definition
-
-Conceptualmente:
-
-``` text
-EndpointDefinition
-├── id
-├── method
-├── path
-├── requestContract
-├── responseContract
-├── errorContract
-├── authorization
-├── rateLimit
-├── idempotency
-└── metadata
-```
-
-------------------------------------------------------------------------
-
-# 341. Request Contract
-
-Conceptualmente:
-
-``` text
-RequestContract
-├── headers
-├── path
-├── query
-├── body
-└── limits
-```
-
-------------------------------------------------------------------------
-
-# 342. Response Contract
-
-Conceptualmente:
-
-``` text
-ResponseContract
-├── statuses
-├── headers
-├── contentTypes
-└── schemas
-```
-
-------------------------------------------------------------------------
-
-# 343. API Registry
+# 292. Registry Integration
 
 ENG-020 podrá registrar:
 
-``` text
-ApiDefinition
-ApiVersion
-EndpointDefinition
-RequestContract
-ResponseContract
-ErrorContract
+```text
+RepositoryDefinition
+QueryDefinition
+DataSourceDefinition
+FilterDefinition
+ProjectionDefinition
 ```
 
-------------------------------------------------------------------------
+---
 
-# 344. Bootstrap
+# 293. Repository Definition
 
-ENG-027 deberá construir API Runtime.
+Conceptualmente:
 
-------------------------------------------------------------------------
+```text
+RepositoryDefinition
+├── contract
+├── implementation
+├── aggregate
+├── source
+└── metadata
+```
 
-# 345. Bootstrap Flow
+---
 
-``` text
+# 294. Query Definition
+
+Conceptualmente:
+
+```text
+QueryDefinition
+├── name
+├── criteria
+├── result
+├── source
+├── consistency
+├── timeout
+└── budget
+```
+
+---
+
+# 295. Data Source Definition
+
+Conceptualmente:
+
+```text
+DataSourceDefinition
+├── id
+├── role
+├── adapter
+├── capabilities
+└── metadata
+```
+
+---
+
+# 296. Filter Definition
+
+Conceptualmente:
+
+```text
+FilterDefinition
+├── publicName
+├── internalExpression
+├── type
+└── allowedOperators
+```
+
+---
+
+# 297. Projection Definition
+
+Conceptualmente:
+
+```text
+ProjectionDefinition
+├── name
+├── fields
+├── source
+└── mapper
+```
+
+---
+
+# 298. Bootstrap
+
+ENG-027 deberá construir Data Access Infrastructure.
+
+---
+
+# 299. Bootstrap Flow
+
+```text
 Load Configuration
        │
        ▼
-Discover API Definitions
+Discover Data Sources
        │
        ▼
-Discover Endpoints
+Discover Repositories
        │
        ▼
-Validate Routes
+Discover Queries
        │
        ▼
-Validate Contracts
+Validate Filters
        │
        ▼
-Validate Security
+Validate Security Scope
        │
        ▼
-Validate Versioning
+Build Data Access Registry
        │
        ▼
-Build API Registry
-       │
-       ▼
-Build Router
-       │
-       ▼
-Generate/Validate OpenAPI
+Build Adapters
        │
        ▼
 Readiness
 ```
 
-------------------------------------------------------------------------
+---
 
-# 346. Bootstrap Failure
+# 300. Bootstrap Validation
 
-Deberá impedir Readiness ante:
+Deberá detectar:
 
-``` text
-duplicate route
-ambiguous route
-invalid contract
-missing authorization policy
-invalid version
-invalid OpenAPI
+```text
+duplicate query name
+missing repository implementation
+unknown data source
+invalid filter
+invalid projection
+invalid consistency policy
+invalid tenant policy
 ```
 
-cuando la Policy lo considere crítica.
+---
 
-------------------------------------------------------------------------
+# 301. Module Integration
 
-# 347. Module Integration
+ENG-028 permitirá registrar:
 
-Cada Module podrá declarar:
-
-``` text
-api
-endpoints
-contracts
-authorization
+```text
+Repositories
+Queries
+Read Models
+Projections
+Filters
 ```
 
-------------------------------------------------------------------------
+---
 
-# 348. Module Isolation
+# 302. Module Boundary
 
-Un Module no deberá modificar Routes de otro Module silenciosamente.
+Un Module no deberá consultar tablas privadas de otro Module directamente salvo Contract arquitectónico explícito.
 
-------------------------------------------------------------------------
+---
 
-# 349. Route Override
+# 303. Cross-Module Read
 
-Deberá requerir mecanismo explícito.
+Deberá utilizar preferentemente:
 
-------------------------------------------------------------------------
-
-# 350. Endpoint Ownership
-
-Todo Endpoint deberá poseer Module Owner.
-
-------------------------------------------------------------------------
-
-# 351. Cross-Module Endpoint
-
-Podrá orquestar Application Contracts públicos sin acceder a internals
-de otros Modules.
-
-------------------------------------------------------------------------
-
-# 352. API Lifecycle
-
-Estados conceptuales:
-
-``` text
-DRAFT
-EXPERIMENTAL
-STABLE
-DEPRECATED
-SUNSET
-REMOVED
+```text
+public query contract
+read model
+integration contract
 ```
 
-------------------------------------------------------------------------
+---
 
-# 353. Experimental API
+# 304. Shared Database
 
-No deberá recibir las mismas Compatibility Guarantees que STABLE.
+Compartir Database no elimina Module Boundaries.
 
-------------------------------------------------------------------------
+---
 
-# 354. Stable API
+# 305. Foreign Table Access
 
-Deberá cumplir Support Policy.
+Deberá considerarse dependencia arquitectónica.
 
-------------------------------------------------------------------------
+---
 
-# 355. Deprecated API
+# 306. Cross-Module Join
 
-Continúa operativa durante Migration Window.
+No deberá realizarse indiscriminadamente.
 
-------------------------------------------------------------------------
+---
 
-# 356. Sunset API
+# 307. Reporting Exception
 
-Se encuentra próxima a retiro.
+Read Models de Reporting podrán integrar múltiples Modules bajo Boundary explícita.
 
-------------------------------------------------------------------------
+---
 
-# 357. Removed API
+# 308. Reporting Model
 
-No deberá seguir registrada.
+No deberá convertirse en camino de escritura Cross-Module.
 
-------------------------------------------------------------------------
+---
 
-# 358. Lifecycle Transition
-
-Deberá ser explícita.
-
-------------------------------------------------------------------------
-
-# 359. Release Integration
-
-ENG-017 deberá considerar API Compatibility antes de Release.
-
-------------------------------------------------------------------------
-
-# 360. API Breaking Change
-
-Deberá afectar Versioning según Compatibility Policy.
-
-------------------------------------------------------------------------
-
-# 361. Changelog
-
-Cambios públicos deberán documentarse.
-
-------------------------------------------------------------------------
-
-# 362. Consumer Migration
-
-Deprecation deberá incluir Guidance cuando sea posible.
-
-------------------------------------------------------------------------
-
-# 363. Error Namespace
-
-ENG-044 utilizará:
-
-``` text
-MEF-API-xxx
-```
-
-------------------------------------------------------------------------
-
-# 364. Taxonomía ENG-044
-
-``` text
-MEF-API-001 Invalid request
-MEF-API-002 Unsupported media type
-MEF-API-003 Unsupported representation
-MEF-API-004 Validation failed
-MEF-API-005 Authentication required
-MEF-API-006 Authentication failed
-MEF-API-007 Access denied
-MEF-API-008 Resource not found
-MEF-API-009 Method not allowed
-MEF-API-010 Resource conflict
-MEF-API-011 Precondition failed
-MEF-API-012 Rate limit exceeded
-MEF-API-013 Quota exceeded
-MEF-API-014 Payload too large
-MEF-API-015 Invalid pagination
-MEF-API-016 Invalid cursor
-MEF-API-017 Unsupported filter
-MEF-API-018 Unsupported sort
-MEF-API-019 Invalid field selection
-MEF-API-020 Idempotency key conflict
-MEF-API-021 Idempotency operation in progress
-MEF-API-022 API version unsupported
-MEF-API-023 API version deprecated
-MEF-API-024 API contract violation
-MEF-API-025 Request timeout
-MEF-API-026 Dependency unavailable
-MEF-API-027 Invalid CORS request
-MEF-API-028 Unsafe API operation
-MEF-API-029 API security violation
-MEF-API-030 Internal API failure
-```
-
-------------------------------------------------------------------------
-
-# 365. Validation Example
-
-``` text
-MEF-API-004
-
-Request validation failed.
-
-Endpoint:
-orders.create
-
-Field:
-quantity
-
-Code:
-must_be_positive
-```
-
-------------------------------------------------------------------------
-
-# 366. Idempotency Example
-
-``` text
-MEF-API-020
-
-Idempotency key was previously used
-with a different request.
-
-Endpoint:
-payments.create
-```
-
-------------------------------------------------------------------------
-
-# 367. Rate Limit Example
-
-``` text
-MEF-API-012
-
-API rate limit exceeded.
-
-Endpoint:
-search.execute
-
-Retry-After:
-10
-```
-
-------------------------------------------------------------------------
-
-# 368. Version Example
-
-``` text
-MEF-API-022
-
-Requested API version is not supported.
-
-Requested:
-v0
-
-Supported:
-v1
-```
-
-------------------------------------------------------------------------
-
-# 369. Contract Violation Example
-
-``` text
-MEF-API-024
-
-API response violated its published contract.
-
-Endpoint:
-orders.get
-```
-
-------------------------------------------------------------------------
-
-# 370. First Implementation Components
+# 309. First Implementation Components
 
 La primera implementación deberá incluir conceptualmente:
 
-``` text
-ApiDefinition
-ApiId
-ApiVersion
-ApiExposure
+```text
+Repository
+RepositoryDefinition
 
-EndpointDefinition
-EndpointId
-HttpMethod
-Route
+Query
+QueryName
+QueryDefinition
+QueryExecutor
+QueryContext
 
-RequestContract
-ResponseContract
-ErrorContract
+Criteria
+Filter
+FilterOperator
+Sort
+SortDirection
 
-ApiRequest
-ApiResponse
+Page
+PageRequest
+PageSize
 
-ApiError
-ProblemDetails
+Cursor
+CursorPage
+CursorCodec
 
-PaginationContract
-FilterContract
-SortContract
+Projection
+ReadModel
 
-IdempotencyKey
-IdempotencyPolicy
+DataMapper
 
-RateLimitPolicy
+DataSource
+DataSourceDefinition
+ReadConsistency
 
-ApiSecurityPolicy
+QueryTimeout
+QueryBudget
 
-ApiRegistry
-
-OpenApiGenerator
-OpenApiValidator
+DataAccessError
 ```
 
-------------------------------------------------------------------------
+---
 
-# 371. Optional Initial Components
+# 310. Optional Initial Components
 
 Podrán incorporarse:
 
-``` text
-ETag
-ConditionalRequest
-FieldSelection
-Expansion
-QuotaPolicy
-DeprecationMetadata
-ApiDiff
+```text
+Specification
+IdentityMap
+FetchPlan
+BatchLoader
+QueryCounter
+NPlusOneDetector
 ```
 
-------------------------------------------------------------------------
+---
 
-# 372. Later Components
+# 311. Later Components
 
-Solo cuando exista necesidad:
+Solo cuando exista necesidad demostrada:
 
-``` text
-Webhook
-Advanced Content Negotiation
-GraphQL Adapter
-gRPC API Adapter
-API Federation
-Developer Portal
-Consumer Registry
-Advanced Quota Billing
+```text
+Sharding
+Cross-Shard Query
+Advanced Query Planner
+Federated Query
+Distributed Read Model
+Advanced RLS Integration
 ```
 
-------------------------------------------------------------------------
+---
 
-# 373. Conceptual Directory Structure
+# 312. Conceptual Directory Structure
 
-``` text
+```text
 src/
-└── Api/
+└── DataAccess/
     ├── Contract/
-    │   ├── ApiDefinition
-    │   ├── RequestContract
-    │   ├── ResponseContract
-    │   └── ErrorContract
+    │   ├── Repository
+    │   ├── Query
+    │   ├── QueryExecutor
+    │   └── DataMapper
     │
-    ├── Endpoint/
-    │   ├── EndpointDefinition
-    │   ├── EndpointId
-    │   ├── Route
-    │   └── HttpMethod
-    │
-    ├── Request/
-    │   ├── ApiRequest
-    │   └── RequestMapper
-    │
-    ├── Response/
-    │   ├── ApiResponse
-    │   └── ResponseMapper
-    │
-    ├── Error/
-    │   ├── ApiError
-    │   └── ProblemDetails
-    │
-    ├── Version/
-    │   ├── ApiVersion
-    │   └── DeprecationMetadata
+    ├── Query/
+    │   ├── QueryName
+    │   ├── QueryDefinition
+    │   ├── QueryContext
+    │   ├── Criteria
+    │   ├── Filter
+    │   ├── FilterOperator
+    │   ├── Sort
+    │   └── SortDirection
     │
     ├── Pagination/
-    │   └── PaginationContract
+    │   ├── Page
+    │   ├── PageRequest
+    │   ├── PageSize
+    │   ├── Cursor
+    │   ├── CursorPage
+    │   └── CursorCodec
     │
-    ├── Filtering/
-    │   ├── FilterContract
-    │   └── SortContract
+    ├── Projection/
+    │   ├── Projection
+    │   └── ReadModel
     │
-    ├── Idempotency/
-    │   ├── IdempotencyKey
-    │   └── IdempotencyPolicy
+    ├── Mapping/
+    │   └── DataMapper
     │
-    ├── Security/
-    │   └── ApiSecurityPolicy
+    ├── Repository/
+    │   └── RepositoryDefinition
     │
-    ├── RateLimit/
-    │   └── RateLimitPolicy
+    ├── Source/
+    │   ├── DataSource
+    │   ├── DataSourceDefinition
+    │   └── ReadConsistency
     │
-    ├── Registry/
-    │   └── ApiRegistry
+    ├── Performance/
+    │   ├── QueryTimeout
+    │   ├── QueryBudget
+    │   ├── QueryCounter
+    │   └── NPlusOneDetector
     │
-    └── OpenApi/
-        ├── OpenApiGenerator
-        └── OpenApiValidator
+    └── Error/
+        └── DataAccessError
 ```
 
 La estructura física definitiva deberá obedecer ENG-006.
 
-------------------------------------------------------------------------
+---
 
-# 374. First Implementation Constraints
+# 313. First Implementation Constraints
 
 La primera versión deberá favorecer:
 
-``` text
-HTTP/JSON
-REST-oriented APIs
-Explicit API Contracts
-Explicit Request/Response DTOs
-URI Versioning
-Stable Endpoint IDs
-Problem Details
-Strict Validation
-Deny-by-default Security
-Tenant Context
-Bounded Pagination
+```text
+Explicit Repository Contracts
+Aggregate-Oriented Repositories
+Use-Case Query Services
+Explicit Projections
+Criteria
 Allowlisted Filtering
 Allowlisted Sorting
-Idempotency Keys
-Rate Limiting
-Request Limits
-OpenAPI
-Contract Testing
-Compatibility Testing
+Bounded Pagination
+Cursor Pagination
+Stable Ordering
+Explicit Fetch Plans
+Batch Loading
+N+1 Detection
+Query Timeouts
+Query Budgets
+Parameter Binding
+Tenant Enforcement
+Read Consistency
 Observability
+Security
 ```
 
-------------------------------------------------------------------------
+---
 
-# 375. First Version Non-Goals
+# 314. First Version Non-Goals
 
 No deberá requerir:
 
-``` text
-GraphQL
-gRPC
-API Federation
-Universal API Gateway
-Developer Portal
-Webhook Platform
-Dynamic API Composition
-Automatic API Monetization
-Custom HTTP Server
-Custom OpenAPI Standard
+```text
+Universal Generic Repository
+Universal Specification Language
+Automatic Lazy Loading
+Unlimited Query API
+Automatic Cross-Module Joins
+Distributed Query Engine
+Federated Database Layer
+Custom ORM
+Custom SQL Engine
+Automatic Sharding
 ```
 
-------------------------------------------------------------------------
+---
 
-# 376. Second Phase
+# 315. Second Phase
 
 Podrá incorporar:
 
-``` text
-Conditional Requests
-ETag
-Field Selection
-Expansion
-Advanced Quotas
-Webhook Delivery
-Advanced Deprecation Analytics
+```text
+Identity Map
+Advanced Specification
+Advanced Fetch Plans
+Read Replica Routing
+Query Plan Diagnostics
+Advanced Bulk Operations
 ```
 
-------------------------------------------------------------------------
+---
 
-# 377. Third Phase
+# 316. Third Phase
 
 Solo cuando exista necesidad demostrada:
 
-``` text
-GraphQL Adapter
-gRPC Adapter
-API Federation
-Developer Portal
-Consumer Registry
-Advanced API Products
+```text
+Sharding
+Federated Query
+Distributed Read Models
+Cross-Region Reads
+Advanced Query Planner
 ```
 
-------------------------------------------------------------------------
+---
 
-# 378. Invariantes de Ingeniería
+# 317. Invariantes de Ingeniería
 
-ENG-044 continúa la serie global `EI`.
+ENG-043 continúa la serie global `EI`.
 
-  -----------------------------------------------------------------------
-  ID                Invariante
-  ----------------- -----------------------------------------------------
-  EI-826            Toda API pública deberá constituir una Boundary
-                    contractual explícita, versionada, segura y
-                    observable.
+| ID | Invariante |
+|----|------------|
+| EI-806 | Todo acceso persistente deberá atravesar una Data Access Boundary explícita, segura y observable. |
+| EI-807 | Domain no deberá depender de SQL, ORM Query Builders, Database Connections ni detalles físicos de Storage. |
+| EI-808 | Repositories deberán representar conceptos del Domain/Aggregate y no utilizarse por Default como wrappers genéricos de tablas. |
+| EI-809 | Query Services y Read Models podrán evitar reconstruir Aggregates completos cuando el Use Case sea exclusivamente de lectura. |
+| EI-810 | Data Mappers no deberán introducir Business Rules ni ocultar datos persistidos incompatibles con Domain Invariants. |
+| EI-811 | Filtering y Sorting expuestos a Input deberán utilizar Allowlist, tipos y Operators explícitos. |
+| EI-812 | Toda Pagination deberá poseer Page Size acotado y Ordering determinístico. |
+| EI-813 | Cursor Pagination deberá utilizar posición estable, Cursor opaco y protección contra manipulación cuando corresponda. |
+| EI-814 | Lazy Loading implícito no deberá ocultar Database Round Trips ni ejecutarse accidentalmente durante Serialization. |
+| EI-815 | Queries en caminos críticos deberán utilizar Fetch Plans, Batch Loading o estrategia equivalente para evitar N+1. |
+| EI-816 | Use Cases críticos podrán imponer Query Budgets y toda Query potencialmente costosa deberá poseer Timeout/Deadline apropiado. |
+| EI-817 | Raw Queries deberán permanecer dentro de Data Access/Infrastructure y todo Input no estructural deberá utilizar Parameter Binding. |
+| EI-818 | Identifiers y estructura dinámica de Query deberán seleccionarse mediante Allowlist y nunca concatenarse directamente desde Input no confiable. |
+| EI-819 | Toda Query Tenant-Scoped deberá aplicar Tenant/Data Scope estructural basado en Context autorizado y no únicamente en Input del cliente. |
+| EI-820 | Read Routing deberá preservar Consistency Requirements y no deberá enviar accidentalmente Read-After-Write a Replica con Lag incompatible. |
+| EI-821 | Data Access deberá limitar Result Size, Round Trips, Memory y Connection Usage, evitando colecciones y Buffers ilimitados. |
+| EI-822 | Query Telemetry deberá ser útil sin exponer SQL sensible, Bind Parameters, PII ni Cardinality no controlada. |
+| EI-823 | Compartir una Database no deberá permitir acceso arbitrario a tablas privadas de otros Modules ni eliminar Module Boundaries. |
+| EI-824 | Data Access Tests deberán cubrir Security, Tenant Isolation, Pagination, N+1, Timeout, Transaction Integration y Failure Modes. |
+| EI-825 | La primera implementación deberá favorecer Repositories explícitos, Query Services, Projections, bounded Pagination, Parameter Binding, Tenant Enforcement y Query Observability antes de introducir Sharding, Federated Queries o abstracciones universales. |
 
-  EI-827            Domain no deberá depender de HTTP, Routes, Status
-                    Codes, Headers, Serialization ni OpenAPI.
+---
 
-  EI-828            Request/Response Contracts públicos deberán
-                    permanecer separados de Domain Entities, Persistence
-                    Models y estructuras internas accidentales.
+# 318. Continuidad de Invariantes
 
-  EI-829            HTTP Methods y Status Codes deberán preservar
-                    semánticas protocolarias y no seleccionarse
-                    únicamente por conveniencia de implementación.
-
-  EI-830            Toda API deberá poseer Error Contract
-                    machine-readable estable que no exponga Stack Traces,
-                    Secrets ni detalles internos sensibles.
-
-  EI-831            Toda API estable deberá poseer estrategia explícita
-                    de Versioning, Compatibility y Deprecation.
-
-  EI-832            Cambios Breaking deberán detectarse antes de Release
-                    y no deberán introducirse silenciosamente en una
-                    versión estable.
-
-  EI-833            Pagination externa deberá ser acotada, determinística
-                    y consistente con las garantías definidas por Data
-                    Access.
-
-  EI-834            Filtering, Sorting, Field Selection y Expansion
-                    deberán utilizar Contracts y Allowlists explícitos.
-
-  EI-835            Authentication, Authorization y Tenant Resolution
-                    deberán ejecutarse mediante Context confiable y una
-                    API interna no deberá considerarse implícitamente
-                    segura.
-
-  EI-836            APIs susceptibles de abuso deberán imponer límites de
-                    Rate, Quota, Payload, Query Complexity o Concurrency
-                    según riesgo.
-
-  EI-837            Operaciones Retryable no naturalmente Idempotent
-                    deberán poseer mecanismo explícito de Idempotency
-                    antes de recomendar Retry automático.
-
-  EI-838            Idempotency Key deberá estar Scoped por
-                    Consumer/Tenant/Operation y su reutilización con
-                    Payload incompatible deberá rechazarse.
-
-  EI-839            Conditional Requests y ETags deberán preservar
-                    semántica de Cache/Concurrency y no utilizarse como
-                    Credentials.
-
-  EI-840            CORS no deberá utilizarse como sustituto de
-                    Authentication, Authorization o CSRF Protection.
-
-  EI-841            Toda HTTP API pública estable deberá poseer
-                    Specification verificable y deberá evitar Drift entre
-                    Runtime y OpenAPI.
-
-  EI-842            Telemetry de API deberá utilizar identificadores
-                    lógicos de Cardinality acotada y no registrar
-                    indiscriminadamente Bodies, Credentials, PII ni Paths
-                    dinámicos.
-
-  EI-843            Toda API deberá imponer Deadline y límites de
-                    Resource Consumption compatibles con Resilience y
-                    Performance Policies.
-
-  EI-844            Contract, Security, Compatibility, Idempotency,
-                    Pagination, Rate Limit y Failure Modes deberán formar
-                    parte de API Testing.
-
-  EI-845            La primera implementación deberá favorecer HTTP/JSON,
-                    Contracts explícitos, URI Versioning, Problem
-                    Details, OpenAPI, Idempotency, Security y
-                    Observability antes de introducir GraphQL, gRPC,
-                    Federation o una plataforma avanzada de API
-                    Management.
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
-# 379. Continuidad de Invariantes
-
-``` text
+```text
+ENG-039 → EI-726 a EI-745
 ENG-040 → EI-746 a EI-765
 ENG-041 → EI-766 a EI-785
 ENG-042 → EI-786 a EI-805
 ENG-043 → EI-806 a EI-825
-ENG-044 → EI-826 a EI-845
 ```
 
-------------------------------------------------------------------------
+---
 
-# 380. Criterios de Conformidad
+# 319. Criterios de Conformidad
 
-Una implementación será conforme con ENG-044 cuando:
+Una implementación será conforme con ENG-043 cuando:
 
--   modele API Boundary explícita;
--   utilice Contracts públicos explícitos;
--   separe Request/Response DTOs de Domain;
--   utilice Endpoint IDs estables;
--   respete HTTP Semantics;
--   utilice Error Contract estable;
--   proteja Error Details;
--   implemente Versioning;
--   detecte Breaking Changes;
--   implemente Deprecation Lifecycle;
--   limite Pagination;
--   limite Filtering;
--   limite Sorting;
--   controle Field Selection;
--   valide Input;
--   aplique Authentication;
--   aplique Authorization;
--   preserve Tenant Isolation;
--   soporte Rate Limiting;
--   limite Payloads;
--   modele Idempotency;
--   controle Retry;
--   soporte Conditional Requests cuando corresponda;
--   configure CORS explícitamente;
--   mantenga OpenAPI alineado;
--   integre Observability;
--   imponga Deadlines;
--   pruebe Contract;
--   pruebe Compatibility;
--   pruebe Security;
--   pruebe Failure Modes.
+- utilice Data Access Boundaries explícitas;
+- Domain permanezca independiente de SQL/ORM;
+- utilice Repositories orientados a Aggregates;
+- diferencie Repository de Query Service;
+- permita Read Models y Projections;
+- implemente Criteria;
+- limite Filters y Operators;
+- limite Sorting;
+- implemente Pagination acotada;
+- utilice Ordering estable;
+- soporte Cursor Pagination cuando corresponda;
+- evite Lazy Loading implícito crítico;
+- permita Fetch Plans;
+- utilice Batch Loading;
+- detecte N+1;
+- soporte Query Budget;
+- soporte Query Timeout;
+- limite Result Size;
+- utilice Parameter Binding;
+- controle Raw Queries;
+- aplique Tenant Scope estructural;
+- preserve Read Consistency;
+- integre Transaction Context;
+- observe Query Performance;
+- proteja datos sensibles;
+- respete Module Boundaries;
+- pruebe Security y Failure Modes.
 
-------------------------------------------------------------------------
+---
 
-# 381. Riesgos
+# 320. Riesgos
 
 Deberán evitarse especialmente:
 
-## Database as API
+## Repository per Table
 
-La estructura pública refleja directamente tablas.
+La arquitectura se convierte en reflejo del Schema físico.
 
-## ORM Entity as Response
+## Universal Generic Repository
 
-Campos internos se convierten accidentalmente en Contract.
+Se pierde lenguaje del Domain.
 
-## Domain Entity as Request
+## ORM Leakage
 
-Input externo modifica directamente Domain State.
+Domain/Application quedan acoplados al proveedor.
 
-## Business Logic in Controller
+## Partial Aggregate
 
-La API se convierte en Application/Domain.
+Se reconstruye un Aggregate incapaz de proteger sus Invariants.
 
-## HTTP in Domain
+## Query Logic in Controller
 
-Business Logic queda acoplada al protocolo.
+Filtering, Sorting y Joins quedan dispersos.
 
-## Generic CRUD API
+## Arbitrary Filter API
 
-Toda Entity se expone automáticamente sin analizar Business Semantics.
+El cliente controla indirectamente estructura de Query.
 
-## Unversioned Public API
+## Arbitrary Sort
 
-No existe estrategia segura de evolución.
-
-## Silent Breaking Change
-
-Consumer falla después de un Release aparentemente compatible.
-
-## String Error Contract
-
-Consumers dependen de mensajes humanos.
-
-## Stack Trace Response
-
-Se expone información interna.
+Puede utilizar columnas no indexadas o sensibles.
 
 ## Unlimited Pagination
 
-Una Request consume Resources excesivos.
+Una Request puede materializar millones de registros.
 
-## Arbitrary Filtering
+## Unstable Pagination
 
-Consumer controla indirectamente Query Structure.
+Los resultados cambian o se duplican entre páginas.
 
-## Arbitrary Expansion
+## Hidden Lazy Loading
 
-Produce Graph Explosion/N+1.
+Serialization dispara cientos de Queries.
 
-## Tenant from Header
+## N+1
 
-Se confía en Tenant solicitado sin Authorization.
+Una colección pequeña genera decenas o cientos de Round Trips.
 
-## CORS as Security
+## Query in Loop
 
-Se supone que CORS protege directamente el Backend.
+Escala linealmente en Round Trips.
 
-## Retry POST Blindly
+## Select Star
 
-Se duplican operaciones.
+Se recuperan datos innecesarios o sensibles.
 
-## Idempotency without Payload Fingerprint
+## Raw SQL Concatenation
 
-Una misma Key representa operaciones distintas.
+Se introduce SQL Injection.
 
-## API Key in URL
+## Tenant Filter by Convention
 
-Credentials aparecen en Logs, History o Proxies.
+Un Developer puede olvidar el filtro y provocar Data Leakage.
 
-## OpenAPI Drift
+## Replica Read-After-Write
 
-Documentación y Runtime divergen.
+El usuario no observa su propia modificación.
 
-## Dynamic Route Metrics
+## Cross-Module SQL
 
-Se genera Cardinality ilimitada.
+Un Module depende del Schema privado de otro.
 
-## Request Body Logging
+## ORM as Domain Model
 
-Se filtran Secrets/PII.
+Cambios de Persistence alteran Business Model.
 
-## Gateway Authorization Only
+## Database as API
 
-Se omite Business Authorization en Application.
+Cualquier Module consulta cualquier tabla.
 
-## Internal Means Trusted
+## Query Without Timeout
 
-APIs internas quedan sin controles.
+Una consulta defectuosa consume recursos indefinidamente.
 
-## Long Synchronous Operation
+## Sensitive Query Logging
 
-La Request permanece abierta innecesariamente.
+PII o Secrets aparecen en Telemetry.
 
-------------------------------------------------------------------------
+---
 
-# 382. Relación con ENG-031
+# 321. Relación con ENG-030
 
-``` text
-ENG-031 Serialization
-→ representation encoding
+La separación será:
 
-ENG-044 API
-→ public representation contract
+```text
+ENG-030 Persistence
+→ storage and persistence architecture
+
+ENG-043 Data Access
+→ controlled access patterns over persisted state
 ```
 
-------------------------------------------------------------------------
+---
 
-# 383. Relación con ENG-032
+# 322. Relación con ENG-042
 
-``` text
-ENG-032 Transport
-→ request/response transport mechanics
+```text
+ENG-042 Transaction
+→ consistency boundary
 
-ENG-044 API
-→ consumer-facing semantics
+ENG-043 Data Access
+→ reads/writes participating in that boundary
 ```
 
-------------------------------------------------------------------------
+Una Query dentro de Transaction deberá utilizar el Resource asociado a dicha Transaction.
 
-# 384. Relación con ENG-033
+---
 
-ENG-033 deberá proporcionar protocolo/adapters utilizados por API
-Runtime sin definir Business Contract.
+# 323. Relación con ENG-034
 
-------------------------------------------------------------------------
+Application decidirá:
 
-# 385. Relación con ENG-034
-
-Application ejecutará Use Cases invocados desde API.
-
-``` text
-API
- │
- ▼
-Application
- │
- ▼
-Domain
+```text
+which repository
+which query
+which projection
+which consistency requirement
 ```
 
-------------------------------------------------------------------------
+---
 
-# 386. Relación con ENG-035
+# 324. Relación con ENG-035
 
-Domain permanecerá completamente independiente de API Representation.
+Domain podrá declarar Repository Contracts necesarios para Aggregates, pero no conocerá implementación física.
 
-------------------------------------------------------------------------
+---
 
-# 387. Relación con ENG-036
+# 325. Relación con ENG-036
 
-Validation gobernará Request/Criteria Validation.
+Validation gobernará:
 
-------------------------------------------------------------------------
-
-# 388. Relación con ENG-037
-
-Caching gobernará Cache Storage/Policy interna.
-
-API Engineering gobernará HTTP Cache Contract.
-
-------------------------------------------------------------------------
-
-# 389. Relación con ENG-038
-
-Concurrency podrá exponerse mediante:
-
-``` text
-ETag
-If-Match
-version
-409
-412
+```text
+criteria
+filters
+sorting
+pagination
+cursor input
 ```
 
-------------------------------------------------------------------------
+---
 
-# 390. Relación con ENG-039
+# 326. Relación con ENG-037
+
+Caching podrá acelerar Read Models sin sustituir Source of Truth.
+
+---
+
+# 327. Relación con ENG-038
+
+Concurrency gobernará conflictos producidos por Reads/Writes concurrentes.
+
+---
+
+# 328. Relación con ENG-039
 
 Resilience gobernará:
 
-``` text
+```text
 timeout
 retry
 backpressure
 load shedding
-circuit breaker
 ```
 
-------------------------------------------------------------------------
+sin convertir automáticamente toda Query fallida en Retryable.
 
-# 391. Relación con ENG-040
+---
 
-Operaciones largas podrán convertirse en:
+# 329. Relación con ENG-040
 
-``` text
-202 Accepted
-+
-Background Job
-+
-Operation Resource
+Jobs de procesamiento masivo deberán utilizar:
+
+```text
+cursor
+batching
+bounded memory
+short transactions
 ```
 
-------------------------------------------------------------------------
+---
 
-# 392. Relación con ENG-041
+# 330. Relación con ENG-041
 
-Messaging permanecerá detrás de Application/API Boundary.
+Consumers podrán utilizar Repositories y Queries dentro de su Message Processing Boundary.
 
-Una API no deberá exponer detalles internos del Broker.
+---
 
-------------------------------------------------------------------------
-
-# 393. Relación con ENG-042
-
-Transactions no deberán abarcar arbitrariamente toda Request HTTP.
-
-------------------------------------------------------------------------
-
-# 394. Relación con ENG-043
-
-Data Access proporcionará:
-
-``` text
-pagination
-filters
-sorting
-projection
-read consistency
-```
-
-sin exponer SQL/ORM a API.
-
-------------------------------------------------------------------------
-
-# 395. Relación con ENG-024
+# 331. Relación con ENG-024
 
 Security gobernará:
 
-``` text
-authentication
+```text
+tenant
 authorization
-tenant isolation
-secrets
-threat model
+SQL safety
+data classification
 audit
 ```
 
-------------------------------------------------------------------------
+---
 
-# 396. Relación con ENG-025
+# 332. Relación con ENG-025
 
 Observability gobernará:
 
-``` text
-metrics
-logs
-traces
-request correlation
-SLIs
+```text
+query duration
+round trips
+query errors
+timeouts
+N+1
+pool saturation
 ```
 
-------------------------------------------------------------------------
+---
 
-# 397. Relación con ENG-026
+# 333. Relación con ENG-026
 
 Performance gobernará:
 
-``` text
+```text
 latency
 throughput
-payload size
-compression
-concurrency
+memory
+batching
+query regression
 ```
 
-------------------------------------------------------------------------
+---
 
-# 398. Relación con ENG-016
+# 334. Relación con ENG-028
 
-Compatibility gobernará evolución segura de Contracts públicos.
+Modules deberán exponer Contracts en lugar de permitir acceso directo indiscriminado a su Schema privado.
 
-------------------------------------------------------------------------
+---
 
-# 399. Relación con ENG-017
+# 335. Relación con ENG-044
 
-Release Process deberá impedir Releases con Breaking Changes no
-autorizados.
-
-------------------------------------------------------------------------
-
-# 400. Relación con ENG-045
-
-ENG-045 deberá formalizar **Authentication Engineering**.
+ENG-044 deberá formalizar **API Engineering**.
 
 La separación será:
 
-``` text
-API Engineering
-→ public interface and security boundary
+```text
+Data Access
+→ internal access to persisted data
 
-Authentication Engineering
-→ establishment and verification of identity
+Application
+→ use-case orchestration
 
-Security Engineering
-→ global security policies and threat model
-
-Authorization
-→ decision of what an authenticated principal may do
+API
+→ external interface exposed to consumers
 ```
 
-ENG-045 deberá cubrir:
+ENG-044 deberá cubrir:
 
-``` text
-Principal
-Identity
-Credential
-Authentication Context
-Authentication Method
-Password Authentication
-Password Hashing
-Credential Storage
-API Keys
-Bearer Tokens
-Session Authentication
-Token Validation
-JWT
-Opaque Tokens
-Refresh Tokens
-Token Rotation
-Token Revocation
-MFA
-TOTP
-WebAuthn
-Recovery Codes
-Brute Force Protection
-Credential Stuffing
-Account Lockout
-Session Fixation
-Authentication Events
-Machine Identity
-Service Accounts
-Authentication Observability
-Authentication Testing
-```
-
-------------------------------------------------------------------------
-
-# 400A. Corrección de autoridad --- Interface y Performance
-
-## Interface
-
-ENG-033 --- Interface Engineering es autoritativo para:
-
--   Interface;
--   Interface Contract;
--   Operation Contract;
--   Input / Output / Error Contract;
--   Interface Boundary;
--   Interface Adapter;
--   Interface Versioning, Compatibility y Lifecycle.
-
-ENG-044 especializa esas semánticas para Public API, Endpoint, Resource,
-HTTP y Consumer-facing concerns.
-
-Cuando exista conflicto conceptual sobre semántica contractual general
-de Interface, **ENG-033 será autoritativo**.
-
-## Performance
-
-ENG-070 --- Performance Engineering es autoritativo para Performance
-general de Application / System / Workload, incluyendo latency,
-throughput, payload, concurrency y capacity cuando se evalúan como
-propiedades del sistema o API.
-
-ENG-026 --- Runtime Performance Engineering es autoritativo únicamente
-para el overhead introducido por el Framework / Runtime MEF.
-
-ENG-044 podrá definir Requirements de Performance específicos de API,
-pero deberá hacerlo subordinado al modelo general de ENG-070.
-
-------------------------------------------------------------------------
-
-# 401. Principio Rector
-
-> **MEF deberá considerar cada API pública como un producto contractual
-> de larga duración: la implementación puede cambiar, pero el Consumer
-> deberá recibir semántica estable, seguridad explícita, evolución
-> controlada y comportamiento observable.**
-
-------------------------------------------------------------------------
-
-# 402. Conclusión
-
-**ENG-044 --- API Engineering** formaliza la Boundary pública mediante
-la cual Consumers interactúan con MEF.
-
-La arquitectura queda:
-
-``` text
-                     EXTERNAL CONSUMER
-                             │
-                             ▼
-                       API BOUNDARY
-                             │
-        ┌────────────────────┼────────────────────┐
-        │                    │                    │
-        ▼                    ▼                    ▼
- AUTHENTICATION         RATE LIMIT           VERSIONING
-        │                    │                    │
-        └────────────────────┼────────────────────┘
-                             │
-                             ▼
-                         ENDPOINT
-                             │
-                 ┌───────────┼───────────┐
-                 │           │           │
-                 ▼           ▼           ▼
-             VALIDATION  AUTHORIZATION  CONTRACT
-                 │           │           │
-                 └───────────┼───────────┘
-                             │
-                             ▼
-                       APPLICATION
-                             │
-                             ▼
-                          DOMAIN
-```
-
-El ciclo Request queda:
-
-``` text
-HTTP Request
-     │
-     ▼
-Routing
-     │
-     ▼
-Authentication
-     │
-     ▼
-Rate Limit
-     │
-     ▼
-Validation
-     │
-     ▼
-Authorization
-     │
-     ▼
-Request Mapping
-     │
-     ▼
-Application Use Case
-     │
-     ▼
-Response Mapping
-     │
-     ▼
+```text
 API Contract
-     │
-     ▼
-HTTP Response
+Endpoint
+Resource
+Request
+Response
+HTTP Semantics
+Status Codes
+Headers
+Content Negotiation
+API Versioning
+Pagination Contract
+Filtering Contract
+Sorting Contract
+Error Contract
+Idempotency
+Rate Limiting
+Authentication Integration
+Authorization Integration
+Validation Integration
+CORS
+Caching Headers
+ETag
+Conditional Requests
+API Observability
+OpenAPI
+API Testing
+Backward Compatibility
+Deprecation
 ```
 
-La evolución queda:
+---
 
-``` text
-DRAFT
-  │
-  ▼
-EXPERIMENTAL
-  │
-  ▼
-STABLE
-  │
-  ▼
-DEPRECATED
-  │
-  ▼
-SUNSET
-  │
-  ▼
-REMOVED
+# 336. Principio Rector
+
+> **MEF deberá tratar Data Access como una Boundary arquitectónica controlada y no como acceso libre al Storage: Repositories protegerán el modelo de escritura, Query Services optimizarán el modelo de lectura y toda consulta deberá respetar Scope, Security, Performance, Consistency y Observability.**
+
+---
+
+# 337. Conclusión
+
+**ENG-043 — Data Access Engineering** formaliza cómo MEF accede al estado persistido sin convertir la Database, el ORM o SQL en la arquitectura de la aplicación.
+
+La arquitectura principal queda:
+
+```text
+                         APPLICATION
+                             │
+                ┌────────────┴────────────┐
+                │                         │
+                ▼                         ▼
+           WRITE MODEL                READ MODEL
+                │                         │
+                ▼                         ▼
+           REPOSITORY                QUERY SERVICE
+                │                         │
+                ▼                         ▼
+           AGGREGATE                  PROJECTION
+                │                         │
+                └────────────┬────────────┘
+                             │
+                             ▼
+                       DATA ACCESS
+                             │
+                             ▼
+                          ADAPTER
+                             │
+                             ▼
+                        DATA SOURCE
+```
+
+La relación con Transactions queda:
+
+```text
+APPLICATION USE CASE
+        │
+        ▼
+TRANSACTION BOUNDARY
+        │
+        ├── Repository Read
+        ├── Repository Write
+        ├── Unit of Work
+        └── Outbox
+        │
+        ▼
+      COMMIT
+```
+
+La estrategia de lectura queda:
+
+```text
+Client Need
+    │
+    ▼
+Query Service
+    │
+    ▼
+Criteria
+    │
+    ├── Filters
+    ├── Sorting
+    ├── Pagination
+    └── Consistency
+    │
+    ▼
+Projection
+    │
+    ▼
+Read Model
+```
+
+La estrategia de seguridad queda:
+
+```text
+Authorized Context
+        │
+        ├── Tenant Scope
+        ├── Data Scope
+        ├── Allowed Filters
+        ├── Allowed Sorts
+        └── Field Authorization
+        │
+        ▼
+      QUERY
+```
+
+La estrategia de Performance queda:
+
+```text
+Query
+ │
+ ├── Projection
+ ├── Stable Pagination
+ ├── Fetch Plan
+ ├── Batch Loading
+ ├── Query Timeout
+ ├── Query Budget
+ └── Observability
 ```
 
 La separación conceptual queda:
 
-``` text
-API
-→ consumer-facing interface
+```text
+Repository
+→ Aggregate-oriented data access
 
-API Contract
-→ externally observable behavior
+Query Service
+→ use-case-oriented read access
 
-Endpoint
-→ addressable API operation
+Data Mapper
+→ persistence/domain translation
 
-Request DTO
-→ public input representation
+Identity Map
+→ object identity inside bounded scope
 
-Response DTO
-→ public output representation
+Criteria
+→ structured query restrictions
 
-Problem Details
-→ stable machine-readable error
+Specification
+→ reusable predicate
 
-Version
-→ evolution boundary
+Projection
+→ selected result shape
 
-Deprecation
-→ controlled retirement process
+Read Model
+→ data optimized for consumption
 
-Idempotency
-→ duplicate execution protection
+Offset Pagination
+→ page-number-oriented navigation
 
-Rate Limit
-→ request velocity control
+Cursor Pagination
+→ stable large-dataset navigation
 
-Quota
-→ consumption allowance
+Fetch Plan
+→ explicit relationship loading
 
-ETag
-→ representation/concurrency validator
+Batch Loading
+→ bounded multi-entity loading
 
-OpenAPI
-→ machine-readable API specification
+Query Budget
+→ maximum expected round trips
+
+Tenant Scope
+→ mandatory authorized data boundary
+
+Read Consistency
+→ required freshness semantics
 ```
 
 La primera implementación deberá concentrarse en:
 
-``` text
-ApiDefinition
-ApiId
-ApiVersion
-ApiExposure
+```text
+Repository
+RepositoryDefinition
 
-EndpointDefinition
-EndpointId
-HttpMethod
-Route
+Query
+QueryName
+QueryDefinition
+QueryExecutor
+QueryContext
 
-RequestContract
-ResponseContract
-ErrorContract
+Criteria
+Filter
+FilterOperator
+Sort
+SortDirection
 
-ApiRequest
-ApiResponse
+Page
+PageRequest
+PageSize
 
-ApiError
-ProblemDetails
+Cursor
+CursorPage
+CursorCodec
 
-PaginationContract
-FilterContract
-SortContract
+Projection
+ReadModel
 
-IdempotencyKey
-IdempotencyPolicy
+DataMapper
 
-RateLimitPolicy
-ApiSecurityPolicy
+DataSource
+DataSourceDefinition
+ReadConsistency
 
-ApiRegistry
+QueryTimeout
+QueryBudget
 
-OpenApiGenerator
-OpenApiValidator
+DataAccessError
 ```
 
 con:
 
-``` text
-HTTP/JSON
-Explicit Contracts
-Explicit DTOs
-URI Versioning
-Stable Endpoint IDs
-HTTP Semantics
-Problem Details
-Strict Validation
-Deny by Default
-Tenant Isolation
-Bounded Pagination
-Allowlisted Filtering
+```text
+Explicit Repository Contracts
+Aggregate-Oriented Repositories
+Query Services
+Projections
+Allowlisted Filters
 Allowlisted Sorting
-Idempotency
-Rate Limiting
-Payload Limits
-OpenAPI
-Contract Tests
-Compatibility Tests
+Bounded Pagination
+Stable Ordering
+Cursor Pagination
+Explicit Fetch Plans
+Batch Loading
+N+1 Detection
+Query Timeouts
+Query Budgets
+Parameter Binding
+Tenant Enforcement
+Read Consistency
+Module Boundaries
+Security
 Observability
 ```
 
 antes de introducir:
 
-``` text
-GraphQL
-gRPC
-API Federation
-Developer Portal
-Webhook Platform
-Dynamic API Composition
-Advanced API Management
+```text
+Universal Generic Repository
+Automatic Lazy Loading
+Universal Specification Language
+Automatic Sharding
+Federated Query
+Distributed Query Engine
+Custom ORM
+Custom SQL Engine
 ```
 
-Con **ENG-044** la serie global alcanza:
+Con **ENG-043** la serie global alcanza:
 
-``` text
-EI-845
+```text
+EI-825
 ```
 
-------------------------------------------------------------------------
+---
 
 # Referencias
 
 ## Arquitectura
 
--   ARQ-004 --- Modules
--   ARQ-006 --- Registry
--   ARQ-007 --- Service Container
--   ARQ-011 --- Contracts
--   ARQ-014 --- Framework Lifecycle
--   ARQ-016 --- Security
+- ARQ-004 — Modules
+- ARQ-006 — Registry
+- ARQ-007 — Service Container
+- ARQ-011 — Contracts
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
 
 ## Ingeniería
 
--   ENG-005 --- Nomenclatura
--   ENG-006 --- Estructura de Directorios
--   ENG-007 --- CLI
--   ENG-009 --- Testing
--   ENG-011 --- Configuration Files
--   ENG-012 --- Build System
--   ENG-016 --- Compatibility
--   ENG-017 --- Release Process
--   ENG-018 --- Dependency Injection
--   ENG-019 --- Service Container
--   ENG-020 --- Registry Engineering
--   ENG-021 --- Contracts Engineering
--   ENG-023 --- Error Handling
--   ENG-024 --- Security Engineering
--   ENG-025 --- Observability Engineering
--   ENG-026 --- Performance Engineering
--   ENG-027 --- Runtime Engineering
--   ENG-028 --- Module Engineering
--   ENG-030 --- Persistence Engineering
--   ENG-031 --- Serialization Engineering
--   ENG-032 --- Transport Engineering
--   ENG-033
--   ENG-034 --- Application Engineering
--   ENG-035 --- Domain Engineering
--   ENG-036 --- Validation Engineering
--   ENG-037 --- Caching Engineering
--   ENG-038 --- Concurrency Engineering
--   ENG-039 --- Resilience Engineering
--   ENG-040 --- Scheduling & Background Jobs Engineering
--   ENG-041 --- Messaging Engineering
--   ENG-042 --- Transaction Engineering
--   ENG-043 --- Data Access Engineering
--   ENG-045 --- Authentication Engineering \`\`\`
+- ENG-005 — Nomenclatura
+- ENG-006 — Estructura de Directorios
+- ENG-007 — CLI
+- ENG-009 — Testing
+- ENG-011 — Configuration Files
+- ENG-012 — Build System
+- ENG-016 — Compatibility
+- ENG-018 — Dependency Injection
+- ENG-019 — Service Container
+- ENG-020 — Registry Engineering
+- ENG-021 — Contracts Engineering
+- ENG-023 — Error Handling
+- ENG-024 — Security Engineering
+- ENG-025 — Observability Engineering
+- ENG-026 — Performance Engineering
+- ENG-027 — Runtime Engineering
+- ENG-028 — Module Engineering
+- ENG-030 — Persistence Engineering
+- ENG-031 — Serialization Engineering
+- ENG-034 — Application Engineering
+- ENG-035 — Domain Engineering
+- ENG-036 — Validation Engineering
+- ENG-037 — Caching Engineering
+- ENG-038 — Concurrency Engineering
+- ENG-039 — Resilience Engineering
+- ENG-040 — Scheduling & Background Jobs Engineering
+- ENG-041 — Messaging Engineering
+- ENG-042 — Transaction Engineering
+- ENG-044 — API Engineering
+```
