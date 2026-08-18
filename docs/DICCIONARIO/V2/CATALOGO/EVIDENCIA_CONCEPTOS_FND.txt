@@ -1,0 +1,1419 @@
+﻿
+============================================================
+CONCEPTO: ¿Qué es MEF?
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 45
+---
+
+>>> # 2. ¿Qué es MEF?
+
+MEF es un **Framework modular para el desarrollo de aplicaciones empresariales**, diseñado para facilitar la construcción de soluciones escalables, mantenibles y extensibles mediante una arquitectura basada en módulos, contratos y servicios compartidos.
+
+MEF no es una aplicación.
+
+MEF proporciona la infraestructura necesaria para construir aplicaciones de distintos dominios utilizando una arquitectura consistente y reutilizable.
+
+
+============================================================
+CONCEPTO: Arquitectura
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 47
+# 2. ¿Qué es MEF?
+
+>>> MEF es un **Framework modular para el desarrollo de aplicaciones empresariales**, diseñado para facilitar la construcción de soluciones escalables, mantenibles y extensibles mediante una arquitectura basada en módulos, contratos y servicios compartidos.
+
+MEF no es una aplicación.
+
+MEF proporciona la infraestructura necesaria para construir aplicaciones de distintos dominios utilizando una arquitectura consistente y reutilizable.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 51
+MEF no es una aplicación.
+
+>>> MEF proporciona la infraestructura necesaria para construir aplicaciones de distintos dominios utilizando una arquitectura consistente y reutilizable.
+
+---
+
+# 3. Motivación
+
+El desarrollo de aplicaciones empresariales suele enfrentar desafíos comunes:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 88
+- Comercio electrónico
+
+>>> La arquitectura del Framework es independiente del dominio funcional.
+
+---
+
+# 5. Objetivos
+
+MEF persigue los siguientes objetivos:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 96
+MEF persigue los siguientes objetivos:
+
+>>> - proporcionar una arquitectura modular;
+- favorecer la reutilización de componentes;
+- simplificar el mantenimiento de aplicaciones;
+- facilitar la evolución tecnológica;
+- promover estándares de desarrollo consistentes;
+- preservar el conocimiento del proyecto mediante documentación estructurada.
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 119
+- compatibilidad evolutiva.
+
+>>> Estos principios se desarrollan en los documentos de Fundación y Arquitectura.
+
+---
+
+# 7. Alcance del producto
+
+MEF incluye:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 149
+00-FUNDACION
+        │
+>>> 01-ARQUITECTURA
+        │
+DICCIONARIO
+        │
+03-CONOCIMIENTO
+        │
+04-ADR
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 184
+- desarrollar aplicaciones empresariales de forma modular;
+- incorporar nuevos módulos sin afectar el Core;
+>>> - mantener una arquitectura consistente a largo plazo;
+- facilitar la incorporación de nuevos desarrolladores;
+- preservar el conocimiento técnico mediante documentación y trazabilidad.
+
+---
+
+# 10. Gobernanza
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 207
+El proyecto asume los siguientes compromisos:
+
+>>> - mantener una arquitectura coherente;
+- privilegiar la calidad sobre la velocidad de desarrollo;
+- documentar las decisiones importantes;
+- favorecer la estabilidad del Core;
+- promover la reutilización y la extensibilidad;
+- mantener una evolución controlada del producto.
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 220
+MEF es un Framework independiente, orientado a proporcionar una base sólida para el desarrollo de aplicaciones empresariales.
+
+>>> Su propósito es ofrecer una arquitectura estable, extensible y sostenible que permita construir soluciones de alta calidad, preservando el conocimiento y facilitando la evolución del software durante todo su ciclo de vida.
+
+---
+
+# Conclusión
+
+La Carta del Proyecto constituye el documento fundacional de MEF.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 44
+# 2. Declaración de Visión
+
+>>> > **Convertir a MEF en un Framework modular de referencia para el desarrollo de aplicaciones empresariales, reconocido por su arquitectura, calidad, trazabilidad, extensibilidad y capacidad para evolucionar de forma sostenible.**
+
+MEF aspira a ser una plataforma sobre la cual organizaciones y desarrolladores puedan construir soluciones de cualquier dominio con confianza, consistencia y una arquitectura preparada para el largo plazo.
+
+---
+
+# 3. Aspiración
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 46
+> **Convertir a MEF en un Framework modular de referencia para el desarrollo de aplicaciones empresariales, reconocido por su arquitectura, calidad, trazabilidad, extensibilidad y capacidad para evolucionar de forma sostenible.**
+
+>>> MEF aspira a ser una plataforma sobre la cual organizaciones y desarrolladores puedan construir soluciones de cualquier dominio con confianza, consistencia y una arquitectura preparada para el largo plazo.
+
+---
+
+# 3. Aspiración
+
+La visión de MEF no consiste únicamente en proporcionar componentes reutilizables.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 56
+Su propósito es establecer un modelo de ingeniería de software donde:
+
+>>> - la arquitectura sea clara;
+- el conocimiento permanezca organizado;
+- la documentación evolucione junto con el código;
+- las decisiones sean trazables;
+- el Framework pueda mantenerse durante décadas sin perder coherencia.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 68
+La evolución de MEF se orientará hacia los siguientes objetivos estratégicos:
+
+>>> ## Arquitectura
+
+Mantener una arquitectura modular, estable y desacoplada.
+
+---
+
+## Ingeniería
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 70
+## Arquitectura
+
+>>> Mantener una arquitectura modular, estable y desacoplada.
+
+---
+
+## Ingeniería
+
+Promover prácticas de ingeniería que favorezcan la calidad, la mantenibilidad y la automatización.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 128
+- facilitar la reutilización de componentes;
+- disminuir el costo de mantenimiento;
+>>> - promover estándares de arquitectura consistentes;
+- facilitar la incorporación de nuevos desarrolladores;
+- preservar el conocimiento del proyecto mediante un sistema documental estructurado.
+
+---
+
+# 7. Impacto esperado
+
+
+============================================================
+CONCEPTO: Gobernanza
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 66
+- escasa reutilización.
+
+>>> MEF surge para ofrecer una base arquitectónica que reduzca estos problemas mediante principios de modularidad, desacoplamiento y gobernanza técnica.
+
+---
+
+# 4. Alcance
+
+MEF proporciona capacidades para desarrollar aplicaciones empresariales en distintos dominios.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 169
+10-EJEMPLOS
+        │
+>>> 11-GOBERNANZA
+        │
+12-PLAN_MAESTRO
+```
+
+Cada sección posee una responsabilidad específica y forma parte del Modelo de Conocimiento de MEF.
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 190
+---
+
+>>> # 10. Gobernanza
+
+La evolución de MEF se realizará mediante procesos formales de gobernanza.
+
+Las decisiones relevantes deberán documentarse mediante:
+
+- RFC (Request for Comments)
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 192
+# 10. Gobernanza
+
+>>> La evolución de MEF se realizará mediante procesos formales de gobernanza.
+
+Las decisiones relevantes deberán documentarse mediante:
+
+- RFC (Request for Comments)
+- ADR (Architecture Decision Record)
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-014-GUIA_EDITORIAL.md
+LINEA: 6
+tipo: Foundation
+nivel: L0
+>>> categoria: Gobernanza
+subcategoria: Documentación
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 45
+# 2. Declaración de Misión
+
+>>> > **Diseñar, desarrollar y mantener un Framework modular para aplicaciones empresariales que proporcione una arquitectura sólida, reutilizable y extensible, facilitando la construcción de software de alta calidad mediante principios de ingeniería, documentación y gobernanza técnica.**
+
+---
+
+# 3. Nuestra misión
+
+La misión de MEF consiste en proporcionar una plataforma tecnológica que permita a organizaciones y desarrolladores construir aplicaciones empresariales sobre una arquitectura consistente, desacoplada y preparada para evolucionar a largo plazo.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-06-GOBERNANZA_TECNICA.md
+LINEA: 3
+---
+id: FND-006
+>>> titulo: Gobernanza Técnica
+tipo: Foundation
+nivel: L0
+categoria: Gobernanza
+subcategoria: Modelo de Gobierno
+estado: Accepted
+version: 1.0.0
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-06-GOBERNANZA_TECNICA.md
+LINEA: 6
+tipo: Foundation
+nivel: L0
+>>> categoria: Gobernanza
+subcategoria: Modelo de Gobierno
+estado: Accepted
+version: 1.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-06-GOBERNANZA_TECNICA.md
+LINEA: 22
+  - RFC-README
+keywords:
+>>>   - gobernanza
+  - arquitectura
+  - decisiones
+  - rfc
+  - adr
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-10-ARBOL_DE_DECISIONES.md
+LINEA: 22
+  - decisiones
+  - arquitectura
+>>>   - gobernanza
+  - diseño
+  - adr
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-12-CONSTITUCION_DE_MEF.md
+LINEA: 6
+tipo: Foundation
+nivel: L0
+>>> categoria: Gobernanza
+subcategoria: Constitución
+estado: Accepted
+version: 1.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-12-CONSTITUCION_DE_MEF.md
+LINEA: 22
+  - constitucion
+  - framework
+>>>   - gobernanza
+  - arquitectura
+  - principios
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-13-INDEPENDENCIA_DEL_FRAMEWORK.md
+LINEA: 6
+tipo: Foundation
+nivel: L0
+>>> categoria: Gobernanza
+subcategoria: Neutralidad Arquitectónica
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+
+============================================================
+CONCEPTO: Ingeniería
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 136
+- SDK
+- Documentación oficial
+>>> - Herramientas de ingeniería
+
+Las aplicaciones desarrolladas con MEF no forman parte del Framework.
+
+---
+
+# 8. Ecosistema documental
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 54
+La visión de MEF no consiste únicamente en proporcionar componentes reutilizables.
+
+>>> Su propósito es establecer un modelo de ingeniería de software donde:
+
+- la arquitectura sea clara;
+- el conocimiento permanezca organizado;
+- la documentación evolucione junto con el código;
+- las decisiones sean trazables;
+- el Framework pueda mantenerse durante décadas sin perder coherencia.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 74
+---
+
+>>> ## Ingeniería
+
+Promover prácticas de ingeniería que favorezcan la calidad, la mantenibilidad y la automatización.
+
+---
+
+## Ecosistema
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 76
+## Ingeniería
+
+>>> Promover prácticas de ingeniería que favorezcan la calidad, la mantenibilidad y la automatización.
+
+---
+
+## Ecosistema
+
+Construir un ecosistema integrado compuesto por:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 177
+La visión de MEF establece el destino del Framework.
+
+>>> Representa el compromiso de construir una plataforma modular, sostenible y orientada a la excelencia técnica, donde la arquitectura, el conocimiento y la ingeniería evolucionen de forma integrada para facilitar el desarrollo de aplicaciones empresariales de alta calidad.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 45
+# 2. Declaración de Misión
+
+>>> > **Diseñar, desarrollar y mantener un Framework modular para aplicaciones empresariales que proporcione una arquitectura sólida, reutilizable y extensible, facilitando la construcción de software de alta calidad mediante principios de ingeniería, documentación y gobernanza técnica.**
+
+---
+
+# 3. Nuestra misión
+
+La misión de MEF consiste en proporcionar una plataforma tecnológica que permita a organizaciones y desarrolladores construir aplicaciones empresariales sobre una arquitectura consistente, desacoplada y preparada para evolucionar a largo plazo.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 81
+---
+
+>>> ## Ingeniería
+
+Aplicar prácticas de desarrollo orientadas a la calidad, mantenibilidad y automatización.
+
+---
+
+## Documentación
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 125
+- desarrolladores;
+- arquitectos de software;
+>>> - equipos de ingeniería;
+- organizaciones;
+- comunidades de código abierto;
+- instituciones que desarrollen aplicaciones empresariales.
+
+---
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 162
+# Conclusión
+
+>>> La misión de MEF representa el compromiso permanente de construir un Framework modular, estable y sostenible que facilite el desarrollo de aplicaciones empresariales mediante una arquitectura sólida, una ingeniería disciplinada y un ecosistema de conocimiento integrado.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-07-MANIFIESTO_DE_INGENIERIA_DE_DESARROLLO.md
+LINEA: 7
+nivel: L0
+categoria: Cultura
+>>> subcategoria: Ingeniería
+estado: Accepted
+version: 1.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - FND-003
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-08-DECALOGO_DEL_DESARROLLADOR.md
+LINEA: 22
+  - decálogo
+  - desarrollador
+>>>   - ingeniería
+  - cultura
+  - calidad
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-09-FILOSOFIA_DE_DISENO.md
+LINEA: 24
+  - software
+  - modularidad
+>>>   - ingeniería
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-11-DOCTRINA_DE_ARQUITECTURA.md
+LINEA: 24
+  - framework
+  - diseño
+>>>   - ingeniería
+---
+
+
+============================================================
+CONCEPTO: Comunidad
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 95
+---
+
+>>> ## Comunidad
+
+Fomentar una comunidad técnica que contribuya al crecimiento del Framework respetando los principios establecidos en la Fundación.
+
+---
+
+## Conocimiento
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 97
+## Comunidad
+
+>>> Fomentar una comunidad técnica que contribuya al crecimiento del Framework respetando los principios establecidos en la Fundación.
+
+---
+
+## Conocimiento
+
+Convertir la documentación en un activo estratégico del producto, asegurando que el conocimiento permanezca disponible, organizado y trazable.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 169
+- cuente con una documentación completa y trazable;
+- permita incorporar nuevas capacidades sin afectar el Core;
+>>> - disponga de una comunidad activa de desarrolladores y colaboradores.
+
+---
+
+# 10. Conclusión
+
+La visión de MEF establece el destino del Framework.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 99
+---
+
+>>> ## Comunidad
+
+Fomentar la colaboración mediante estándares claros, documentación consistente y procesos transparentes.
+
+---
+
+# 6. Principios de actuación
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 127
+- equipos de ingeniería;
+- organizaciones;
+>>> - comunidades de código abierto;
+- instituciones que desarrollen aplicaciones empresariales.
+
+---
+
+# 8. Criterios de cumplimiento
+
+
+
+============================================================
+CONCEPTO: Conocimiento
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 101
+- facilitar la evolución tecnológica;
+- promover estándares de desarrollo consistentes;
+>>> - preservar el conocimiento del proyecto mediante documentación estructurada.
+
+---
+
+# 6. Principios fundamentales
+
+El desarrollo y evolución de MEF se rige por los siguientes principios:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 144
+# 8. Ecosistema documental
+
+>>> El conocimiento oficial del producto se organiza en las siguientes áreas:
+
+```text
+00-FUNDACION
+        │
+01-ARQUITECTURA
+        │
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 153
+DICCIONARIO
+        │
+>>> 03-CONOCIMIENTO
+        │
+04-ADR
+        │
+05-RFC
+        │
+06-INGENIERIA
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 174
+```
+
+>>> Cada sección posee una responsabilidad específica y forma parte del Modelo de Conocimiento de MEF.
+
+---
+
+# 9. Criterios de éxito
+
+Se considerará que MEF cumple su propósito cuando permita:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 186
+- mantener una arquitectura consistente a largo plazo;
+- facilitar la incorporación de nuevos desarrolladores;
+>>> - preservar el conocimiento técnico mediante documentación y trazabilidad.
+
+---
+
+# 10. Gobernanza
+
+La evolución de MEF se realizará mediante procesos formales de gobernanza.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 220
+MEF es un Framework independiente, orientado a proporcionar una base sólida para el desarrollo de aplicaciones empresariales.
+
+>>> Su propósito es ofrecer una arquitectura estable, extensible y sostenible que permita construir soluciones de alta calidad, preservando el conocimiento y facilitando la evolución del software durante todo su ciclo de vida.
+
+---
+
+# Conclusión
+
+La Carta del Proyecto constituye el documento fundacional de MEF.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 57
+
+- la arquitectura sea clara;
+>>> - el conocimiento permanezca organizado;
+- la documentación evolucione junto con el código;
+- las decisiones sean trazables;
+- el Framework pueda mantenerse durante décadas sin perder coherencia.
+
+---
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 101
+---
+
+>>> ## Conocimiento
+
+Convertir la documentación en un activo estratégico del producto, asegurando que el conocimiento permanezca disponible, organizado y trazable.
+
+---
+
+# 5. Principios de evolución
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 103
+## Conocimiento
+
+>>> Convertir la documentación en un activo estratégico del producto, asegurando que el conocimiento permanezca disponible, organizado y trazable.
+
+---
+
+# 5. Principios de evolución
+
+La visión de MEF se apoyará en los siguientes principios:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 130
+- promover estándares de arquitectura consistentes;
+- facilitar la incorporación de nuevos desarrolladores;
+>>> - preservar el conocimiento del proyecto mediante un sistema documental estructurado.
+
+---
+
+# 7. Impacto esperado
+
+La visión de MEF es convertirse en una plataforma que permita desarrollar aplicaciones para múltiples sectores, entre ellos:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 177
+La visión de MEF establece el destino del Framework.
+
+>>> Representa el compromiso de construir una plataforma modular, sostenible y orientada a la excelencia técnica, donde la arquitectura, el conocimiento y la ingeniería evolucionen de forma integrada para facilitar el desarrollo de aplicaciones empresariales de alta calidad.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-014-GUIA_EDITORIAL.md
+LINEA: 22
+  - markdown
+  - estandar
+>>>   - conocimiento
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 64
+- promover la reutilización de componentes;
+- mantener un Core estable y desacoplado;
+>>> - documentar el conocimiento de forma estructurada;
+- facilitar la incorporación de nuevos desarrolladores;
+- preservar la trazabilidad entre decisiones, arquitectura e implementación;
+- favorecer la evolución continua sin comprometer la estabilidad del producto.
+
+---
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 89
+## Documentación
+
+>>> Mantener un ecosistema documental que evolucione junto con el Framework y preserve el conocimiento técnico.
+
+---
+
+## Herramientas
+
+Proporcionar herramientas que simplifiquen el desarrollo, integración y mantenimiento de aplicaciones.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 162
+# Conclusión
+
+>>> La misión de MEF representa el compromiso permanente de construir un Framework modular, estable y sostenible que facilite el desarrollo de aplicaciones empresariales mediante una arquitectura sólida, una ingeniería disciplinada y un ecosistema de conocimiento integrado.
+
+
+============================================================
+CONCEPTO: Ecosistema
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 142
+---
+
+>>> # 8. Ecosistema documental
+
+El conocimiento oficial del producto se organiza en las siguientes áreas:
+
+```text
+00-FUNDACION
+        │
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 80
+---
+
+>>> ## Ecosistema
+
+Construir un ecosistema integrado compuesto por:
+
+- Core
+- Platform
+- Modules
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 82
+## Ecosistema
+
+>>> Construir un ecosistema integrado compuesto por:
+
+- Core
+- Platform
+- Modules
+- SDK
+- CLI
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 149
+- Gestión documental
+
+>>> La incorporación de nuevos dominios fortalecerá el ecosistema sin modificar la identidad del Framework.
+
+---
+
+# 8. Compromiso
+
+Todas las decisiones relacionadas con MEF deberán contribuir al cumplimiento de esta visión.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 89
+## Documentación
+
+>>> Mantener un ecosistema documental que evolucione junto con el Framework y preserve el conocimiento técnico.
+
+---
+
+## Herramientas
+
+Proporcionar herramientas que simplifiquen el desarrollo, integración y mantenimiento de aplicaciones.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 162
+# Conclusión
+
+>>> La misión de MEF representa el compromiso permanente de construir un Framework modular, estable y sostenible que facilite el desarrollo de aplicaciones empresariales mediante una arquitectura sólida, una ingeniería disciplinada y un ecosistema de conocimiento integrado.
+
+
+============================================================
+CONCEPTO: Ecosistema documental
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 142
+---
+
+>>> # 8. Ecosistema documental
+
+El conocimiento oficial del producto se organiza en las siguientes áreas:
+
+```text
+00-FUNDACION
+        │
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 89
+## Documentación
+
+>>> Mantener un ecosistema documental que evolucione junto con el Framework y preserve el conocimiento técnico.
+
+---
+
+## Herramientas
+
+Proporcionar herramientas que simplifiquen el desarrollo, integración y mantenimiento de aplicaciones.
+
+
+============================================================
+CONCEPTO: Documentación
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 101
+- facilitar la evolución tecnológica;
+- promover estándares de desarrollo consistentes;
+>>> - preservar el conocimiento del proyecto mediante documentación estructurada.
+
+---
+
+# 6. Principios fundamentales
+
+El desarrollo y evolución de MEF se rige por los siguientes principios:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 116
+- simplicidad;
+- trazabilidad;
+>>> - documentación como parte del producto;
+- compatibilidad evolutiva.
+
+Estos principios se desarrollan en los documentos de Fundación y Arquitectura.
+
+---
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 135
+- CLI
+- SDK
+>>> - Documentación oficial
+- Herramientas de ingeniería
+
+Las aplicaciones desarrolladas con MEF no forman parte del Framework.
+
+---
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 186
+- mantener una arquitectura consistente a largo plazo;
+- facilitar la incorporación de nuevos desarrolladores;
+>>> - preservar el conocimiento técnico mediante documentación y trazabilidad.
+
+---
+
+# 10. Gobernanza
+
+La evolución de MEF se realizará mediante procesos formales de gobernanza.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 58
+- la arquitectura sea clara;
+- el conocimiento permanezca organizado;
+>>> - la documentación evolucione junto con el código;
+- las decisiones sean trazables;
+- el Framework pueda mantenerse durante décadas sin perder coherencia.
+
+---
+
+# 4. Horizonte
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 90
+- CLI
+- API
+>>> - Documentación
+- Herramientas de desarrollo
+
+---
+
+## Comunidad
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 103
+## Conocimiento
+
+>>> Convertir la documentación en un activo estratégico del producto, asegurando que el conocimiento permanezca disponible, organizado y trazable.
+
+---
+
+# 5. Principios de evolución
+
+La visión de MEF se apoyará en los siguientes principios:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 167
+- sea utilizado para construir aplicaciones en múltiples dominios;
+- mantenga una arquitectura estable y extensible;
+>>> - cuente con una documentación completa y trazable;
+- permita incorporar nuevas capacidades sin afectar el Core;
+- disponga de una comunidad activa de desarrolladores y colaboradores.
+
+---
+
+# 10. Conclusión
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-014-GUIA_EDITORIAL.md
+LINEA: 3
+---
+id: FND-014
+>>> titulo: Estándar de Documentación
+tipo: Foundation
+nivel: L0
+categoria: Gobernanza
+subcategoria: Documentación
+estado: Accepted
+version: 2.0.0
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-014-GUIA_EDITORIAL.md
+LINEA: 7
+nivel: L0
+categoria: Gobernanza
+>>> subcategoria: Documentación
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - FND-005
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 45
+# 2. Declaración de Misión
+
+>>> > **Diseñar, desarrollar y mantener un Framework modular para aplicaciones empresariales que proporcione una arquitectura sólida, reutilizable y extensible, facilitando la construcción de software de alta calidad mediante principios de ingeniería, documentación y gobernanza técnica.**
+
+---
+
+# 3. Nuestra misión
+
+La misión de MEF consiste en proporcionar una plataforma tecnológica que permita a organizaciones y desarrolladores construir aplicaciones empresariales sobre una arquitectura consistente, desacoplada y preparada para evolucionar a largo plazo.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 87
+---
+
+>>> ## Documentación
+
+Mantener un ecosistema documental que evolucione junto con el Framework y preserve el conocimiento técnico.
+
+---
+
+## Herramientas
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 101
+## Comunidad
+
+>>> Fomentar la colaboración mediante estándares claros, documentación consistente y procesos transparentes.
+
+---
+
+# 6. Principios de actuación
+
+La misión se ejecutará respetando los siguientes principios:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 112
+- simplicidad antes que complejidad;
+- modularidad antes que acoplamiento;
+>>> - documentación como parte del producto;
+- evolución controlada;
+- mejora continua;
+- responsabilidad técnica.
+
+---
+
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 139
+- reduzca la complejidad de implementación;
+- facilite la evolución del software;
+>>> - mantenga una documentación actualizada y trazable;
+- proporcione una experiencia de desarrollo uniforme.
+
+---
+
+# 9. Relación con la Visión
+
+
+
+============================================================
+CONCEPTO: Herramientas
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 136
+- SDK
+- Documentación oficial
+>>> - Herramientas de ingeniería
+
+Las aplicaciones desarrolladas con MEF no forman parte del Framework.
+
+---
+
+# 8. Ecosistema documental
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 91
+- API
+- Documentación
+>>> - Herramientas de desarrollo
+
+---
+
+## Comunidad
+
+Fomentar una comunidad técnica que contribuya al crecimiento del Framework respetando los principios establecidos en la Fundación.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 93
+---
+
+>>> ## Herramientas
+
+Proporcionar herramientas que simplifiquen el desarrollo, integración y mantenimiento de aplicaciones.
+
+---
+
+## Comunidad
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 95
+## Herramientas
+
+>>> Proporcionar herramientas que simplifiquen el desarrollo, integración y mantenimiento de aplicaciones.
+
+---
+
+## Comunidad
+
+Fomentar la colaboración mediante estándares claros, documentación consistente y procesos transparentes.
+
+
+============================================================
+CONCEPTO: Principios fundamentales
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-000-Carta_del_Proyecto.md
+LINEA: 105
+---
+
+>>> # 6. Principios fundamentales
+
+El desarrollo y evolución de MEF se rige por los siguientes principios:
+
+- modularidad;
+- separación de responsabilidades;
+- desacoplamiento;
+
+
+============================================================
+CONCEPTO: Horizonte
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 64
+---
+
+>>> # 4. Horizonte
+
+La evolución de MEF se orientará hacia los siguientes objetivos estratégicos:
+
+## Arquitectura
+
+Mantener una arquitectura modular, estable y desacoplada.
+
+
+============================================================
+CONCEPTO: Visión
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 3
+---
+id: FND-001
+>>> titulo: Visión
+tipo: Fundación
+categoria: Estrategia
+nivel: L0
+estado: Accepted
+version: 1.0.0
+autor: Equipo MEF
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 26
+
+# FND-001
+>>> # Visión
+
+## Estado
+
+Accepted.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 36
+# 1. Propósito
+
+>>> Definir la visión de largo plazo de **MEF (Modular Enterprise Framework)**.
+
+Este documento establece la dirección estratégica del Framework y sirve como referencia para orientar su evolución, priorizar decisiones y preservar una identidad coherente a lo largo del tiempo.
+
+---
+
+# 2. Declaración de Visión
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 42
+---
+
+>>> # 2. Declaración de Visión
+
+> **Convertir a MEF en un Framework modular de referencia para el desarrollo de aplicaciones empresariales, reconocido por su arquitectura, calidad, trazabilidad, extensibilidad y capacidad para evolucionar de forma sostenible.**
+
+MEF aspira a ser una plataforma sobre la cual organizaciones y desarrolladores puedan construir soluciones de cualquier dominio con confianza, consistencia y una arquitectura preparada para el largo plazo.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 52
+# 3. Aspiración
+
+>>> La visión de MEF no consiste únicamente en proporcionar componentes reutilizables.
+
+Su propósito es establecer un modelo de ingeniería de software donde:
+
+- la arquitectura sea clara;
+- el conocimiento permanezca organizado;
+- la documentación evolucione junto con el código;
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 109
+# 5. Principios de evolución
+
+>>> La visión de MEF se apoyará en los siguientes principios:
+
+- evolución continua;
+- compatibilidad controlada;
+- modularidad;
+- simplicidad;
+- reutilización;
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 136
+# 7. Impacto esperado
+
+>>> La visión de MEF es convertirse en una plataforma que permita desarrollar aplicaciones para múltiples sectores, entre ellos:
+
+- Gestión empresarial (ERP)
+- Gestión comercial (CRM)
+- Recursos Humanos
+- Finanzas
+- Salud
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 155
+# 8. Compromiso
+
+>>> Todas las decisiones relacionadas con MEF deberán contribuir al cumplimiento de esta visión.
+
+Cuando exista conflicto entre una necesidad inmediata y la visión de largo plazo, deberá privilegiarse la sostenibilidad del Framework.
+
+---
+
+# 9. Indicadores de éxito
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 157
+Todas las decisiones relacionadas con MEF deberán contribuir al cumplimiento de esta visión.
+
+>>> Cuando exista conflicto entre una necesidad inmediata y la visión de largo plazo, deberá privilegiarse la sostenibilidad del Framework.
+
+---
+
+# 9. Indicadores de éxito
+
+La visión se considerará materializada cuando MEF:
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 163
+# 9. Indicadores de éxito
+
+>>> La visión se considerará materializada cuando MEF:
+
+- sea utilizado para construir aplicaciones en múltiples dominios;
+- mantenga una arquitectura estable y extensible;
+- cuente con una documentación completa y trazable;
+- permita incorporar nuevas capacidades sin afectar el Core;
+- disponga de una comunidad activa de desarrolladores y colaboradores.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-001-VISION.md
+LINEA: 175
+# 10. Conclusión
+
+>>> La visión de MEF establece el destino del Framework.
+
+Representa el compromiso de construir una plataforma modular, sostenible y orientada a la excelencia técnica, donde la arquitectura, el conocimiento y la ingeniería evolucionen de forma integrada para facilitar el desarrollo de aplicaciones empresariales de alta calidad.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 144
+---
+
+>>> # 9. Relación con la Visión
+
+La visión define el destino.
+
+La misión define el trabajo diario necesario para alcanzarlo.
+
+Toda decisión operativa deberá contribuir al cumplimiento de la visión establecida en **FND-001**.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 146
+# 9. Relación con la Visión
+
+>>> La visión define el destino.
+
+La misión define el trabajo diario necesario para alcanzarlo.
+
+Toda decisión operativa deberá contribuir al cumplimiento de la visión establecida en **FND-001**.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 150
+La misión define el trabajo diario necesario para alcanzarlo.
+
+>>> Toda decisión operativa deberá contribuir al cumplimiento de la visión establecida en **FND-001**.
+
+---
+
+# 10. Principio Rector
+
+> **Cada decisión técnica, arquitectónica o documental deberá fortalecer la calidad, la modularidad y la sostenibilidad de MEF como producto.**
+
+
+============================================================
+CONCEPTO: Misión
+============================================================
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 3
+---
+id: FND-002
+>>> titulo: Misión
+tipo: Fundación
+categoria: Estrategia
+nivel: L0
+estado: Accepted
+version: 1.0.0
+autor: Equipo MEF
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 27
+
+# FND-002
+>>> # Misión
+
+## Estado
+
+Accepted.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 37
+# 1. Propósito
+
+>>> Definir la misión de **MEF (Modular Enterprise Framework)** como la guía permanente que orienta el desarrollo, evolución y mantenimiento del Framework.
+
+La misión describe el propósito operativo del producto y establece el compromiso que asume el equipo de desarrollo con respecto a su arquitectura, calidad y sostenibilidad.
+
+---
+
+# 2. Declaración de Misión
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 39
+Definir la misión de **MEF (Modular Enterprise Framework)** como la guía permanente que orienta el desarrollo, evolución y mantenimiento del Framework.
+
+>>> La misión describe el propósito operativo del producto y establece el compromiso que asume el equipo de desarrollo con respecto a su arquitectura, calidad y sostenibilidad.
+
+---
+
+# 2. Declaración de Misión
+
+> **Diseñar, desarrollar y mantener un Framework modular para aplicaciones empresariales que proporcione una arquitectura sólida, reutilizable y extensible, facilitando la construcción de software de alta calidad mediante principios de ingeniería, documentación y gobernanza técnica.**
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 43
+---
+
+>>> # 2. Declaración de Misión
+
+> **Diseñar, desarrollar y mantener un Framework modular para aplicaciones empresariales que proporcione una arquitectura sólida, reutilizable y extensible, facilitando la construcción de software de alta calidad mediante principios de ingeniería, documentación y gobernanza técnica.**
+
+---
+
+# 3. Nuestra misión
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 49
+---
+
+>>> # 3. Nuestra misión
+
+La misión de MEF consiste en proporcionar una plataforma tecnológica que permita a organizaciones y desarrolladores construir aplicaciones empresariales sobre una arquitectura consistente, desacoplada y preparada para evolucionar a largo plazo.
+
+Cada decisión técnica deberá contribuir a fortalecer la estabilidad del Framework y la experiencia de quienes desarrollan sobre él.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 51
+# 3. Nuestra misión
+
+>>> La misión de MEF consiste en proporcionar una plataforma tecnológica que permita a organizaciones y desarrolladores construir aplicaciones empresariales sobre una arquitectura consistente, desacoplada y preparada para evolucionar a largo plazo.
+
+Cada decisión técnica deberá contribuir a fortalecer la estabilidad del Framework y la experiencia de quienes desarrollan sobre él.
+
+---
+
+# 4. Compromisos
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 59
+# 4. Compromisos
+
+>>> Para cumplir esta misión, MEF se compromete a:
+
+- desarrollar una arquitectura modular y coherente;
+- promover la reutilización de componentes;
+- mantener un Core estable y desacoplado;
+- documentar el conocimiento de forma estructurada;
+- facilitar la incorporación de nuevos desarrolladores;
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 73
+# 5. Áreas de actuación
+
+>>> La misión de MEF se desarrolla mediante las siguientes áreas:
+
+## Arquitectura
+
+Diseñar una arquitectura clara, modular y escalable.
+
+---
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 107
+# 6. Principios de actuación
+
+>>> La misión se ejecutará respetando los siguientes principios:
+
+- calidad sobre velocidad;
+- simplicidad antes que complejidad;
+- modularidad antes que acoplamiento;
+- documentación como parte del producto;
+- evolución controlada;
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 121
+# 7. Beneficiarios
+
+>>> La misión de MEF busca aportar valor a:
+
+- desarrolladores;
+- arquitectos de software;
+- equipos de ingeniería;
+- organizaciones;
+- comunidades de código abierto;
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 134
+# 8. Criterios de cumplimiento
+
+>>> La misión se considerará cumplida cuando MEF:
+
+- permita desarrollar aplicaciones empresariales de forma consistente;
+- reduzca la complejidad de implementación;
+- facilite la evolución del software;
+- mantenga una documentación actualizada y trazable;
+- proporcione una experiencia de desarrollo uniforme.
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 148
+La visión define el destino.
+
+>>> La misión define el trabajo diario necesario para alcanzarlo.
+
+Toda decisión operativa deberá contribuir al cumplimiento de la visión establecida en **FND-001**.
+
+---
+
+# 10. Principio Rector
+
+ARCHIVO: C:\xampp\htdocs\sembrando-vida-laravel\docs\00-FUNDACION\FND-02-MISION.md
+LINEA: 162
+# Conclusión
+
+>>> La misión de MEF representa el compromiso permanente de construir un Framework modular, estable y sostenible que facilite el desarrollo de aplicaciones empresariales mediante una arquitectura sólida, una ingeniería disciplinada y un ecosistema de conocimiento integrado.
+
