@@ -1,0 +1,702 @@
+﻿============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 46
+============================================================
+Definir **Modules** como la unidad funcional de extensión de **MEF (Modular Enterprise Framework)**.
+
+>>> Un Module encapsula una capacidad coherente y delimitada que puede incorporarse al Framework sin modificar el Core.
+
+Este documento establece sus responsabilidades, límites, dependencias, estructura conceptual y reglas de evolución.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 54
+============================================================
+# 2. Declaración
+
+>>> Los Modules constituyen el mecanismo principal mediante el cual MEF incorpora capacidades funcionales.
+
+Cada Module deberá:
+
+- representar una capacidad claramente delimitada;
+- mantener alta cohesión interna;
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 87
+============================================================
+# 4. Definición de Module
+
+>>> Un **Module** es una unidad arquitectónica autónoma que agrupa elementos relacionados con una capacidad específica.
+
+Puede incluir:
+
+- contratos;
+- casos de uso;
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 110
+============================================================
+# 5. Responsabilidades
+
+>>> Un Module es responsable de:
+
+- encapsular una capacidad funcional;
+- proteger sus límites internos;
+- declarar sus dependencias;
+- exponer únicamente una API pública definida;
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 125
+============================================================
+# 6. No responsabilidades
+
+>>> Un Module no deberá:
+
+- modificar directamente el Core;
+- acceder a elementos internos de otro Module;
+- asumir responsabilidades globales del Framework;
+- controlar el ciclo de vida general de MEF;
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 155
+============================================================
+```
+
+>>> Esta estructura representa responsabilidades conceptuales.
+
+La estructura física definitiva deberá documentarse en las especificaciones de ingeniería correspondientes.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 253
+============================================================
+# 11. Dependencias prohibidas
+
+>>> Un Module no deberá depender de:
+
+- detalles internos del Core;
+- implementaciones internas de Platform;
+- clases privadas de otros Modules;
+- Applications;
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 325
+============================================================
+```
+
+>>> Un Module no deberá consumir implementaciones internas de otro.
+
+---
+
+# 14. Comunicación entre Modules
+
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 352
+============================================================
+```
+
+>>> El emisor no deberá conocer las implementaciones consumidoras.
+
+---
+
+# 15. Categorías de Modules
+
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 504
+============================================================
+Cada Module deberá controlar sus propios modelos y mecanismos de persistencia.
+
+>>> Un Module no deberá modificar directamente los datos internos de otro.
+
+La colaboración entre Modules deberá realizarse mediante:
+
+- contratos;
+- casos de uso;
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 519
+============================================================
+# 21. Seguridad
+
+>>> Cada Module será responsable de declarar:
+
+- capacidades protegidas;
+- permisos requeridos;
+- políticas aplicables;
+- operaciones sensibles;
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 544
+============================================================
+- identificación de errores.
+
+>>> La observabilidad no deberá exponer información sensible ni detalles internos innecesarios.
+
+---
+
+# 23. Pruebas
+
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 633
+============================================================
+Antes de aceptar un nuevo Module deberá verificarse:
+
+>>> - ¿Representa una capacidad delimitada?
+- ¿Tiene alta cohesión?
+- ¿Su API pública está definida?
+- ¿Declara sus dependencias?
+- ¿Evita ciclos?
+- ¿Protege sus elementos internos?
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 670
+============================================================
+- Kernel coordina su inicialización.
+- Event Bus facilita su comunicación desacoplada.
+>>> - Platform proporciona servicios compartidos.
+
+---
+
+# 29. Evolución
+
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 696
+============================================================
+# Conclusión
+
+>>> Modules constituye el modelo oficial de extensión funcional de MEF.
+
+Su arquitectura permite incorporar capacidades de dominio y técnicas mediante unidades autónomas, trazables y desacopladas, preservando la estabilidad del Core y facilitando la evolución sostenible del Framework.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 698
+============================================================
+Modules constituye el modelo oficial de extensión funcional de MEF.
+
+>>> Su arquitectura permite incorporar capacidades de dominio y técnicas mediante unidades autónomas, trazables y desacopladas, preservando la estabilidad del Core y facilitando la evolución sostenible del Framework.
+
+---
+
+# Referencias
+
+
+============================================================
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 46
+============================================================
+No construye objetos en tiempo de ejecución.
+
+>>> Su responsabilidad es generar artefactos a partir de especificaciones.
+
+---
+
+# 2. Declaración
+
+
+============================================================
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 52
+============================================================
+# 2. Declaración
+
+>>> El Template Engine constituye el mecanismo oficial para automatizar la creación de componentes del Framework.
+
+Toda generación deberá preservar:
+
+- consistencia;
+- trazabilidad;
+
+============================================================
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 78
+============================================================
+# 4. Filosofía
+
+>>> Las plantillas representan conocimiento reutilizable.
+
+No representan código fijo.
+
+Toda plantilla deberá poder evolucionar sin afectar los artefactos previamente generados.
+
+
+============================================================
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 80
+============================================================
+Las plantillas representan conocimiento reutilizable.
+
+>>> No representan código fijo.
+
+Toda plantilla deberá poder evolucionar sin afectar los artefactos previamente generados.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 215
+============================================================
+| AI-057 | Todo artefacto generado cumple las convenciones oficiales. |
+| AI-058 | La generación es determinista. |
+>>> | AI-059 | Las plantillas son reutilizables. |
+| AI-060 | El Template Engine no contiene lógica de negocio. |
+
+---
+
+# 13. Riesgos Arquitectónicos
+
+============================================================
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 274
+============================================================
+# Conclusión
+
+>>> El Template Engine constituye el mecanismo oficial de generación de artefactos de MEF.
+
+Su propósito es transformar conocimiento arquitectónico en componentes consistentes, reutilizables y trazables, acelerando el desarrollo sin comprometer la calidad del Framework.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 43
+============================================================
+Un Contract especifica **qué** debe ofrecer un componente, sin imponer **cómo** debe implementarlo.
+
+>>> Los Contracts constituyen el principal mecanismo de desacoplamiento del Framework.
+
+---
+
+# 2. Declaración
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 53
+============================================================
+Las implementaciones podrán evolucionar, sustituirse o coexistir siempre que respeten el Contract correspondiente.
+
+>>> Los Contracts representan compromisos arquitectónicos permanentes.
+
+No implementaciones.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 82
+============================================================
+No describen librerías.
+
+>>> Un Contract representa un acuerdo entre consumidores y proveedores.
+
+---
+
+# 5. Modelo Arquitectónico
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 106
+============================================================
+# 6. Responsabilidades
+
+>>> Un Contract es responsable de:
+
+- definir responsabilidades públicas;
+- establecer operaciones disponibles;
+- describir entradas y salidas;
+- documentar restricciones;
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 132
+============================================================
+| ID | Tipo | Descripción |
+|----|------|-------------|
+>>> | CT-001 | Service Contract | Define servicios. |
+| CT-002 | Repository Contract | Define acceso a datos mediante abstracciones. |
+| CT-003 | Event Contract | Define la estructura pública de un evento. |
+| CT-004 | Provider Contract | Define proveedores del Framework. |
+| CT-005 | Builder Contract | Define procesos de construcción. |
+| CT-006 | Extension Contract | Define puntos oficiales de extensión. |
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 133
+============================================================
+|----|------|-------------|
+| CT-001 | Service Contract | Define servicios. |
+>>> | CT-002 | Repository Contract | Define acceso a datos mediante abstracciones. |
+| CT-003 | Event Contract | Define la estructura pública de un evento. |
+| CT-004 | Provider Contract | Define proveedores del Framework. |
+| CT-005 | Builder Contract | Define procesos de construcción. |
+| CT-006 | Extension Contract | Define puntos oficiales de extensión. |
+| CT-007 | Infrastructure Contract | Define adaptadores tecnológicos. |
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 134
+============================================================
+| CT-001 | Service Contract | Define servicios. |
+| CT-002 | Repository Contract | Define acceso a datos mediante abstracciones. |
+>>> | CT-003 | Event Contract | Define la estructura pública de un evento. |
+| CT-004 | Provider Contract | Define proveedores del Framework. |
+| CT-005 | Builder Contract | Define procesos de construcción. |
+| CT-006 | Extension Contract | Define puntos oficiales de extensión. |
+| CT-007 | Infrastructure Contract | Define adaptadores tecnológicos. |
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 135
+============================================================
+| CT-002 | Repository Contract | Define acceso a datos mediante abstracciones. |
+| CT-003 | Event Contract | Define la estructura pública de un evento. |
+>>> | CT-004 | Provider Contract | Define proveedores del Framework. |
+| CT-005 | Builder Contract | Define procesos de construcción. |
+| CT-006 | Extension Contract | Define puntos oficiales de extensión. |
+| CT-007 | Infrastructure Contract | Define adaptadores tecnológicos. |
+
+Cada Contract deberá declarar explícitamente su tipo.
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 136
+============================================================
+| CT-003 | Event Contract | Define la estructura pública de un evento. |
+| CT-004 | Provider Contract | Define proveedores del Framework. |
+>>> | CT-005 | Builder Contract | Define procesos de construcción. |
+| CT-006 | Extension Contract | Define puntos oficiales de extensión. |
+| CT-007 | Infrastructure Contract | Define adaptadores tecnológicos. |
+
+Cada Contract deberá declarar explícitamente su tipo.
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 137
+============================================================
+| CT-004 | Provider Contract | Define proveedores del Framework. |
+| CT-005 | Builder Contract | Define procesos de construcción. |
+>>> | CT-006 | Extension Contract | Define puntos oficiales de extensión. |
+| CT-007 | Infrastructure Contract | Define adaptadores tecnológicos. |
+
+Cada Contract deberá declarar explícitamente su tipo.
+
+---
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 138
+============================================================
+| CT-005 | Builder Contract | Define procesos de construcción. |
+| CT-006 | Extension Contract | Define puntos oficiales de extensión. |
+>>> | CT-007 | Infrastructure Contract | Define adaptadores tecnológicos. |
+
+Cada Contract deberá declarar explícitamente su tipo.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 208
+============================================================
+| AI-062 | Ningún componente público depende directamente de implementaciones concretas. |
+| AI-063 | Los Contracts no contienen lógica de negocio. |
+>>> | AI-064 | Los Contracts son independientes de la tecnología utilizada. |
+| AI-065 | Toda implementación deberá respetar el Contract que declara. |
+| AI-066 | Los Contracts son versionables y trazables. |
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 210
+============================================================
+| AI-064 | Los Contracts son independientes de la tecnología utilizada. |
+| AI-065 | Toda implementación deberá respetar el Contract que declara. |
+>>> | AI-066 | Los Contracts son versionables y trazables. |
+
+---
+
+# 14. Riesgos Arquitectónicos
+
+
+============================================================
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 272
+============================================================
+# Conclusión
+
+>>> Los Contracts constituyen el fundamento del desacoplamiento en MEF.
+
+Su propósito es establecer acuerdos arquitectónicos estables que permitan la evolución independiente de los componentes, manteniendo la compatibilidad, la reutilización y la sostenibilidad del Framework.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 41
+============================================================
+Definir la **Dependency Injection (DI)** como el mecanismo oficial mediante el cual **MEF (Modular Enterprise Framework)** entrega capacidades a los componentes utilizando Contracts y el Service Container.
+
+>>> La Dependency Injection permite construir componentes desacoplados, sustituibles y fácilmente verificables, evitando que los consumidores conozcan implementaciones concretas.
+
+---
+
+# 2. Declaración
+
+
+============================================================
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 47
+============================================================
+# 2. Declaración
+
+>>> La Dependency Injection constituye el mecanismo de materialización de los Contracts durante la ejecución.
+
+Los consumidores no crearán sus propias dependencias.
+
+Las dependencias serán suministradas por el Service Container conforme a la configuración del Framework.
+
+
+============================================================
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 101
+============================================================
+# 6. Responsabilidades
+
+>>> La Dependency Injection es responsable de:
+
+- suministrar implementaciones;
+- respetar Contracts;
+- preservar el desacoplamiento;
+- facilitar pruebas y sustituciones;
+
+============================================================
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 197
+============================================================
+| AI-070 | La sustitución de implementaciones será transparente. |
+| AI-071 | La DI preserva el desacoplamiento arquitectónico. |
+>>> | AI-072 | Constructor Injection constituye la estrategia preferida. |
+
+---
+
+# 13. Riesgos Arquitectónicos
+
+
+============================================================
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 256
+============================================================
+# Conclusión
+
+>>> La Dependency Injection constituye el mecanismo oficial mediante el cual MEF materializa los Contracts durante la ejecución.
+
+Su propósito es proporcionar capacidades de forma desacoplada, reutilizable y verificable, fortaleciendo la modularidad y la sostenibilidad del Framework.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 47
+============================================================
+# 2. Declaración
+
+>>> En MEF, la configuración representa conocimiento operativo.
+
+No constituye lógica de negocio.
+
+No sustituye la arquitectura.
+
+
+============================================================
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 49
+============================================================
+En MEF, la configuración representa conocimiento operativo.
+
+>>> No constituye lógica de negocio.
+
+No sustituye la arquitectura.
+
+No reemplaza a los Contracts.
+
+
+============================================================
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 74
+============================================================
+# 4. Filosofía
+
+>>> La Configuration define políticas.
+
+No implementaciones.
+
+No algoritmos.
+
+
+============================================================
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 109
+============================================================
+# 6. Responsabilidades
+
+>>> La Configuration es responsable de:
+
+- definir parámetros globales;
+- establecer políticas de resolución;
+- habilitar o deshabilitar capacidades;
+- seleccionar implementaciones cuando existan alternativas;
+
+============================================================
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 204
+============================================================
+- restricciones arquitectónicas.
+
+>>> No deberá iniciarse el Framework con configuraciones inválidas.
+
+---
+
+# 12. Versionado
+
+
+============================================================
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 304
+============================================================
+# Conclusión
+
+>>> La Configuration constituye el mecanismo oficial de gobernanza operativa de MEF.
+
+Su propósito es proporcionar un modelo consistente, trazable y verificable para parametrizar el comportamiento del Framework sin comprometer la arquitectura ni introducir lógica de negocio.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 51
+============================================================
+Todo componente distribuible de MEF deberá empaquetarse conforme al modelo oficial del Framework.
+
+>>> El paquete constituye la unidad oficial de distribución.
+
+No representa únicamente archivos.
+
+Representa una capacidad completa y gobernada.
+
+
+============================================================
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 53
+============================================================
+El paquete constituye la unidad oficial de distribución.
+
+>>> No representa únicamente archivos.
+
+Representa una capacidad completa y gobernada.
+
+---
+
+
+============================================================
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 55
+============================================================
+No representa únicamente archivos.
+
+>>> Representa una capacidad completa y gobernada.
+
+---
+
+# 3. Objetivos
+
+
+============================================================
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 78
+============================================================
+No distribuye únicamente código.
+
+>>> Cada paquete representa una unidad funcional completa del Framework.
+
+---
+
+# 5. Modelo Arquitectónico
+
+
+============================================================
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 101
+============================================================
+```
+
+>>> El Package constituye la representación distribuible de un activo arquitectónico.
+
+---
+
+# 6. Activos Empaquetables
+
+
+============================================================
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 263
+============================================================
+```
+
+>>> El Package constituye la unidad oficial de distribución.
+
+El Registry mantiene su identidad.
+
+El Runtime lo incorpora mediante el Lifecycle.
+
+
+============================================================
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 292
+============================================================
+# Conclusión
+
+>>> El Packaging constituye el modelo oficial de distribución de MEF.
+
+Su propósito es garantizar que los activos arquitectónicos del Framework puedan instalarse, actualizarse y reutilizarse de forma segura, consistente y gobernada, manteniendo la trazabilidad y la estabilidad del ecosistema.
+
+---
+
+

@@ -1,0 +1,391 @@
+﻿
+============================================================
+ARCHIVO: ARQ-000-ARQUITECTURA_GENERAL.md
+============================================================
+
+---
+id: ARQ-000
+titulo: Arquitectura General
+tipo: Architecture
+nivel: L1
+categoria: Arquitectura
+subcategoria: Visión General
+estado: Accepted
+version: 1.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - FND-000
+  - FND-004
+  - FND-011
+relacionados:
+  - ARQ-001
+  - ARQ-002
+  - ARQ-003
+keywords:
+  - arquitectura
+  - framework
+  - capas
+  - modularidad
+  - visión
+---
+
+
+============================================================
+ARCHIVO: ARQ-001-VISION_ARQUITECTONICA.md
+============================================================
+
+---
+id: ARQ-001
+titulo: Visión Arquitectónica
+tipo: Architecture
+nivel: L1
+categoria: Arquitectura
+subcategoria: Visión
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-000
+  - FND-004
+  - FND-011
+relacionados:
+  - ARQ-002
+  - ARQ-003
+  - ARQ-004
+keywords:
+  - arquitectura
+  - visión
+  - framework
+  - modularidad
+  - capas
+---
+
+
+============================================================
+ARCHIVO: ARQ-002-CORE.md
+============================================================
+
+---
+id: ARQ-002
+titulo: Core
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Core
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-001
+  - FND-004
+  - FND-011
+  - FND-013
+relacionados:
+  - ARQ-003
+  - ARQ-004
+  - ARQ-005
+keywords:
+  - core
+  - kernel
+  - arquitectura
+  - framework
+  - modularidad
+---
+
+
+============================================================
+ARCHIVO: ARQ-003-PLATFORM.md
+============================================================
+
+---
+id: ARQ-003
+titulo: Platform
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Platform
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-002
+  - FND-004
+  - FND-011
+relacionados:
+  - ARQ-004
+  - ARQ-006
+  - ARQ-007
+  - ARQ-008
+keywords:
+  - platform
+  - servicios
+  - arquitectura
+  - framework
+  - capacidades
+---
+
+
+============================================================
+ARCHIVO: ARQ-005-KERNEL.md
+============================================================
+
+---
+id: ARQ-005
+titulo: Kernel
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Kernel
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-002
+  - ARQ-003
+  - ARQ-004
+relacionados:
+  - ARQ-006
+  - ARQ-007
+  - ARQ-008
+  - ARQ-014
+keywords:
+  - kernel
+  - bootstrap
+  - lifecycle
+  - framework
+  - startup
+---
+
+
+============================================================
+ARCHIVO: ARQ-006-REGISTRY.md
+============================================================
+
+---
+id: ARQ-006
+titulo: Registry
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Registry
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-002
+  - ARQ-004
+  - ARQ-005
+relacionados:
+  - ARQ-007
+  - ARQ-008
+  - ARQ-014
+keywords:
+  - registry
+  - catalog
+  - discovery
+  - metadata
+  - framework
+---
+
+
+============================================================
+ARCHIVO: ARQ-007-SERVICE_CONTAINER.md
+============================================================
+
+---
+id: ARQ-007
+titulo: Service Container
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Composition
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-002
+  - ARQ-005
+  - ARQ-006
+relacionados:
+  - ARQ-008
+  - ARQ-011
+  - ARQ-012
+  - ARQ-014
+keywords:
+  - container
+  - dependency injection
+  - composition
+  - runtime
+  - services
+---
+
+
+============================================================
+ARCHIVO: ARQ-008-EVENT_BUS.md
+============================================================
+
+---
+id: ARQ-008
+titulo: Event Bus
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Comunicación
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-002
+  - ARQ-004
+  - ARQ-005
+  - ARQ-007
+relacionados:
+  - ARQ-014
+  - ARQ-015
+keywords:
+  - event bus
+  - events
+  - messaging
+  - communication
+  - integration
+---
+
+
+============================================================
+ARCHIVO: ARQ-009-BUILDERS.md
+============================================================
+
+---
+id: ARQ-009
+titulo: Builders
+tipo: Architecture
+nivel: L1
+categoria: Servicios Fundamentales
+subcategoria: Construction
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-002
+  - ARQ-003
+  - ARQ-007
+relacionados:
+  - ARQ-010
+  - ARQ-011
+  - ARQ-012
+keywords:
+  - builders
+  - construction
+  - factory
+  - composition
+  - artifacts
+---
+
+
+============================================================
+ARCHIVO: ARQ-014-FRAMEWORK_LIFECYCLE.md
+============================================================
+
+---
+id: ARQ-014
+titulo: Framework Lifecycle
+tipo: Architecture
+nivel: L1
+categoria: Ciclo de Vida
+subcategoria: Lifecycle
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-005
+  - ARQ-006
+  - ARQ-007
+  - ARQ-008
+  - ARQ-012
+relacionados:
+  - ARQ-015
+  - ENG-015
+keywords:
+  - lifecycle
+  - execution
+  - runtime
+  - pipeline
+  - state machine
+---
+
+
+============================================================
+ARCHIVO: ARQ-015-EXTENSION_MODEL.md
+============================================================
+
+---
+id: ARQ-015
+titulo: Extension Model
+tipo: Architecture
+nivel: L1
+categoria: Ciclo de Vida
+subcategoria: Extensibilidad
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-004
+  - ARQ-008
+  - ARQ-011
+  - ARQ-014
+  - FND-013
+relacionados:
+  - ARQ-016
+  - ENG-016
+keywords:
+  - extension
+  - plugins
+  - modules
+  - hooks
+  - extensibility
+---
+
+
+============================================================
+ARCHIVO: ARQ-016-SECURITY.md
+============================================================
+
+---
+id: ARQ-016
+titulo: Security
+tipo: Architecture
+nivel: L1
+categoria: Ciclo de Vida
+subcategoria: Security
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+  - ARQ-011
+  - ARQ-013
+  - ARQ-015
+  - FND-004
+  - FND-013
+relacionados:
+  - ARQ-017
+  - ENG-017
+keywords:
+  - security
+  - architecture
+  - trust
+  - authorization
+  - integrity
+---
+
