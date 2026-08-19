@@ -1,0 +1,8 @@
+﻿fase,artefacto,estado_declarado,presente_en_ejecucion,sha256,funcion
+9.3.8,9.3.8.md,CLOSED,SI,8d6f74a71991f4653531be567fab6e7b39e5714c5e22c08a695f5a0815f1073d,Baseline FND+ARQ congelado; ENG habilitado.
+9.3.9,9.3.9.md,PASS_WITH_OBSERVATIONS,SI,1d2e22e404a287e34544b14b43508f34e9e014b6dd926ff8fa736401b46a643b,101/101 ENG extraídos; 21 sin relación explícita.
+9.3.9,9.3.9_ENG_crosswalk.csv,EVIDENCE,SI,31c70100c56834282e068129a2fcd4c3bb8c76669dd639f114490b775e8c3e45,Crosswalk estructural de 101 ENG.
+9.3.10,AUDITORIA_9.3.10.md,PASS_WITH_OBSERVATIONS,SI,fd9eace10686006489455b4e5fceda6d77de7d58402e11b4d3e6686fa3e35959,21/21 casos analizados semánticamente.
+9.3.10,9.3.10_validacion_semantica_21_ENG.csv,EVIDENCE,SI,36b20bf686547e45ab7eef4f07da3d9a2d9e11584b4c71706e99509b2974b42b,Matriz semántica de los 21 casos.
+9.3.11,AUDITORIA_9.3.11.md,PASS_WITH_OBSERVATIONS,SI,39b672dab958ce31c018e53ccf595a6faef1b5eab4c7dab3c5924bd7e10e1f6d,21/21 relaciones resueltas normativamente como ESPECIALIZACION.
+9.3.11,9.3.11_resolucion_normativa_21_ENG.csv,EVIDENCE,SI,d632ec6a11a076e603db18fd2ea57fdd519371a5198033b1ef34c6310e253384,Matriz normativa final de los 21 casos.
