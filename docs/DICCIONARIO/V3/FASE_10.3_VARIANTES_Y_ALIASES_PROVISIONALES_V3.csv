@@ -1,0 +1,437 @@
+﻿clave_conceptual,termino_preferido_provisional,variante,tipo_relacion,canonizada_como_alias
+active,Active,ACTIVE,VARIANTE_LEXICA_PROVISIONAL,NO
+adapter,Adapter,Adapters,VARIANTE_LEXICA_PROVISIONAL,NO
+administrative permission,Administrative Permissions,Administrative Permission,VARIANTE_LEXICA_PROVISIONAL,NO
+allow,ALLOW,Allow,VARIANTE_LEXICA_PROVISIONAL,NO
+alpha,Alpha,alpha,VARIANTE_LEXICA_PROVISIONAL,NO
+api accidental,API accidental,API Accidental,VARIANTE_LEXICA_PROVISIONAL,NO
+api publica,API pública,API Pública,VARIANTE_LEXICA_PROVISIONAL,NO
+application,Application,/Application,VARIANTE_LEXICA_PROVISIONAL,NO
+approved,Approved,APPROVED,VARIANTE_LEXICA_PROVISIONAL,NO
+architecture graph,architecture graph,Architecture Graph,VARIANTE_LEXICA_PROVISIONAL,NO
+architecture test,Architecture Test,Architecture Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+assertion,Assertion,Assertions,VARIANTE_LEXICA_PROVISIONAL,NO
+async,Async,async,VARIANTE_LEXICA_PROVISIONAL,NO
+audit event,Audit Events,Audit Event,VARIANTE_LEXICA_PROVISIONAL,NO
+audit event,Audit Events,Audit ≠ Event,VARIANTE_LEXICA_PROVISIONAL,NO
+authentication authorization,Authentication ≠ Authorization,Authentication = Authorization,VARIANTE_LEXICA_PROVISIONAL,NO
+authentication test,Authentication Test,Authentication Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+authorization test,Authorization Test,Authorization Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+availability budget,Availability Budget,availability:budget,VARIANTE_LEXICA_PROVISIONAL,NO
+availability dependency,Availability Dependency,availability:dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+availability requirement,Availability Requirement,availability:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+backup,Backup,Backups,VARIANTE_LEXICA_PROVISIONAL,NO
+batch operation,Batch Operation,Batch Operations,VARIANTE_LEXICA_PROVISIONAL,NO
+before after,Before/After,Before / After,VARIANTE_LEXICA_PROVISIONAL,NO
+beta,Beta,beta,VARIANTE_LEXICA_PROVISIONAL,NO
+bootstrapping,Bootstrapping,BOOTSTRAPPING,VARIANTE_LEXICA_PROVISIONAL,NO
+buffer limit,Buffer Limit,Buffer Limits,VARIANTE_LEXICA_PROVISIONAL,NO
+build script,Build Script,Build Scripts,VARIANTE_LEXICA_PROVISIONAL,NO
+cancellation delete,Cancellation ≠ Delete,Cancellation = Delete,VARIANTE_LEXICA_PROVISIONAL,NO
+cancellation failure,Cancellation Failure,Cancellation ≠ Failure,VARIANTE_LEXICA_PROVISIONAL,NO
+candidate,Candidate,candidate,VARIANTE_LEXICA_PROVISIONAL,NO
+capability,Capability,capabilities,VARIANTE_LEXICA_PROVISIONAL,NO
+capability requirement,Capability Requirement,Capability Requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+capacidad,Capacidades,capacidad,VARIANTE_LEXICA_PROVISIONAL,NO
+capacity allocation,Capacity Allocation,Capacity ≠ Allocation,VARIANTE_LEXICA_PROVISIONAL,NO
+capacity baseline,Capacity Baseline,capacity:baseline,VARIANTE_LEXICA_PROVISIONAL,NO
+capacity forecast,Capacity Forecast,capacity:forecast,VARIANTE_LEXICA_PROVISIONAL,NO
+capacity gate,Capacity Gate,Capacity Gates,VARIANTE_LEXICA_PROVISIONAL,NO
+capacity limit,Capacity Limit,Capacity ≠ Limit,VARIANTE_LEXICA_PROVISIONAL,NO
+capacity requirement,Capacity Requirement,capacity:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+capacity test,Capacity Test,capacity:test,VARIANTE_LEXICA_PROVISIONAL,NO
+captive dependency,Captive Dependency,Captive Dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+catalog discovery,Catalog Discovery,Catalog ≠ Discovery,VARIANTE_LEXICA_PROVISIONAL,NO
+catalog governance,Catalog Governance,Catalog ≠ Governance,VARIANTE_LEXICA_PROVISIONAL,NO
+category,category,Categories,VARIANTE_LEXICA_PROVISIONAL,NO
+changelog,Changelog,CHANGELOG,VARIANTE_LEXICA_PROVISIONAL,NO
+ciclo de vida,Ciclo de Vida,Ciclo de vida,VARIANTE_LEXICA_PROVISIONAL,NO
+circular dependency,Circular Dependency,Circular Dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+codec contract,Codec Contract,Codec ≠ Contract,VARIANTE_LEXICA_PROVISIONAL,NO
+cohesion,Cohesión,Cohesion,VARIANTE_LEXICA_PROVISIONAL,NO
+collection,Collection,Collections,VARIANTE_LEXICA_PROVISIONAL,NO
+command,Commands,Command,VARIANTE_LEXICA_PROVISIONAL,NO
+command contract,Command Contract,Command Contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+compare-and-set,Compare-and-Set,Compare-And-Set,VARIANTE_LEXICA_PROVISIONAL,NO
+compare-and-swap,Compare-And-Swap,Compare-and-Swap,VARIANTE_LEXICA_PROVISIONAL,NO
+compatibility,Compatibility,compatibility,VARIANTE_LEXICA_PROVISIONAL,NO
+compatibility gate,Compatibility Gate,Compatibility Gates,VARIANTE_LEXICA_PROVISIONAL,NO
+compatibility requirement,Compatibility Requirement,Compatibility Requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+compatibility test,Compatibility Test,Compatibility Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+compatible,Compatible,COMPATIBLE,VARIANTE_LEXICA_PROVISIONAL,NO
+compensation rollback,Compensation ≠ Rollback,Compensation = Rollback,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance audit,Compliance Audit,Compliance ≠ Audit,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance control,Compliance Control,compliance:controls,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance evidence,Compliance Evidence,compliance:evidence,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance exception,Compliance Exception,compliance:exceptions,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance finding,Compliance Finding,compliance:findings,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance obligation,Compliance Obligation,compliance:obligations,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance remediation,Compliance Remediation,compliance:remediation,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance requirement,Compliance Requirement,compliance:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+compliance security,Compliance Security,Compliance ≠ Security,VARIANTE_LEXICA_PROVISIONAL,NO
+compliant,COMPLIANT,Compliant,VARIANTE_LEXICA_PROVISIONAL,NO
+component,Componentes,Component,VARIANTE_LEXICA_PROVISIONAL,NO
+composition test,Composition Tests,Composition Test,VARIANTE_LEXICA_PROVISIONAL,NO
+compromiso,Compromisos,Compromiso,VARIANTE_LEXICA_PROVISIONAL,NO
+concurrency test,Concurrency Test,Concurrency Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+config,/config,config/,VARIANTE_LEXICA_PROVISIONAL,NO
+configuration,Configuration,/Configuration,VARIANTE_LEXICA_PROVISIONAL,NO
+configuration error,Configuration Error,Configuration Errors,VARIANTE_LEXICA_PROVISIONAL,NO
+configuration secret,Configuration Secrets,Configuration ≠ Secret,VARIANTE_LEXICA_PROVISIONAL,NO
+configuration state,Configuration State,Configuration ≠ State,VARIANTE_LEXICA_PROVISIONAL,NO
+conflict,Conflict,CONFLICT,VARIANTE_LEXICA_PROVISIONAL,NO
+conflict,Conflict,Conflicts,VARIANTE_LEXICA_PROVISIONAL,NO
+conflict test,Conflict Test,Conflict Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+consistency,Consistency,consistency,VARIANTE_LEXICA_PROVISIONAL,NO
+consistency model,Consistency Model,Consistency Models,VARIANTE_LEXICA_PROVISIONAL,NO
+consistency requirement,Consistency Requirement,consistency:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+consistency state,Consistency State,consistency:state,VARIANTE_LEXICA_PROVISIONAL,NO
+consumer-driven contract,Consumer-Driven Contract,Consumer-Driven Contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+context,Context,context,VARIANTE_LEXICA_PROVISIONAL,NO
+contract,Contracts,/Contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+contract,Contracts,Contract,VARIANTE_LEXICA_PROVISIONAL,NO
+contract,Contracts,Contracts/,VARIANTE_LEXICA_PROVISIONAL,NO
+contract consumer,contract consumers,Contract Consumer,VARIANTE_LEXICA_PROVISIONAL,NO
+contract diff,Contract Diff,contract diff,VARIANTE_LEXICA_PROVISIONAL,NO
+contract error,Contract Error,Contract Errors,VARIANTE_LEXICA_PROVISIONAL,NO
+contract integration,Contract Integration,Contracts Integration,VARIANTE_LEXICA_PROVISIONAL,NO
+contract provider,Contract Provider,contract providers,VARIANTE_LEXICA_PROVISIONAL,NO
+contract requirement,Contract Requirements,Contract Requirement,VARIANTE_LEXICA_PROVISIONAL,NO
+contract test,Contract Tests,Contract Test,VARIANTE_LEXICA_PROVISIONAL,NO
+contract test,Contract Tests,contract test,VARIANTE_LEXICA_PROVISIONAL,NO
+convencion,Convenciones,Convención,VARIANTE_LEXICA_PROVISIONAL,NO
+correlation test,Correlation Tests,Correlation Test,VARIANTE_LEXICA_PROVISIONAL,NO
+created,CREATED,Created,VARIANTE_LEXICA_PROVISIONAL,NO
+credential,Credentials,Credential,VARIANTE_LEXICA_PROVISIONAL,NO
+criterio de evaluacion,Criterios de Evaluación,Criterios de evaluación,VARIANTE_LEXICA_PROVISIONAL,NO
+critical component,Critical Component,Critical Components,VARIANTE_LEXICA_PROVISIONAL,NO
+current,Current,current,VARIANTE_LEXICA_PROVISIONAL,NO
+database constraint,Database Constraint,Database Constraints,VARIANTE_LEXICA_PROVISIONAL,NO
+deep health check,Deep Health Check,Deep Health Checks,VARIANTE_LEXICA_PROVISIONAL,NO
+default,Defaults,Default,VARIANTE_LEXICA_PROVISIONAL,NO
+degraded,DEGRADED,Degraded,VARIANTE_LEXICA_PROVISIONAL,NO
+delete,Delete,DELETE,VARIANTE_LEXICA_PROVISIONAL,NO
+dependencia circular,Dependencias circulares,Dependencias Circulares,VARIANTE_LEXICA_PROVISIONAL,NO
+dependencia circular,Dependencias circulares,dependencia circular,VARIANTE_LEXICA_PROVISIONAL,NO
+dependencia opcional,Dependencias Opcionales,Dependencia Opcional,VARIANTE_LEXICA_PROVISIONAL,NO
+deployment upgrade,Deployment Upgrade,Deployment ≠ Upgrade,VARIANTE_LEXICA_PROVISIONAL,NO
+deprovisioning,Deprovisioning,DEPROVISIONING,VARIANTE_LEXICA_PROVISIONAL,NO
+direccion de dependencia,Dirección de dependencias,Dirección de Dependencias,VARIANTE_LEXICA_PROVISIONAL,NO
+disabled,DISABLED,Disabled,VARIANTE_LEXICA_PROVISIONAL,NO
+discovery classification,Discovery ≠ Classification,Discovery & Classification,VARIANTE_LEXICA_PROVISIONAL,NO
+discovery index,Discovery Index,discovery:index,VARIANTE_LEXICA_PROVISIONAL,NO
+discovery provider,Discovery Provider,discovery:providers,VARIANTE_LEXICA_PROVISIONAL,NO
+discovery refresh,Discovery Refresh,discovery:refresh,VARIANTE_LEXICA_PROVISIONAL,NO
+discovery sourc,Discovery Sources,discovery:sources,VARIANTE_LEXICA_PROVISIONAL,NO
+documentation,Documentation,DOCUMENTATION,VARIANTE_LEXICA_PROVISIONAL,NO
+domain,Domain,/Domain,VARIANTE_LEXICA_PROVISIONAL,NO
+domain error,Domain Error,Domain Errors,VARIANTE_LEXICA_PROVISIONAL,NO
+domain persistence,Domain Persistence,Domain ≠ Persistence,VARIANTE_LEXICA_PROVISIONAL,NO
+durability replication,durability:replication,Durability ≠ Replication,VARIANTE_LEXICA_PROVISIONAL,NO
+durability requirement,Durability Requirement,durability:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+durability state,Durability State,durability:state,VARIANTE_LEXICA_PROVISIONAL,NO
+entity,Entities,Entity,VARIANTE_LEXICA_PROVISIONAL,NO
+entrypoint,Entrypoint,entrypoint,VARIANTE_LEXICA_PROVISIONAL,NO
+environment capability,Environment Capability,Environment Capabilities,VARIANTE_LEXICA_PROVISIONAL,NO
+environment configuration,Environment Configuration,Environment ≠ Configuration,VARIANTE_LEXICA_PROVISIONAL,NO
+environment constraint,Environment Constraint,Environment Constraints,VARIANTE_LEXICA_PROVISIONAL,NO
+environment runtime,Environment Runtime,Environment ≠ Runtime,VARIANTE_LEXICA_PROVISIONAL,NO
+error,Error,ERROR,VARIANTE_LEXICA_PROVISIONAL,NO
+error,Error,Errores,VARIANTE_LEXICA_PROVISIONAL,NO
+error,Error,Errors,VARIANTE_LEXICA_PROVISIONAL,NO
+error boundary,Error Boundary,Error Boundaries,VARIANTE_LEXICA_PROVISIONAL,NO
+error code,Error Codes,Error Code,VARIANTE_LEXICA_PROVISIONAL,NO
+esto,Esto,Estos,VARIANTE_LEXICA_PROVISIONAL,NO
+ethic decision,Ethics Decision,ethics:decisions,VARIANTE_LEXICA_PROVISIONAL,NO
+ethic incident,Ethics Incident,ethics:incidents,VARIANTE_LEXICA_PROVISIONAL,NO
+ethic security,Ethics Security,Ethics ≠ Security,VARIANTE_LEXICA_PROVISIONAL,NO
+event,Events,/Events,VARIANTE_LEXICA_PROVISIONAL,NO
+event,Events,Event,VARIANTE_LEXICA_PROVISIONAL,NO
+event contract,Event Contract,Event Contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+event replay,Event Replay,event replay,VARIANTE_LEXICA_PROVISIONAL,NO
+event subscriber,event subscribers,Event Subscribers,VARIANTE_LEXICA_PROVISIONAL,NO
+exactly-once,Exactly-Once,exactly-once,VARIANTE_LEXICA_PROVISIONAL,NO
+exampl,Examples,/examples,VARIANTE_LEXICA_PROVISIONAL,NO
+exception,Exception,Exceptions,VARIANTE_LEXICA_PROVISIONAL,NO
+expand contract,Expand/Contract,Expand / Contract,VARIANTE_LEXICA_PROVISIONAL,NO
+extension,Extension,/extensions,VARIANTE_LEXICA_PROVISIONAL,NO
+extension,Extension,Extensiones,VARIANTE_LEXICA_PROVISIONAL,NO
+extension,Extension,Extensions,VARIANTE_LEXICA_PROVISIONAL,NO
+extension module,Extension Module,Extension ≠ Module,VARIANTE_LEXICA_PROVISIONAL,NO
+extension point,Extension Point,Extension Points,VARIANTE_LEXICA_PROVISIONAL,NO
+extension point,Extension Point,extension points,VARIANTE_LEXICA_PROVISIONAL,NO
+external system,External Systems,External System,VARIANTE_LEXICA_PROVISIONAL,NO
+factory,Factory,Factories,VARIANTE_LEXICA_PROVISIONAL,NO
+factory dependency,Factory Dependency,Factory Dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+fail-open,Fail-Open,fail-open,VARIANTE_LEXICA_PROVISIONAL,NO
+failed,Failed,FAILED,VARIANTE_LEXICA_PROVISIONAL,NO
+fallback,Fallback,FALLBACK,VARIANTE_LEXICA_PROVISIONAL,NO
+fatal,FATAL,Fatal,VARIANTE_LEXICA_PROVISIONAL,NO
+feature configuration,Feature Configuration,Feature ≠ Configuration,VARIANTE_LEXICA_PROVISIONAL,NO
+feature flag,Feature Flags,Feature Flag,VARIANTE_LEXICA_PROVISIONAL,NO
+feature flag authorization,Feature Flag ≠ Authorization,Feature Flag = Authorization,VARIANTE_LEXICA_PROVISIONAL,NO
+file upload,File Upload,File Uploads,VARIANTE_LEXICA_PROVISIONAL,NO
+flaky test,Flaky Test,Flaky Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+force,Force,force,VARIANTE_LEXICA_PROVISIONAL,NO
+format,Format,format,VARIANTE_LEXICA_PROVISIONAL,NO
+formato,Formato,formato,VARIANTE_LEXICA_PROVISIONAL,NO
+forward compatibility,Forward Compatibility,forward compatibility,VARIANTE_LEXICA_PROVISIONAL,NO
+gate threshold,Gate Threshold,Gate Thresholds,VARIANTE_LEXICA_PROVISIONAL,NO
+get,get,GET,VARIANTE_LEXICA_PROVISIONAL,NO
+governance exception,Governance Exception,governance:exceptions,VARIANTE_LEXICA_PROVISIONAL,NO
+governance policy,Governance Policy,governance:policies,VARIANTE_LEXICA_PROVISIONAL,NO
+governance review,Governance Review,governance:review,VARIANTE_LEXICA_PROVISIONAL,NO
+governance security,Governance Security,Governance ≠ Security,VARIANTE_LEXICA_PROVISIONAL,NO
+group role,Group ≠ Role,Group = Role,VARIANTE_LEXICA_PROVISIONAL,NO
+health check,Health Check,health:check,VARIANTE_LEXICA_PROVISIONAL,NO
+health compatibility,Health Compatibility,Health ≠ Compatibility,VARIANTE_LEXICA_PROVISIONAL,NO
+health dependency,Health Dependency,health:dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+health policy,Health Policy,health:policy,VARIANTE_LEXICA_PROVISIONAL,NO
+health startup,health:startup,Health ≠ Startup,VARIANTE_LEXICA_PROVISIONAL,NO
+healthy,HEALTHY,Healthy,VARIANTE_LEXICA_PROVISIONAL,NO
+hot path,Hot Path,Hot Paths,VARIANTE_LEXICA_PROVISIONAL,NO
+id,ID,id,VARIANTE_LEXICA_PROVISIONAL,NO
+identifier,Identifier,Identifiers,VARIANTE_LEXICA_PROVISIONAL,NO
+identity account,Identity ≠ Account,Identity = Account,VARIANTE_LEXICA_PROVISIONAL,NO
+implementacion interna,Implementación interna,Implementación Interna,VARIANTE_LEXICA_PROVISIONAL,NO
+implementation,implementations,Implementation,VARIANTE_LEXICA_PROVISIONAL,NO
+incompatible,Incompatible,INCOMPATIBLE,VARIANTE_LEXICA_PROVISIONAL,NO
+indeterminate allow,Indeterminate ≠ Allow,Indeterminate = Allow,VARIANTE_LEXICA_PROVISIONAL,NO
+input,Input,Inputs,VARIANTE_LEXICA_PROVISIONAL,NO
+integracion,Integraciones,Integración,VARIANTE_LEXICA_PROVISIONAL,NO
+integration test,Integration Test,Integration Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+integrity constraint,Integrity Constraint,integrity:constraints,VARIANTE_LEXICA_PROVISIONAL,NO
+integrity requirement,Integrity Requirement,integrity:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+integrity test,Integrity Test,Integrity Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+integrity validation,Integrity Validation,Integrity ≠ Validation,VARIANTE_LEXICA_PROVISIONAL,NO
+internal,INTERNAL,Internal,VARIANTE_LEXICA_PROVISIONAL,NO
+internal event,Internal Event,Internal Events,VARIANTE_LEXICA_PROVISIONAL,NO
+interoperability integration,Interoperability Integration,Interoperability ≠ Integration,VARIANTE_LEXICA_PROVISIONAL,NO
+invariant,Invariant,Invariants,VARIANTE_LEXICA_PROVISIONAL,NO
+invariant arquitectonico,Invariantes Arquitectónicos,Invariantes arquitectónicos,VARIANTE_LEXICA_PROVISIONAL,NO
+isolation level,Isolation Level,Isolation Levels,VARIANTE_LEXICA_PROVISIONAL,NO
+json field,JSON Fields,JSON fields,VARIANTE_LEXICA_PROVISIONAL,NO
+kill switch,Kill Switch,Kill Switches,VARIANTE_LEXICA_PROVISIONAL,NO
+last registration wins,Last Registration Wins,last registration wins,VARIANTE_LEXICA_PROVISIONAL,NO
+latest,latest,Latest,VARIANTE_LEXICA_PROVISIONAL,NO
+latest dependency,latest Dependency,Latest Dependency,VARIANTE_LEXICA_PROVISIONAL,NO
+license,License,LICENSE,VARIANTE_LEXICA_PROVISIONAL,NO
+lifecycle event,Lifecycle Event,Lifecycle Events,VARIANTE_LEXICA_PROVISIONAL,NO
+lifecycle hook,Lifecycle Hooks,Lifecycle Hook,VARIANTE_LEXICA_PROVISIONAL,NO
+lifecycle test,Lifecycle Test,Lifecycle Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+long-lived connection,Long-Lived Connection,Long-Lived Connections,VARIANTE_LEXICA_PROVISIONAL,NO
+many,Many,many,VARIANTE_LEXICA_PROVISIONAL,NO
+mapper,Mapper,Mappers,VARIANTE_LEXICA_PROVISIONAL,NO
+mef,MEF,mef,VARIANTE_LEXICA_PROVISIONAL,NO
+message,Message,message,VARIANTE_LEXICA_PROVISIONAL,NO
+message contract,Message Contract,Message Contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+metadata,Metadata,metadata,VARIANTE_LEXICA_PROVISIONAL,NO
+metadata annotation,Metadata Annotation,Metadata ≠ Annotation,VARIANTE_LEXICA_PROVISIONAL,NO
+metadata provenance,Metadata Provenance,metadata:provenance,VARIANTE_LEXICA_PROVISIONAL,NO
+metadata query,Metadata Query,metadata:query,VARIANTE_LEXICA_PROVISIONAL,NO
+metadata registry,Metadata Registry,Metadata ≠ Registry,VARIANTE_LEXICA_PROVISIONAL,NO
+metadata schema,Metadata Schema,metadata:schema,VARIANTE_LEXICA_PROVISIONAL,NO
+mfa,MFA,mfa,VARIANTE_LEXICA_PROVISIONAL,NO
+migration,Migration,Migrations,VARIANTE_LEXICA_PROVISIONAL,NO
+migration backup,Migration Backup,Migration ≠ Backup,VARIANTE_LEXICA_PROVISIONAL,NO
+migration compatibility,Migration Compatibility,Migration ≠ Compatibility,VARIANTE_LEXICA_PROVISIONAL,NO
+migration history,Migration History,migration:history,VARIANTE_LEXICA_PROVISIONAL,NO
+migration lock,Migration Lock,migration:lock,VARIANTE_LEXICA_PROVISIONAL,NO
+migration plan,Migration Plan,migration plan,VARIANTE_LEXICA_PROVISIONAL,NO
+migration plan,Migration Plan,migration:plan,VARIANTE_LEXICA_PROVISIONAL,NO
+migration requirement,Migration Requirement,Migration Requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+migration rollback,Migration Rollback,migration:rollback,VARIANTE_LEXICA_PROVISIONAL,NO
+migration status,migration status,Migration Status,VARIANTE_LEXICA_PROVISIONAL,NO
+migration status,migration status,migration:status,VARIANTE_LEXICA_PROVISIONAL,NO
+modelo conceptual,Modelos Conceptuales,Modelo Conceptual,VARIANTE_LEXICA_PROVISIONAL,NO
+modul,Modules,/modules,VARIANTE_LEXICA_PROVISIONAL,NO
+module capability,Module Capabilities,module capabilities,VARIANTE_LEXICA_PROVISIONAL,NO
+module contract,Module Contract,module contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+module graph,Module Graph,module graph,VARIANTE_LEXICA_PROVISIONAL,NO
+module name,Module Name,Module Names,VARIANTE_LEXICA_PROVISIONAL,NO
+module permission,Module Permission,Module Permissions,VARIANTE_LEXICA_PROVISIONAL,NO
+n+1 query,N+1 Queries,N+1 Query,VARIANTE_LEXICA_PROVISIONAL,NO
+narrow contract,Narrow Contract,Narrow Contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+nested transaction,Nested Transaction,Nested Transactions,VARIANTE_LEXICA_PROVISIONAL,NO
+nightly,Nightly,nightly,VARIANTE_LEXICA_PROVISIONAL,NO
+no responsabilidad,No responsabilidades,No Responsabilidades,VARIANTE_LEXICA_PROVISIONAL,NO
+none,none,NONE,VARIANTE_LEXICA_PROVISIONAL,NO
+normalizer,Normalizer,Normalizers,VARIANTE_LEXICA_PROVISIONAL,NO
+not applicable,NOT APPLICABLE,Not Applicable,VARIANTE_LEXICA_PROVISIONAL,NO
+obligation,Obligation,Obligations,VARIANTE_LEXICA_PROVISIONAL,NO
+optional capability,Optional Capability,Optional Capabilities,VARIANTE_LEXICA_PROVISIONAL,NO
+optional component,Optional Component,Optional Components,VARIANTE_LEXICA_PROVISIONAL,NO
+optional dependency,Optional Dependency,Optional Dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+outlier,Outlier,Outliers,VARIANTE_LEXICA_PROVISIONAL,NO
+output,output,Outputs,VARIANTE_LEXICA_PROVISIONAL,NO
+owner responsibility,Owner Responsibility,Owner Responsibilities,VARIANTE_LEXICA_PROVISIONAL,NO
+partial success,Partial Success,Partial ≠ Success,VARIANTE_LEXICA_PROVISIONAL,NO
+path,Path,Paths,VARIANTE_LEXICA_PROVISIONAL,NO
+pause,Pause,PAUSE,VARIANTE_LEXICA_PROVISIONAL,NO
+payload,Payload,payload,VARIANTE_LEXICA_PROVISIONAL,NO
+performance baseline,Performance Baseline,performance:baseline,VARIANTE_LEXICA_PROVISIONAL,NO
+performance benchmark,performance:benchmark,Performance ≠ Benchmark,VARIANTE_LEXICA_PROVISIONAL,NO
+performance budget,Performance Budget,performance:budget,VARIANTE_LEXICA_PROVISIONAL,NO
+performance optimization,Performance Optimization,Performance ≠ Optimization,VARIANTE_LEXICA_PROVISIONAL,NO
+performance profile,performance profile,Performance Profile,VARIANTE_LEXICA_PROVISIONAL,NO
+performance profile,performance profile,performance:profile,VARIANTE_LEXICA_PROVISIONAL,NO
+performance status,performance status,Performance Status,VARIANTE_LEXICA_PROVISIONAL,NO
+performance test,Performance Test,Performance Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+permission,Permission,Permissions,VARIANTE_LEXICA_PROVISIONAL,NO
+pipeline run,Pipeline Run,pipeline:run,VARIANTE_LEXICA_PROVISIONAL,NO
+plugin dependency,Plugin Dependency,plugin:dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+plugin permission,Plugin Permission,plugin:permissions,VARIANTE_LEXICA_PROVISIONAL,NO
+plugin quarantine,Plugin Quarantine,plugin:quarantine,VARIANTE_LEXICA_PROVISIONAL,NO
+plugin upgrade,Plugin Upgrade,plugin:upgrade,VARIANTE_LEXICA_PROVISIONAL,NO
+policy,Policy,Policies,VARIANTE_LEXICA_PROVISIONAL,NO
+policy authorization,Policy ≠ Authorization,Policy = Authorization,VARIANTE_LEXICA_PROVISIONAL,NO
+policy business logic,Policy ≠ Business Logic,Policy = Business Logic,VARIANTE_LEXICA_PROVISIONAL,NO
+policy configuration,Policy Configuration,Policy ≠ Configuration,VARIANTE_LEXICA_PROVISIONAL,NO
+policy drift,Policy Drift,policy:drift,VARIANTE_LEXICA_PROVISIONAL,NO
+prepare,Prepare,prepare,VARIANTE_LEXICA_PROVISIONAL,NO
+preservation replication,Preservation Replication,Preservation ≠ Replication,VARIANTE_LEXICA_PROVISIONAL,NO
+preview,Preview,preview,VARIANTE_LEXICA_PROVISIONAL,NO
+primitive type,Primitive Type,Primitive Types,VARIANTE_LEXICA_PROVISIONAL,NO
+privacy consent,privacy:consents,Privacy ≠ Consent,VARIANTE_LEXICA_PROVISIONAL,NO
+privacy retention,Privacy Retention,privacy:retention,VARIANTE_LEXICA_PROVISIONAL,NO
+privacy security,Privacy Security,Privacy ≠ Security,VARIANTE_LEXICA_PROVISIONAL,NO
+producer,producer,Producer,VARIANTE_LEXICA_PROVISIONAL,NO
+protected binding,Protected Binding,Protected Bindings,VARIANTE_LEXICA_PROVISIONAL,NO
+provider,Provider,/Providers,VARIANTE_LEXICA_PROVISIONAL,NO
+provider,Provider,Providers,VARIANTE_LEXICA_PROVISIONAL,NO
+provider,Provider,providers,VARIANTE_LEXICA_PROVISIONAL,NO
+public,Public,PUBLIC,VARIANTE_LEXICA_PROVISIONAL,NO
+public event,Public Event,Public Events,VARIANTE_LEXICA_PROVISIONAL,NO
+publish,Publish,publish,VARIANTE_LEXICA_PROVISIONAL,NO
+quality drift,Quality Drift,quality:drift,VARIANTE_LEXICA_PROVISIONAL,NO
+quality gate,Quality Gate,Quality Gates,VARIANTE_LEXICA_PROVISIONAL,NO
+quality gate,Quality Gate,quality:gate,VARIANTE_LEXICA_PROVISIONAL,NO
+quality requirement,Quality Requirement,quality:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+quality rule,Quality Rule,quality:rules,VARIANTE_LEXICA_PROVISIONAL,NO
+quality score,Quality Score,quality:score,VARIANTE_LEXICA_PROVISIONAL,NO
+query,Queries,Query,VARIANTE_LEXICA_PROVISIONAL,NO
+query contract,Query Contract,Query Contracts,VARIANTE_LEXICA_PROVISIONAL,NO
+queue,Queue,QUEUE,VARIANTE_LEXICA_PROVISIONAL,NO
+queue bound,Queue Bound,Queue Bounds,VARIANTE_LEXICA_PROVISIONAL,NO
+queue limit,Queue Limit,Queue Limits,VARIANTE_LEXICA_PROVISIONAL,NO
+quota,Quota,Quotas,VARIANTE_LEXICA_PROVISIONAL,NO
+race condition,Race Condition,Race Conditions,VARIANTE_LEXICA_PROVISIONAL,NO
+rate limit,Rate Limit,Rate Limits,VARIANTE_LEXICA_PROVISIONAL,NO
+read model,Read Model,Read Models,VARIANTE_LEXICA_PROVISIONAL,NO
+rebalancing,Rebalancing,REBALANCING,VARIANTE_LEXICA_PROVISIONAL,NO
+recovery drill,Recovery Drill,recovery:drill,VARIANTE_LEXICA_PROVISIONAL,NO
+recovery plan,Recovery Plan,recovery:plan,VARIANTE_LEXICA_PROVISIONAL,NO
+recovery point,Recovery Point,recovery:points,VARIANTE_LEXICA_PROVISIONAL,NO
+recovery requirement,Recovery Requirement,recovery:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+recovery strategy,Recovery Strategy,Recovery Strategies,VARIANTE_LEXICA_PROVISIONAL,NO
+registry graph,registry graph,Registry Graph,VARIANTE_LEXICA_PROVISIONAL,NO
+rejected,Rejected,REJECTED,VARIANTE_LEXICA_PROVISIONAL,NO
+relacion con otro component,Relación con otros componentes,Relación con otros Componentes,VARIANTE_LEXICA_PROVISIONAL,NO
+release gate,Release Gate,Release Gates,VARIANTE_LEXICA_PROVISIONAL,NO
+reliability baseline,Reliability Baseline,reliability:baseline,VARIANTE_LEXICA_PROVISIONAL,NO
+reliability requirement,Reliability Requirement,reliability:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+replica,Replica,Replicas,VARIANTE_LEXICA_PROVISIONAL,NO
+repository,Repository,Repositories,VARIANTE_LEXICA_PROVISIONAL,NO
+resolution cache,Resolution Cache,resolution:cache,VARIANTE_LEXICA_PROVISIONAL,NO
+resolution input,Resolution Inputs,Resolution Input,VARIANTE_LEXICA_PROVISIONAL,NO
+resolution policy,Resolution Policy,Resolution ≠ Policy,VARIANTE_LEXICA_PROVISIONAL,NO
+resolution strategy,Resolution Strategy,resolution:strategies,VARIANTE_LEXICA_PROVISIONAL,NO
+resolver,Resolvers,Resolver,VARIANTE_LEXICA_PROVISIONAL,NO
+resourc,/Resources,/resources,VARIANTE_LEXICA_PROVISIONAL,NO
+resource budget,Resource Budget,Resource Budgets,VARIANTE_LEXICA_PROVISIONAL,NO
+resource lease,Resource Lease,resource:leases,VARIANTE_LEXICA_PROVISIONAL,NO
+resource limit,Resource Limits,Resource Limit,VARIANTE_LEXICA_PROVISIONAL,NO
+resource pool,Resource Pool,resource:pool,VARIANTE_LEXICA_PROVISIONAL,NO
+resource pressure,Resource Pressure,resource:pressure,VARIANTE_LEXICA_PROVISIONAL,NO
+resource quota,Resource Quota,resource:quota,VARIANTE_LEXICA_PROVISIONAL,NO
+resource usage,Resource Usage,resource:usage,VARIANTE_LEXICA_PROVISIONAL,NO
+result,Result,result,VARIANTE_LEXICA_PROVISIONAL,NO
+revoked,Revoked,REVOKED,VARIANTE_LEXICA_PROVISIONAL,NO
+riesgo arquitectonico,Riesgos Arquitectónicos,Riesgos arquitectónicos,VARIANTE_LEXICA_PROVISIONAL,NO
+role,Role,Roles,VARIANTE_LEXICA_PROVISIONAL,NO
+running,Running,RUNNING,VARIANTE_LEXICA_PROVISIONAL,NO
+runtime diagnostic,Runtime Diagnostics,runtime diagnostics,VARIANTE_LEXICA_PROVISIONAL,NO
+runtime health,Runtime Health,runtime health,VARIANTE_LEXICA_PROVISIONAL,NO
+savepoint,Savepoint,Savepoints,VARIANTE_LEXICA_PROVISIONAL,NO
+scalability curve,scalability:curve,Scalability Curve,VARIANTE_LEXICA_PROVISIONAL,NO
+scalability limit,Scalability Limit,scalability:limit,VARIANTE_LEXICA_PROVISIONAL,NO
+scalability requirement,Scalability Requirement,scalability:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+scalability test,Scalability Test,scalability:test,VARIANTE_LEXICA_PROVISIONAL,NO
+scalable,SCALABLE,scalable,VARIANTE_LEXICA_PROVISIONAL,NO
+schema,Schema,schema,VARIANTE_LEXICA_PROVISIONAL,NO
+schema compatibility,Schema Compatibility,schema compatibility,VARIANTE_LEXICA_PROVISIONAL,NO
+schema compatibility,Schema Compatibility,schema:compatibility,VARIANTE_LEXICA_PROVISIONAL,NO
+schema diff,Schema Diff,schema:diff,VARIANTE_LEXICA_PROVISIONAL,NO
+schema list,schema list,schema:list,VARIANTE_LEXICA_PROVISIONAL,NO
+schema validate,schema validate,schema:validate,VARIANTE_LEXICA_PROVISIONAL,NO
+schema version,Schema Version,schema:versions,VARIANTE_LEXICA_PROVISIONAL,NO
+scope test,Scope Test,Scope Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+security,Security,SECURITY,VARIANTE_LEXICA_PROVISIONAL,NO
+security boundary,Security Boundary,Security Boundaries,VARIANTE_LEXICA_PROVISIONAL,NO
+security capability,security capabilities,Security Capability,VARIANTE_LEXICA_PROVISIONAL,NO
+security test,Security Test,Security Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+serialization test,Serialization Test,Serialization Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+serializer,Serializer,Serializers,VARIANTE_LEXICA_PROVISIONAL,NO
+severity,Severity,severity,VARIANTE_LEXICA_PROVISIONAL,NO
+singleton,Singleton,SINGLETON,VARIANTE_LEXICA_PROVISIONAL,NO
+slug,Slug,Slugs,VARIANTE_LEXICA_PROVISIONAL,NO
+slug,Slug,slug,VARIANTE_LEXICA_PROVISIONAL,NO
+snapshot,Snapshot,snapshot,VARIANTE_LEXICA_PROVISIONAL,NO
+snapshot test,Snapshot Test,Snapshot Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+src,/src,src/,VARIANTE_LEXICA_PROVISIONAL,NO
+src core,/src/Core,src/Core,VARIANTE_LEXICA_PROVISIONAL,NO
+src core,/src/Core,src/Core/,VARIANTE_LEXICA_PROVISIONAL,NO
+stable,Stable,stable,VARIANTE_LEXICA_PROVISIONAL,NO
+stable error code,Stable Error Code,Stable Error Codes,VARIANTE_LEXICA_PROVISIONAL,NO
+state,State,state,VARIANTE_LEXICA_PROVISIONAL,NO
+state event,State Events,State ≠ Event,VARIANTE_LEXICA_PROVISIONAL,NO
+state health,State Health,State = Health,VARIANTE_LEXICA_PROVISIONAL,NO
+state persistence,State Persistence,State ≠ Persistence,VARIANTE_LEXICA_PROVISIONAL,NO
+state snapshot,State Snapshot,state:snapshot,VARIANTE_LEXICA_PROVISIONAL,NO
+status,Status,status,VARIANTE_LEXICA_PROVISIONAL,NO
+stopped,Stopped,STOPPED,VARIANTE_LEXICA_PROVISIONAL,NO
+stopping,Stopping,STOPPING,VARIANTE_LEXICA_PROVISIONAL,NO
+subscriber,Subscriber,Subscribers,VARIANTE_LEXICA_PROVISIONAL,NO
+support,SUPPORTS,Support,VARIANTE_LEXICA_PROVISIONAL,NO
+support,SUPPORTS,Support/,VARIANTE_LEXICA_PROVISIONAL,NO
+test,Test,/Tests,VARIANTE_LEXICA_PROVISIONAL,NO
+test,Test,/tests,VARIANTE_LEXICA_PROVISIONAL,NO
+timeout,Timeout,Timeouts,VARIANTE_LEXICA_PROVISIONAL,NO
+token,Token,Tokens,VARIANTE_LEXICA_PROVISIONAL,NO
+trace,Trace,TRACE,VARIANTE_LEXICA_PROVISIONAL,NO
+transaction,Transaction,transaction,VARIANTE_LEXICA_PROVISIONAL,NO
+transitive dependency,Transitive Dependency,Transitive Dependencies,VARIANTE_LEXICA_PROVISIONAL,NO
+trust attestation,Trust Attestation,trust:attestations,VARIANTE_LEXICA_PROVISIONAL,NO
+trust claim,Trust Claim,trust:claims,VARIANTE_LEXICA_PROVISIONAL,NO
+trust evidence,Trust Evidence,trust:evidence,VARIANTE_LEXICA_PROVISIONAL,NO
+trust gate,Trust Gate,trust:gates,VARIANTE_LEXICA_PROVISIONAL,NO
+trust level,Trust Levels,Trust Level,VARIANTE_LEXICA_PROVISIONAL,NO
+trust object,Trust Object,trust:objects,VARIANTE_LEXICA_PROVISIONAL,NO
+trust requirement,Trust Requirement,trust:requirements,VARIANTE_LEXICA_PROVISIONAL,NO
+unbounded buffer,Unbounded Buffer,Unbounded Buffers,VARIANTE_LEXICA_PROVISIONAL,NO
+unhealthy,UNHEALTHY,Unhealthy,VARIANTE_LEXICA_PROVISIONAL,NO
+unit test,Unit Tests,Unit Test,VARIANTE_LEXICA_PROVISIONAL,NO
+unknown,UNKNOWN,Unknown,VARIANTE_LEXICA_PROVISIONAL,NO
+unknown field,Unknown Fields,Unknown Field,VARIANTE_LEXICA_PROVISIONAL,NO
+unsafe default,Unsafe Default,Unsafe Defaults,VARIANTE_LEXICA_PROVISIONAL,NO
+upgrade abort,Upgrade Abort,upgrade:abort,VARIANTE_LEXICA_PROVISIONAL,NO
+upgrade pause,Upgrade Pause,upgrade:pause,VARIANTE_LEXICA_PROVISIONAL,NO
+upgrade plan,Upgrade Plan,upgrade:plan,VARIANTE_LEXICA_PROVISIONAL,NO
+upgrade resume,Upgrade Resume,upgrade:resume,VARIANTE_LEXICA_PROVISIONAL,NO
+upgrade rollback,Upgrade Rollback,upgrade:rollback,VARIANTE_LEXICA_PROVISIONAL,NO
+validate,Validate,validate,VARIANTE_LEXICA_PROVISIONAL,NO
+validation error,Validation Error,Validation Errors,VARIANTE_LEXICA_PROVISIONAL,NO
+validation layer,Validation Layers,Validation Layer,VARIANTE_LEXICA_PROVISIONAL,NO
+validator,Validator,Validators,VARIANTE_LEXICA_PROVISIONAL,NO
+value object,Value Objects,Value Object,VARIANTE_LEXICA_PROVISIONAL,NO
+vendor lock-in,Vendor Lock-in,Vendor Lock-In,VARIANTE_LEXICA_PROVISIONAL,NO
+verified,Verified,VERIFIED,VARIANTE_LEXICA_PROVISIONAL,NO
+warning,Warning,WARNING,VARIANTE_LEXICA_PROVISIONAL,NO
+warning,Warning,Warnings,VARIANTE_LEXICA_PROVISIONAL,NO
+why,Why,why,VARIANTE_LEXICA_PROVISIONAL,NO
+workflow history,Workflow History,workflow:history,VARIANTE_LEXICA_PROVISIONAL,NO
+workflow resume,Workflow Resume,workflow:resume,VARIANTE_LEXICA_PROVISIONAL,NO
+workflow retry,Workflow Retry,workflow:retry,VARIANTE_LEXICA_PROVISIONAL,NO
+workflow signal,Workflow Signal,workflow:signal,VARIANTE_LEXICA_PROVISIONAL,NO
+workflow state machine,Workflow State Machine,Workflow ≠ State Machine,VARIANTE_LEXICA_PROVISIONAL,NO
+workflow transaction,Workflow Transaction,Workflow ≠ Transaction,VARIANTE_LEXICA_PROVISIONAL,NO
