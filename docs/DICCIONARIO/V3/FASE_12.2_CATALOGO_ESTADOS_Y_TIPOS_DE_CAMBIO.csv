@@ -1,0 +1,33 @@
+﻿categoria,valor,descripcion
+TIPO_CAMBIO,NUEVO_CONCEPTO,Alta de identidad conceptual candidata
+TIPO_CAMBIO,NUEVO_ID,Asignación de identidad tras aprobación
+TIPO_CAMBIO,CAMBIO_NOMBRE_CANONICO,Cambio de denominación canónica
+TIPO_CAMBIO,CAMBIO_DEFINICION,Modificación semántica de definición
+TIPO_CAMBIO,NUEVO_ALIAS,Incorporación de alias controlado
+TIPO_CAMBIO,ELIMINACION_ALIAS,Retiro controlado de alias
+TIPO_CAMBIO,CAMBIO_AUTORIDAD,Cambio de autoridad normativa resuelta
+TIPO_CAMBIO,CAMBIO_TRAZABILIDAD,Cambio de vínculos documentales
+TIPO_CAMBIO,CORRECCION_METADATA,Corrección no identitaria de metadatos
+TIPO_CAMBIO,DEPRECACION,Deprecación sin reutilización del ID
+TIPO_CAMBIO,REEMPLAZO,Sustitución trazable de concepto
+TIPO_CAMBIO,FUSION,Fusión controlada de identidades
+TIPO_CAMBIO,DIVISION,División controlada de identidad
+ESTADO,PROPUESTO,Solicitud registrada
+ESTADO,EN_VALIDACION,Expediente en comprobación
+ESTADO,EVALUADO,Listo para decisión
+ESTADO,APROBADO,Cambio autorizado
+ESTADO,RECHAZADO,Cambio no autorizado
+ESTADO,DIFERIDO,Decisión pospuesta
+ESTADO,APLICADO,Cambio ejecutado
+ESTADO,VALIDADO,Controles posteriores satisfactorios
+ESTADO,CERRADO,Expediente terminado
+DECISION,APROBAR,Autorizar cambio
+DECISION,RECHAZAR,No autorizar cambio
+DECISION,DIFERIR,Posponer resolución
+REQUIERE_NUEVO_ID,NO,No requiere nueva identidad
+REQUIERE_NUEVO_ID,SI,Requiere nueva identidad si queda aprobado
+REQUIERE_NUEVO_ID,POR_DETERMINAR,Debe resolverse durante evaluación
+IMPACTO,NINGUNO,Sin impacto material
+IMPACTO,BAJO,Impacto limitado
+IMPACTO,MEDIO,Impacto relevante
+IMPACTO,ALTO,Impacto identitario o transversal significativo

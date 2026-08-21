@@ -1,0 +1,9 @@
+﻿evento,efecto_identidad,tratamiento_id,continuidad
+RENOMBRE,MISMA_IDENTIDAD,CONSERVAR_ID,Nombre anterior se conserva como histórico o alias cuando corresponda
+CAMBIO_DEFINICION_NO_IDENTITARIO,MISMA_IDENTIDAD,CONSERVAR_ID,Versionar definición y conservar trazabilidad
+CAMBIO_DEFINICION_IDENTITARIO,IDENTIDAD_POTENCIALMENTE_NUEVA,EVALUAR_NUEVO_ID,No sobrescribir identidad histórica
+DEPRECACION,IDENTIDAD_HISTORICA,RESERVAR_ID,Nunca eliminar ni reutilizar
+REEMPLAZO,DOS_IDENTIDADES_TRAZABLES,CONSERVAR_IDS,Registrar replaced_by / replaces
+FUSION,CONTINUIDAD_MULTIPLE,RESERVAR_IDS_PREVIOS,Resultado requiere decisión formal
+DIVISION,NUEVAS_IDENTIDADES,RESERVAR_ID_ORIGINAL_Y_ASIGNAR_NUEVOS,Registrar sucesores
+ALIAS,MISMA_IDENTIDAD,CONSERVAR_ID,Sólo si la asociación es inequívoca

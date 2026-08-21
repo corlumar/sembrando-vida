@@ -1,0 +1,181 @@
+﻿mef_v3_id,termino_canonico,tipo,severidad,detalle,bloqueante,accion
+MEF-V3-DIC-0001,Acoplamiento oculto,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0002,Activos Empaquetables,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0003,AI-011,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0004,AI-012,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0005,AI-013,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0006,AI-014,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0007,AI-015,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0008,AI-016,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0009,AI-017,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0010,AI-018,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0011,AI-055,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0012,AI-056,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0013,AI-057,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0014,AI-058,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0015,AI-058 La generación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0016,AI-059,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0017,AI-059 Las plantillas,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0018,AI-060,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0019,AI-061,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0020,AI-062,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0021,AI-063,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0022,AI-064,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0023,AI-064 Los Contracts,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0024,AI-065,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0025,AI-066,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0026,AI-066 Los Contracts,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0027,AI-067,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0028,AI-068,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0029,AI-069,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0030,AI-070,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0031,AI-071,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0032,AI-072,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0033,AI-072 Constructor Injection,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0034,AI-073,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0035,AI-074,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0036,AI-075,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0037,AI-075 Toda política,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0038,AI-076,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0039,AI-076 La configuración,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0040,AI-077,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0041,AI-078,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0042,AI-097,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0043,AI-098,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0044,AI-099,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0045,AI-100,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0046,AI-101,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0047,AI-102,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0048,AI-102 Todo Package,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0049,Anatomía conceptual,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0050,API pública,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0051,API pública accidental,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0052,ARQ-004,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0053,ARQ-010,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0054,ARQ-011,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0055,ARQ-012,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0056,ARQ-013,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0058,Artefactos Generables,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0059,Cada paquete,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0060,Categorías de Modules,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0061,CFG-001,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0062,CFG-002,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0063,CFG-003,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0064,CFG-004,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0065,CFG-005,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0066,CFG-006,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0070,Comunicación entre Modules,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0071,Configuration,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0072,Constructor Injection,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0073,Contaminación del Core,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0074,Contenido Mínimo,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0075,Contracts,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0076,Criterios de Evaluación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0077,CT-001,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0078,CT-002,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0079,CT-003,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0080,CT-004,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0081,CT-005,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0082,CT-006,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0083,CT-007,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0085,cómo resolverlo,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0086,Datos y persistencia,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0087,Definición de Module,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0088,Dependencias circulares,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0089,Dependencias entre Modules,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0090,Dependencias permitidas,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0091,Dependencias prohibidas,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0092,Dependency Injection,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0093,Dependency Injection (DI),COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0094,DI-001,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0095,DI-002,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0096,DI-003,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0097,DI-004,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0098,Dirección de dependencias,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0099,Duplicación transversal,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0100,El Package,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0101,El Packaging,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0102,El paquete,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0103,El Template Engine,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0104,Esta estructura,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0105,Estrategias,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0108,Flujo de Generación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0110,Implementación interna,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0111,Instalación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0112,Instalación y desinstalación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0113,Integridad,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0114,Invariantes Arquitectónicos,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0115,Inventory,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0116,Jerarquía,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0117,La Configuration,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0118,La Dependency Injection,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0119,Manifest,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0120,Modelo Arquitectónico,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0121,Modelo de Generación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0122,Module,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0123,Module monolítico,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0125,Modules de dominio,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0126,Modules de integración,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0127,Modules técnicos,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0129,No responsabilidades,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0130,Observabilidad,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0131,Package,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0132,Packaging,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0133,paquete,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0134,Plantillas,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0135,Políticas de Configuración,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0136,Pruebas,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0137,Puntos de extensión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0139,qué necesitan,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0140,Reglas de Diseño,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0141,Relación con otros componentes,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0142,Resolución,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0143,Riesgos Arquitectónicos,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0144,Sales,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0145,Seguridad,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0146,Su responsabilidad,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0147,Sustitución,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0148,Template Engine,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0149,Tipología Oficial,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0150,Tipos de Configuración,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0151,Un Contract,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0152,Un Module,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0153,Validación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0154,Variables,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0155,Versionado,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0156,Alcance del producto,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0158,Aspiración,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0159,Beneficiarios,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0160,Carta del Proyecto,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0162,Comunidad,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0164,Constituye el documento fundacional del Framework y,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0165,Criterios de cumplimiento,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0166,Criterios de éxito,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0168,Declaración de Misión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0169,Declaración de Visión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0171,Ecosistema documental,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0172,FND-000,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0173,FND-001,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0174,FND-002,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0176,Herramientas,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0177,Horizonte,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0178,Impacto esperado,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0179,Indicadores de éxito,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0181,La Carta del Proyecto,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0182,La misión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0183,La misión de MEF,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0184,La visión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0185,La visión de MEF,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0188,MEF no,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0189,Misión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,TRANSVERSAL_PARCIAL_2_CAPAS,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0190,misión de MEF,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0191,Motivación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0192,Nuestra misión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0194,Objetivos estratégicos,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0195,Principios de actuación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0196,Principios de evolución,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0197,Principios fundamentales,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0198,Relación con la Visión,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0201,visión de MEF,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0202,¿Qué es MEF?,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.
+MEF-V3-DIC-0203,Áreas de actuación,COBERTURA_TRANSVERSAL_INCOMPLETA,OBSERVACION,COBERTURA_LOCAL_1_CAPA,NO,Conservar como trazabilidad válida; la ausencia en otra capa no implica contradicción.

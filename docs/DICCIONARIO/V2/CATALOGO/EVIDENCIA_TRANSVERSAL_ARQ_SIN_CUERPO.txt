@@ -1,0 +1,3879 @@
+﻿
+============================================================
+CONCEPTO: Arquitectura General
+============================================================
+ARCHIVO: ARQ-000-ARQUITECTURA_GENERAL.md
+LINEA: 3
+---
+id: ARQ-000
+>>> titulo: Arquitectura General
+tipo: Architecture
+nivel: L1
+categoria: Arquitectura
+subcategoria: Visión General
+estado: Accepted
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 832
+- FND-011 — Doctrina de Arquitectura
+- FND-013 — Independencia del Framework
+>>> - ARQ-000 — Arquitectura General
+- ARQ-001 — Visión Arquitectónica
+- ARQ-004 — Modules
+- ARQ-010 — Template Engine
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+
+ARCHIVO: ENG-037-CACHING_ENGINEERING.md
+LINEA: 110
+> **El Cache deberá considerarse una optimización explícita y gobernada, nunca la fuente implícita de verdad de un Domain State salvo que un Contract arquitectónico declare expresamente otra semántica.**
+
+>>> La arquitectura general será:
+
+```text
+Consumer
+   │
+   ▼
+
+ARCHIVO: ENG-064-DATA_PIPELINE_ENGINEERING.md
+LINEA: 1665
+# 166. Dataset-Level Lineage
+
+>>> Deberá favorecerse para arquitectura general.
+
+---
+
+# 167. Pipeline Provenance
+
+
+ARCHIVO: README.md
+LINEA: 586
+## Arquitectura
+
+>>> - ARQ-000 — Arquitectura General
+- ARQ-001 — Visión Arquitectónica
+- ARQ-004 — Modules
+- ARQ-010 — Template Engine
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+
+
+============================================================
+CONCEPTO: Visión Arquitectónica
+============================================================
+ARCHIVO: ARQ-001-VISION_ARQUITECTONICA.md
+LINEA: 3
+---
+id: ARQ-001
+>>> titulo: Visión Arquitectónica
+tipo: Architecture
+nivel: L1
+categoria: Arquitectura
+subcategoria: Visión
+estado: Accepted
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 708
+- FND-012 — Constitución de MEF
+- FND-013 — Independencia del Framework
+>>> - ARQ-001 — Visión Arquitectónica
+- ARQ-002 — Core
+- ARQ-003 — Platform
+- ARQ-005 — Kernel
+- ARQ-006 — Registry
+- ARQ-008 — Event Bus
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 833
+- FND-013 — Independencia del Framework
+- ARQ-000 — Arquitectura General
+>>> - ARQ-001 — Visión Arquitectónica
+- ARQ-004 — Modules
+- ARQ-010 — Template Engine
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+
+ARCHIVO: ENG-075-MAINTAINABILITY_ENGINEERING.md
+LINEA: 2979
+| EI-1453 | Testability deberá favorecer Dependencies explícitas, State determinístico y control de Time, Randomness, I/O y External Systems, sin utilizar Over-Mocking para ocultar Contracts inválidos. |
+| EI-1454 | MTTD, MTTI y MTTR deberán declarar su semántica exacta y Restore, Recover y Repair no deberán utilizarse intercambiablemente cuando representen momentos distintos del ciclo de mantenimiento. |
+>>> | EI-1455 | Complexity, Coupling, Cohesion, Dependency Depth y Maintainability Index deberán utilizarse como señales contextuales y no deberán convertirse en objetivos susceptibles de gaming o sustitutos automáticos de revisión arquitectónica. |
+| EI-1456 | Technical Debt significativa deberá poseer Scope, Reason, Owner, Risk y Review/Exit Criteria explícitos y los Workarounds temporales no deberán convertirse silenciosamente en arquitectura permanente. |
+| EI-1457 | Refactoring deberá preservar comportamiento contractual y apoyarse en Testing suficiente; cambios de Contract, Semantics o Data no deberán etiquetarse únicamente como Refactoring para reducir controles de revisión. |
+| EI-1458 | Deprecated y Legacy Paths deberán poseer Replacement y Exit/Removal Criteria y no deberán mantenerse indefinidamente sin Consumers conocidos, Compatibility Requirement o Ownership explícito. |
+| EI-1459 | Dead Code, Unused Dependencies y obsolescencia deberán eliminarse de forma segura cuando exista evidencia suficiente, considerando Dynamic Invocation, Compatibility y Release Policy antes de suprimirlos. |
+| EI-1460 | Operational Maintainability deberá reducir Tribal Knowledge mediante Runbooks, Diagnostics, Automation explicable y Ownership, y los procedimientos críticos deberán incluir Preconditions, Authority, Verification y revisión periódica. |
+
+ARCHIVO: README.md
+LINEA: 587
+
+- ARQ-000 — Arquitectura General
+>>> - ARQ-001 — Visión Arquitectónica
+- ARQ-004 — Modules
+- ARQ-010 — Template Engine
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+
+
+============================================================
+CONCEPTO: Core
+============================================================
+ARCHIVO: FND-000-Carta_del_Proyecto.md
+LINEA: 127
+MEF incluye:
+
+>>> - Core
+- Platform
+- Sistema de módulos
+- Sistema de eventos
+- Inyección de dependencias
+- Builders
+
+ARCHIVO: FND-000-Carta_del_Proyecto.md
+LINEA: 183
+
+- desarrollar aplicaciones empresariales de forma modular;
+>>> - incorporar nuevos módulos sin afectar el Core;
+- mantener una arquitectura consistente a largo plazo;
+- facilitar la incorporación de nuevos desarrolladores;
+- preservar el conocimiento técnico mediante documentación y trazabilidad.
+
+---
+
+ARCHIVO: FND-000-Carta_del_Proyecto.md
+LINEA: 210
+- privilegiar la calidad sobre la velocidad de desarrollo;
+- documentar las decisiones importantes;
+>>> - favorecer la estabilidad del Core;
+- promover la reutilización y la extensibilidad;
+- mantener una evolución controlada del producto.
+
+---
+
+
+ARCHIVO: FND-001-VISION.md
+LINEA: 84
+Construir un ecosistema integrado compuesto por:
+
+>>> - Core
+- Platform
+- Modules
+- SDK
+- CLI
+- API
+
+ARCHIVO: FND-001-VISION.md
+LINEA: 168
+- mantenga una arquitectura estable y extensible;
+- cuente con una documentación completa y trazable;
+>>> - permita incorporar nuevas capacidades sin afectar el Core;
+- disponga de una comunidad activa de desarrolladores y colaboradores.
+
+---
+
+# 10. Conclusión
+
+ARCHIVO: FND-02-MISION.md
+LINEA: 63
+- desarrollar una arquitectura modular y coherente;
+- promover la reutilización de componentes;
+>>> - mantener un Core estable y desacoplado;
+- documentar el conocimiento de forma estructurada;
+- facilitar la incorporación de nuevos desarrolladores;
+- preservar la trazabilidad entre decisiones, arquitectura e implementación;
+- favorecer la evolución continua sin comprometer la estabilidad del producto.
+
+
+ARCHIVO: FND-04-PRINCIPIOS_DE_ARQUITECTURA.md
+LINEA: 27
+  - modularidad
+  - diseño
+>>>   - core
+---
+
+ARCHIVO: ARQ-002-CORE.md
+LINEA: 3
+---
+id: ARQ-002
+>>> titulo: Core
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Core
+estado: Accepted
+
+ARCHIVO: ARQ-002-CORE.md
+LINEA: 7
+nivel: L1
+categoria: Núcleo
+>>> subcategoria: Core
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: ARQ-002-CORE.md
+LINEA: 22
+  - ARQ-005
+keywords:
+>>>   - core
+  - kernel
+  - arquitectura
+  - framework
+  - modularidad
+---
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 46
+Definir **Modules** como la unidad funcional de extensión de **MEF (Modular Enterprise Framework)**.
+
+>>> Un Module encapsula una capacidad coherente y delimitada que puede incorporarse al Framework sin modificar el Core.
+
+Este documento establece sus responsabilidades, límites, dependencias, estructura conceptual y reglas de evolución.
+
+---
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 63
+- evitar dependencias innecesarias;
+- poder evolucionar con independencia razonable;
+>>> - integrarse sin modificar el Core.
+
+Los Modules extienden el Framework.
+
+No redefinen su arquitectura.
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 80
+- permitir instalación y evolución independientes;
+- aislar reglas de dominio;
+>>> - proteger la estabilidad del Core;
+- permitir múltiples combinaciones de capacidades.
+
+---
+
+# 4. Definición de Module
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 127
+Un Module no deberá:
+
+>>> - modificar directamente el Core;
+- acceder a elementos internos de otro Module;
+- asumir responsabilidades globales del Framework;
+- controlar el ciclo de vida general de MEF;
+- convertirse en un contenedor genérico de funcionalidades;
+- depender de una Application concreta;
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 233
+Un Module podrá depender de:
+
+>>> - contratos del Core;
+- servicios públicos de Platform;
+- contratos públicos de otros Modules;
+- abstracciones de infraestructura;
+- bibliotecas aprobadas mediante gobernanza.
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 242
+Module
+   │
+>>>    ├── Core Contracts
+   ├── Platform Services
+   └── Public Contracts of Other Modules
+```
+
+Toda dependencia deberá declararse explícitamente.
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 255
+Un Module no deberá depender de:
+
+>>> - detalles internos del Core;
+- implementaciones internas de Platform;
+- clases privadas de otros Modules;
+- Applications;
+- interfaces de usuario específicas;
+- infraestructura concreta sin una abstracción;
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 279
+      │
+      ▼
+>>>     Core
+```
+
+Las dependencias inversas no estarán permitidas.
+
+Por tanto:
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 286
+Por tanto:
+
+>>> - Core no depende de Modules.
+- Platform no depende de Modules.
+- Un Module no depende de Applications.
+- Applications podrán componer varios Modules.
+
+---
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 374
+## Modules técnicos
+
+>>> Proporcionan capacidades técnicas extensibles que no pertenecen al Core.
+
+Ejemplos:
+
+- Search;
+- Reporting;
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 588
+| ID | Invariante |
+|----|------------|
+>>> | AI-011 | Un Module no modifica el Core. |
+| AI-012 | Un Module no depende de Applications. |
+| AI-013 | Los elementos internos de un Module no forman parte de su API pública. |
+| AI-014 | Las dependencias entre Modules utilizan contratos públicos. |
+| AI-015 | Las dependencias circulares entre Modules están prohibidas. |
+| AI-016 | Todo Module declara identidad, versión y dependencias. |
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 619
+Implementar dentro de varios Modules una capacidad que pertenece a Platform.
+
+>>> ## Contaminación del Core
+
+Incorporar al Core una necesidad exclusiva de un Module.
+
+## API pública accidental
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 621
+## Contaminación del Core
+
+>>> Incorporar al Core una necesidad exclusiva de un Module.
+
+## API pública accidental
+
+Exponer clases internas sin una decisión arquitectónica explícita.
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 639
+- ¿Evita ciclos?
+- ¿Protege sus elementos internos?
+>>> - ¿Puede evolucionar sin modificar el Core?
+- ¿Incluye pruebas y documentación?
+- ¿Respeta la neutralidad arquitectónica?
+
+---
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 690
+# 30. Principio Rector
+
+>>> > **Toda capacidad funcional deberá encapsularse en un Module cohesivo, explícitamente versionado y capaz de evolucionar sin modificar el Core ni invadir los límites de otros componentes.**
+
+---
+
+# Conclusión
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 698
+Modules constituye el modelo oficial de extensión funcional de MEF.
+
+>>> Su arquitectura permite incorporar capacidades de dominio y técnicas mediante unidades autónomas, trazables y desacopladas, preservando la estabilidad del Core y facilitando la evolución sostenible del Framework.
+
+---
+
+# Referencias
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 709
+- FND-013 — Independencia del Framework
+- ARQ-001 — Visión Arquitectónica
+>>> - ARQ-002 — Core
+- ARQ-003 — Platform
+- ARQ-005 — Kernel
+- ARQ-006 — Registry
+- ARQ-008 — Event Bus
+- ARQ-014 — Lifecycle
+
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 280
+# Referencias
+
+>>> - ARQ-002 — Core
+- ARQ-007 — Service Container
+- ARQ-009 — Builders
+- ARQ-012 — Dependency Injection
+- ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 139
+| ID | Tipo | Descripción |
+|----|------|-------------|
+>>> | CFG-001 | Core Configuration | Configuración del núcleo. |
+| CFG-002 | Platform Configuration | Configuración de servicios compartidos. |
+| CFG-003 | Module Configuration | Configuración específica de módulos. |
+| CFG-004 | Environment Configuration | Configuración por entorno. |
+| CFG-005 | Runtime Configuration | Configuración dinámica de ejecución. |
+| CFG-006 | Security Configuration | Configuración de seguridad. |
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 169
+
+```text
+>>> Core
+
+↓
+
+Platform
+
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 203
+- verificable.
+
+>>> La instalación no modificará el Core.
+
+---
+
+# 13. Invariantes Arquitectónicos
+
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 215
+| AI-099 | Todo Package declara dependencias explícitas. |
+| AI-100 | Todo Package respeta Semantic Versioning. |
+>>> | AI-101 | Ningún Package modifica directamente el Core. |
+| AI-102 | Todo Package es verificable antes de instalarse. |
+
+---
+
+# 14. Riesgos Arquitectónicos
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 227
+- dependencias ocultas;
+- paquetes sin versión;
+>>> - modificaciones manuales del Core;
+- pérdida de trazabilidad.
+
+---
+
+# 15. Observabilidad
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 280
+- ¿Respeta los Contracts?
+- ¿Es compatible con la versión de MEF?
+>>> - ¿Puede instalarse sin modificar el Core?
+
+---
+
+# 18. Principio Rector
+
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 286
+# 18. Principio Rector
+
+>>> > **Todo activo arquitectónico distribuido por MEF deberá empaquetarse como una unidad completa, trazable, verificable y compatible, preservando la integridad del Framework y la independencia del Core.**
+
+---
+
+# Conclusión
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 143
+MEF
+│
+>>> ├── Core
+│
+├── Platform
+│
+├── Modules
+│
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 231
+        │
+        ▼
+>>> Core Contracts
+```
+
+Los detalles concretos de infraestructura deberán permanecer detrás de abstracciones apropiadas.
+
+La existencia de una capa inferior no implica que cualquier componente superior pueda acceder libremente a sus elementos internos.
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 395
+---
+
+>>> # 17. Core
+
+El código perteneciente al Core deberá mantenerse especialmente protegido.
+
+El Core:
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 397
+# 17. Core
+
+>>> El código perteneciente al Core deberá mantenerse especialmente protegido.
+
+El Core:
+
+- no deberá depender de Modules de aplicación;
+- no deberá incorporar lógica específica de negocio;
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 399
+El código perteneciente al Core deberá mantenerse especialmente protegido.
+
+>>> El Core:
+
+- no deberá depender de Modules de aplicación;
+- no deberá incorporar lógica específica de negocio;
+- no deberá depender innecesariamente de tecnologías externas;
+- deberá mantener una superficie reducida y estable.
+
+
+============================================================
+CONCEPTO: Platform
+============================================================
+ARCHIVO: FND-000-Carta_del_Proyecto.md
+LINEA: 128
+
+- Core
+>>> - Platform
+- Sistema de módulos
+- Sistema de eventos
+- Inyección de dependencias
+- Builders
+- CLI
+
+ARCHIVO: FND-001-VISION.md
+LINEA: 85
+
+- Core
+>>> - Platform
+- Modules
+- SDK
+- CLI
+- API
+- Documentación
+
+ARCHIVO: ARQ-003-PLATFORM.md
+LINEA: 3
+---
+id: ARQ-003
+>>> titulo: Platform
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Platform
+estado: Accepted
+
+ARCHIVO: ARQ-003-PLATFORM.md
+LINEA: 7
+nivel: L1
+categoria: Núcleo
+>>> subcategoria: Platform
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: ARQ-003-PLATFORM.md
+LINEA: 22
+  - ARQ-008
+keywords:
+>>>   - platform
+  - servicios
+  - arquitectura
+  - framework
+  - capacidades
+---
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 133
+- convertirse en un contenedor genérico de funcionalidades;
+- depender de una Application concreta;
+>>> - introducir servicios transversales que correspondan a Platform.
+
+---
+
+# 7. Anatomía conceptual
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 234
+
+- contratos del Core;
+>>> - servicios públicos de Platform;
+- contratos públicos de otros Modules;
+- abstracciones de infraestructura;
+- bibliotecas aprobadas mediante gobernanza.
+
+```text
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 243
+   │
+   ├── Core Contracts
+>>>    ├── Platform Services
+   └── Public Contracts of Other Modules
+```
+
+Toda dependencia deberá declararse explícitamente.
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 256
+
+- detalles internos del Core;
+>>> - implementaciones internas de Platform;
+- clases privadas de otros Modules;
+- Applications;
+- interfaces de usuario específicas;
+- infraestructura concreta sin una abstracción;
+- rutas físicas internas de otro Module.
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 276
+      │
+      ▼
+>>>   Platform
+      │
+      ▼
+    Core
+```
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 287
+
+- Core no depende de Modules.
+>>> - Platform no depende de Modules.
+- Un Module no depende de Applications.
+- Applications podrán componer varios Modules.
+
+---
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 617
+## Duplicación transversal
+
+>>> Implementar dentro de varios Modules una capacidad que pertenece a Platform.
+
+## Contaminación del Core
+
+Incorporar al Core una necesidad exclusiva de un Module.
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 670
+- Kernel coordina su inicialización.
+- Event Bus facilita su comunicación desacoplada.
+>>> - Platform proporciona servicios compartidos.
+
+---
+
+# 29. Evolución
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 710
+- ARQ-001 — Visión Arquitectónica
+- ARQ-002 — Core
+>>> - ARQ-003 — Platform
+- ARQ-005 — Kernel
+- ARQ-006 — Registry
+- ARQ-008 — Event Bus
+- ARQ-014 — Lifecycle
+- ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 282
+# Referencias
+
+>>> - ARQ-003 — Platform
+- ARQ-009 — Builders
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 140
+|----|------|-------------|
+| CFG-001 | Core Configuration | Configuración del núcleo. |
+>>> | CFG-002 | Platform Configuration | Configuración de servicios compartidos. |
+| CFG-003 | Module Configuration | Configuración específica de módulos. |
+| CFG-004 | Environment Configuration | Configuración por entorno. |
+| CFG-005 | Runtime Configuration | Configuración dinámica de ejecución. |
+| CFG-006 | Security Configuration | Configuración de seguridad. |
+
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 173
+↓
+
+>>> Platform
+
+↓
+
+Modules
+
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 312
+# Referencias
+
+>>> - ARQ-003 — Platform
+- ARQ-007 — Service Container
+- ARQ-010 — Template Engine
+- ARQ-012 — Dependency Injection
+- ARQ-014 — Lifecycle
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 576
+     │
+     ▼
+>>> Platform Adapter
+```
+
+Los elementos dependientes de una tecnología deberán mantenerse detrás de límites explícitos.
+
+---
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 145
+├── Core
+│
+>>> ├── Platform
+│
+├── Modules
+│
+├── Contracts
+│
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 228
+        │
+        ▼
+>>> Platform Capabilities
+        │
+        ▼
+Core Contracts
+```
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 412
+---
+
+>>> # 18. Platform
+
+Platform podrá proporcionar capacidades compartidas necesarias para implementar la arquitectura.
+
+Su código deberá:
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 414
+# 18. Platform
+
+>>> Platform podrá proporcionar capacidades compartidas necesarias para implementar la arquitectura.
+
+Su código deberá:
+
+- permanecer desacoplado de dominios particulares;
+- exponer capacidades mediante límites explícitos;
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 427
+   ▲
+   │
+>>> Platform
+   ▲
+   │
+Modules
+```
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 663
+```text
+MEF.Core
+>>> MEF.Platform
+MEF.Contracts
+MEF.Modules.*
+MEF.Extensions.*
+```
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 1065
+
+- ARQ-002 — Core
+>>> - ARQ-003 — Platform
+- ARQ-004 — Modules
+- ARQ-006 — Registry
+- ARQ-007 — Service Container
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 364
+
+- Contracts de Core;
+>>> - capacidades públicas de Platform;
+- Contracts públicos de otros Modules;
+- Extension Points oficiales;
+- dependencias externas autorizadas.
+
+No deberán existir dependencias ocultas.
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 1574
+```text
+MEF.Core
+>>> MEF.Platform
+MEF.Contracts
+MEF.Modules
+MEF.Extensions
+```
+
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 1951
+```text
+Core
+>>> Platform
+Kernel
+Registry
+Module
+Contract
+Package
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 213
+src/
+├── Core/
+>>> ├── Platform/
+├── Contracts/
+└── Infrastructure/
+```
+
+La estructura exacta podrá adaptarse según el lenguaje.
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 255
+---
+
+>>> # 11. `/src/Platform`
+
+Contendrá servicios compartidos pertenecientes a Platform.
+
+Ejemplo conceptual:
+
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 257
+# 11. `/src/Platform`
+
+>>> Contendrá servicios compartidos pertenecientes a Platform.
+
+Ejemplo conceptual:
+
+```text
+src/Platform/
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 262
+
+```text
+>>> src/Platform/
+├── Builders/
+├── Templates/
+├── Configuration/
+├── Logging/
+└── Support/
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 1488
+
+- refleje los límites definidos por Arquitectura;
+>>> - preserve separación Core / Platform / Modules / Infrastructure;
+- mantenga Modules identificables;
+- incluya Manifest donde corresponda;
+- separe Runtime de Source;
+- separe terceros de código propio;
+- no almacene secretos en repositorio;
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 1659
+
+- ARQ-002 — Core
+>>> - ARQ-003 — Platform
+- ARQ-004 — Modules
+- ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1000
+System Log
+Remote Collector
+>>> Observability Platform
+```
+
+MEF no deberá acoplarse conceptualmente a un proveedor específico.
+
+---
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1264
+# 81. Logger Ownership
+
+>>> La infraestructura de Logging deberá pertenecer a Platform o al componente técnico correspondiente.
+
+Los Modules serán consumidores.
+
+No deberán instalar arbitrariamente proveedores globales de Logging durante Runtime.
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1811
+## Arquitectura
+
+>>> - ARQ-003 — Platform
+- ARQ-008 — Event Bus
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+
+ARCHIVO: ENG-011-CONFIGURATION_FILES.md
+LINEA: 667
+---
+
+>>> # 32. Platform Configuration
+
+Platform podrá disponer de configuración para capacidades como:
+
+```text
+logging
+
+ARCHIVO: ENG-011-CONFIGURATION_FILES.md
+LINEA: 669
+# 32. Platform Configuration
+
+>>> Platform podrá disponer de configuración para capacidades como:
+
+```text
+logging
+cache
+events
+
+
+============================================================
+CONCEPTO: Kernel
+============================================================
+ARCHIVO: ARQ-002-CORE.md
+LINEA: 23
+keywords:
+  - core
+>>>   - kernel
+  - arquitectura
+  - framework
+  - modularidad
+---
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 648
+
+```text
+>>>                    Kernel
+                      │
+                      ▼
+                  Discovery
+                      │
+                      ▼
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 668
+- Discovery localiza Modules.
+- Registry conserva sus metadatos.
+>>> - Kernel coordina su inicialización.
+- Event Bus facilita su comunicación desacoplada.
+- Platform proporciona servicios compartidos.
+
+---
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 711
+- ARQ-002 — Core
+- ARQ-003 — Platform
+>>> - ARQ-005 — Kernel
+- ARQ-006 — Registry
+- ARQ-008 — Event Bus
+- ARQ-014 — Lifecycle
+- ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-005-KERNEL.md
+LINEA: 3
+---
+id: ARQ-005
+>>> titulo: Kernel
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Kernel
+estado: Accepted
+
+ARCHIVO: ARQ-005-KERNEL.md
+LINEA: 7
+nivel: L1
+categoria: Núcleo
+>>> subcategoria: Kernel
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: ARQ-005-KERNEL.md
+LINEA: 22
+  - ARQ-014
+keywords:
+>>>   - kernel
+  - bootstrap
+  - lifecycle
+  - framework
+  - startup
+---
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 555
+---
+
+>>> # 24. Shared Kernel
+
+Cuando varias unidades necesiten compartir conceptos estables podrá establecerse explícitamente un **Shared Kernel**.
+
+Su incorporación deberá justificarse.
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 557
+# 24. Shared Kernel
+
+>>> Cuando varias unidades necesiten compartir conceptos estables podrá establecerse explícitamente un **Shared Kernel**.
+
+Su incorporación deberá justificarse.
+
+Un Shared Kernel no deberá convertirse en una colección general de utilidades.
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 561
+Su incorporación deberá justificarse.
+
+>>> Un Shared Kernel no deberá convertirse en una colección general de utilidades.
+
+Deberá contener únicamente conceptos realmente compartidos y gobernados.
+
+---
+
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 1952
+Core
+Platform
+>>> Kernel
+Registry
+Module
+Contract
+Package
+Manifest
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 230
+```text
+src/Core/
+>>> ├── Kernel/
+├── Registry/
+├── Container/
+├── Events/
+└── Lifecycle/
+```
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 1580
+## Arquitectura
+
+>>> - ARQ-005 — Kernel
+- ARQ-006 — Registry
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 895
+Ejemplos:
+
+>>> - Kernel;
+- Registry;
+- Container;
+- Manifest Validator;
+- Package Manager;
+- Security;
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 783
+---
+
+>>> # 44. Logging del Kernel
+
+El Kernel deberá registrar únicamente información útil sobre coordinación.
+
+No deberá producir un Log por cada operación trivial si eso genera ruido excesivo.
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 785
+# 44. Logging del Kernel
+
+>>> El Kernel deberá registrar únicamente información útil sobre coordinación.
+
+No deberá producir un Log por cada operación trivial si eso genera ruido excesivo.
+
+---
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1279
+
+```text
+>>> mef.kernel
+mef.registry
+mef.container
+mef.module.crm
+mef.package
+```
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 2633
+
+```text
+>>> Kernel
+Registry
+Configuration
+Event Bus
+Modules
+Adapters
+
+ARCHIVO: ENG-024-SECURITY_ENGINEERING.md
+LINEA: 725
+Runtime
+Container
+>>> Kernel
+```
+
+que permita acceder a todos los recursos.
+
+---
+
+ARCHIVO: ENG-035-DOMAIN_ENGINEERING.md
+LINEA: 2509
+---
+
+>>> # 287. Shared Kernel
+
+Un conjunto muy pequeño de tipos Domain compartidos podrá existir si Architecture lo autoriza.
+
+---
+
+
+ARCHIVO: ENG-035-DOMAIN_ENGINEERING.md
+LINEA: 2515
+---
+
+>>> # 288. Shared Kernel Risk
+
+Incrementa coupling.
+
+---
+
+
+ARCHIVO: ENG-035-DOMAIN_ENGINEERING.md
+LINEA: 2521
+---
+
+>>> # 289. Shared Kernel Rule
+
+Deberá mantenerse:
+
+```text
+small
+
+ARCHIVO: ENG-035-DOMAIN_ENGINEERING.md
+LINEA: 3002
+
+```text
+>>> Shared Kernel Governance
+Advanced Specifications
+Domain Policy Registry
+Domain Model Tooling
+Invariant Static Analysis
+Domain Documentation Generation
+
+
+============================================================
+CONCEPTO: Registry
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 186
+    │
+    ▼
+>>> Registry
+    │
+    ▼
+Lifecycle
+```
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 654
+                      │
+                      ▼
+>>>                    Registry
+                      │
+                      ▼
+                   Modules
+                 ┌────┼────┐
+                 ▼    ▼    ▼
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 667
+
+- Discovery localiza Modules.
+>>> - Registry conserva sus metadatos.
+- Kernel coordina su inicialización.
+- Event Bus facilita su comunicación desacoplada.
+- Platform proporciona servicios compartidos.
+
+---
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 712
+- ARQ-003 — Platform
+- ARQ-005 — Kernel
+>>> - ARQ-006 — Registry
+- ARQ-008 — Event Bus
+- ARQ-014 — Lifecycle
+- ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-006-REGISTRY.md
+LINEA: 3
+---
+id: ARQ-006
+>>> titulo: Registry
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Registry
+estado: Accepted
+
+ARCHIVO: ARQ-006-REGISTRY.md
+LINEA: 7
+nivel: L1
+categoria: Núcleo
+>>> subcategoria: Registry
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: ARQ-006-REGISTRY.md
+LINEA: 21
+  - ARQ-014
+keywords:
+>>>   - registry
+  - catalog
+  - discovery
+  - metadata
+  - framework
+---
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 257
+     │
+     ▼
+>>> Registry
+     │
+     ▼
+Runtime
+```
+
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 265
+El Package constituye la unidad oficial de distribución.
+
+>>> El Registry mantiene su identidad.
+
+El Runtime lo incorpora mediante el Lifecycle.
+
+---
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 1067
+- ARQ-003 — Platform
+- ARQ-004 — Modules
+>>> - ARQ-006 — Registry
+- ARQ-007 — Service Container
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-015 — Extension Model
+
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 454
+# 21. Registro
+
+>>> El Module será incorporado al Registry durante la fase correspondiente del Lifecycle.
+
+```text
+Discovery
+   │
+   ▼
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 466
+   │
+   ▼
+>>> Registry
+```
+
+El Registry conservará los metadatos.
+
+No conservará la lógica interna del Module.
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 469
+```
+
+>>> El Registry conservará los metadatos.
+
+No conservará la lógica interna del Module.
+
+---
+
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 1152
+
+- ARQ-004 — Modules
+>>> - ARQ-006 — Registry
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 163
+---
+
+>>> # 7. Relación con el Registry
+
+Durante Discovery:
+
+```text
+Package
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 177
+   │
+   ▼
+>>> Registry
+```
+
+El Registry podrá construir su catálogo utilizando la información declarada en los Manifests.
+
+El Registry no deberá inferir información esencial que el Manifest tenga obligación de declarar.
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 180
+```
+
+>>> El Registry podrá construir su catálogo utilizando la información declarada en los Manifests.
+
+El Registry no deberá inferir información esencial que el Manifest tenga obligación de declarar.
+
+---
+
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 182
+El Registry podrá construir su catálogo utilizando la información declarada en los Manifests.
+
+>>> El Registry no deberá inferir información esencial que el Manifest tenga obligación de declarar.
+
+---
+
+# 8. Nombre del Archivo
+
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 280
+- interfaces administrativas;
+- documentación;
+>>> - Registry;
+- herramientas de diagnóstico.
+
+---
+
+# 13. Slug
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 738
+```
+
+>>> Esto facilitará integración con herramientas de desarrollo y Registry.
+
+---
+
+# 37. License
+
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1093
+# 50. Determinismo
+
+>>> Dado el mismo Manifest y el mismo contexto de Registry, la validación deberá producir el mismo resultado.
+
+La validación del Manifest deberá ser determinista.
+
+---
+
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1148
+---
+
+>>> # 54. Registry Fingerprint
+
+MEF podrá generar una representación normalizada del Manifest para:
+
+- hashing;
+- caché;
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1227
+---
+
+>>> # 58. Uso por Registry
+
+El Registry podrá obtener del Manifest:
+
+- identidad;
+- versión;
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1229
+# 58. Uso por Registry
+
+>>> El Registry podrá obtener del Manifest:
+
+- identidad;
+- versión;
+- tipo;
+- capacidades;
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1406
+
+- ARQ-004 — Modules
+>>> - ARQ-006 — Registry
+- ARQ-011 — Contracts
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 141
+Invoice
+Payment
+>>> Registry
+Module
+Contract
+Provider
+```
+
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 1930
+---
+
+>>> # 91. Naming Registry
+
+MEF podrá mantener un catálogo de identificadores oficiales para evitar:
+
+- duplicados;
+- colisiones;
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 1939
+- inconsistencias.
+
+>>> El Registry o Knowledge System podrá participar en esta validación.
+
+---
+
+# 92. Reserved Terms
+
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 1953
+Platform
+Kernel
+>>> Registry
+Module
+Contract
+Package
+Manifest
+```
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 2541
+
+- ARQ-004 — Modules
+>>> - ARQ-006 — Registry
+- ARQ-008 — Event Bus
+- ARQ-009 — Builders
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+- ARQ-015 — Extension Model
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 231
+src/Core/
+├── Kernel/
+>>> ├── Registry/
+├── Container/
+├── Events/
+└── Lifecycle/
+```
+
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 283
+src/Contracts/
+├── ModuleContract
+>>> ├── RegistryContract
+├── EventBusContract
+└── ConfigurationContract
+```
+
+Los Contracts específicos de un Module deberán permanecer preferentemente dentro de la frontera del propio Module.
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 201
+config
+extension
+>>> registry
+project
+```
+
+Los nuevos recursos deberán incorporarse de forma gobernada.
+
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 375
+```
+
+>>> El CLI podrá consultar Registry y metadata.
+
+No deberá inferir Contracts mediante heurísticas cuando exista un catálogo oficial.
+
+---
+
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 438
+---
+
+>>> # 19. Comandos de Registry
+
+Podrán existir:
+
+```text
+mef registry list
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 443
+
+```text
+>>> mef registry list
+mef registry inspect <id>
+mef registry search <query>
+```
+
+Estas operaciones serán principalmente de lectura.
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 444
+```text
+mef registry list
+>>> mef registry inspect <id>
+mef registry search <query>
+```
+
+Estas operaciones serán principalmente de lectura.
+
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 445
+mef registry list
+mef registry inspect <id>
+>>> mef registry search <query>
+```
+
+Estas operaciones serán principalmente de lectura.
+
+Las escrituras deberán ocurrir mediante mecanismos de Lifecycle o Package Management, no mediante edición arbitraria del Registry.
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 450
+Estas operaciones serán principalmente de lectura.
+
+>>> Las escrituras deberán ocurrir mediante mecanismos de Lifecycle o Package Management, no mediante edición arbitraria del Registry.
+
+---
+
+# 20. Comandos de Configuration
+
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 539
+# 24. Regla de Mutación Explícita
+
+>>> Todo comando que modifique archivos, configuración, Registry o Packages deberá hacerlo explícitamente.
+
+Un comando aparentemente informativo no deberá modificar estado.
+
+Por ejemplo:
+
+
+
+============================================================
+CONCEPTO: Service Container
+============================================================
+ARCHIVO: ARQ-007-SERVICE_CONTAINER.md
+LINEA: 3
+---
+id: ARQ-007
+>>> titulo: Service Container
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Composition
+estado: Accepted
+
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 185
+# 12. Resolución
+
+>>> El Service Container resolverá implementaciones utilizando Contracts como punto de referencia.
+
+```text
+Contract
+      │
+      ▼
+
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 191
+      │
+      ▼
+>>> Service Container
+      │
+      ▼
+Implementation
+```
+
+
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 250
+     │
+     ▼
+>>> Service Container
+     │
+     ▼
+Implementations
+```
+
+
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 281
+
+- ARQ-002 — Core
+>>> - ARQ-007 — Service Container
+- ARQ-009 — Builders
+- ARQ-012 — Dependency Injection
+- ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 39
+# 1. Propósito
+
+>>> Definir la **Dependency Injection (DI)** como el mecanismo oficial mediante el cual **MEF (Modular Enterprise Framework)** entrega capacidades a los componentes utilizando Contracts y el Service Container.
+
+La Dependency Injection permite construir componentes desacoplados, sustituibles y fácilmente verificables, evitando que los consumidores conozcan implementaciones concretas.
+
+---
+
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 51
+Los consumidores no crearán sus propias dependencias.
+
+>>> Las dependencias serán suministradas por el Service Container conforme a la configuración del Framework.
+
+---
+
+# 3. Objetivos
+
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 89
+      │
+      ▼
+>>> Service Container
+      │
+      ▼
+Implementation
+```
+
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 107
+- preservar el desacoplamiento;
+- facilitar pruebas y sustituciones;
+>>> - trabajar conjuntamente con el Service Container.
+
+---
+
+# 7. No responsabilidades
+
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 119
+- ejecutar lógica de negocio;
+- administrar metadatos;
+>>> - reemplazar al Service Container.
+
+---
+
+# 8. Estrategias
+
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 176
+# 11. Ciclo de Vida
+
+>>> La Dependency Injection respetará el ciclo de vida declarado por el Service Container.
+
+Ejemplos:
+
+- Singleton;
+- Scoped;
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 194
+| AI-067 | Toda dependencia pública se expresa mediante un Contract. |
+| AI-068 | Los consumidores no crean implementaciones. |
+>>> | AI-069 | La resolución corresponde al Service Container. |
+| AI-070 | La sustitución de implementaciones será transparente. |
+| AI-071 | La DI preserva el desacoplamiento arquitectónico. |
+| AI-072 | Constructor Injection constituye la estrategia preferida. |
+
+---
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 231
+      │
+      ▼
+>>> Service Container
+      │
+      ▼
+Dependency Injection
+      │
+      ▼
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 264
+# Referencias
+
+>>> - ARQ-007 — Service Container
+- ARQ-009 — Builders
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+- ARQ-014 — Lifecycle
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 97
+      │
+      ▼
+>>> Service Container
+      │
+      ▼
+Runtime
+```
+
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 128
+- crear componentes;
+- ejecutar procesos;
+>>> - reemplazar al Service Container;
+- modificar la arquitectura del Framework.
+
+---
+
+# 8. Tipos de Configuración
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 265
+      │
+      ▼
+>>> Service Container
+      │
+      ▼
+Dependency Injection
+      │
+      ▼
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 276
+La Configuration gobierna el comportamiento.
+
+>>> El Service Container aplica las políticas durante la composición.
+
+La Dependency Injection entrega las capacidades resultantes.
+
+---
+
+
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 313
+
+- ARQ-003 — Platform
+>>> - ARQ-007 — Service Container
+- ARQ-010 — Template Engine
+- ARQ-012 — Dependency Injection
+- ARQ-014 — Lifecycle
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 1068
+- ARQ-004 — Modules
+- ARQ-006 — Registry
+>>> - ARQ-007 — Service Container
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-015 — Extension Model
+
+## Ingeniería
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1774
+
+- ARQ-004 — Modules
+>>> - ARQ-007 — Service Container
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+ARCHIVO: ENG-013-PACKAGE_MANAGER.md
+LINEA: 80
+
+- Module Registry;
+>>> - Service Container;
+- Build System;
+- Generator;
+- Runtime Lifecycle;
+- Release Process.
+
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 40
+  - contracts
+  - composition
+>>>   - service container
+  - runtime
+  - mef
+---
+
+# ENG-018
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 129
+---
+
+>>> # 4. Dependency Injection no es Service Container
+
+MEF deberá conservar:
+
+```text
+Dependency Injection
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 136
+Dependency Injection
+        ≠
+>>> Service Container
+```
+
+DI puede existir sin Container.
+
+Ejemplo:
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 153
+---
+
+>>> # 5. Service Container
+
+Un Service Container puede automatizar:
+
+```text
+registration
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 155
+# 5. Service Container
+
+>>> Un Service Container puede automatizar:
+
+```text
+registration
+resolution
+lifecycle
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 164
+```
+
+>>> pero pertenece a `ENG-019 — Service Container`.
+
+---
+
+# 6. Inversion of Control
+
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 1547
+---
+
+>>> # 113. Service Container Optionality
+
+MEF podrá proporcionar Service Container como infraestructura oficial.
+
+Sin embargo:
+
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 1549
+# 113. Service Container Optionality
+
+>>> MEF podrá proporcionar Service Container como infraestructura oficial.
+
+Sin embargo:
+
+> **Los componentes correctamente diseñados no deberán necesitar saber que dicho Container existe.**
+
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 2652
+|----|------------|
+| EI-306 | Las dependencias obligatorias de un componente deberán ser explícitas cuando formen parte de su construcción o comportamiento esencial. |
+>>> | EI-307 | Dependency Injection y Service Container deberán mantenerse como conceptos distintos. |
+| EI-308 | Las dependencias obligatorias deberán favorecer Constructor Injection cuando el Implementation Profile lo permita razonablemente. |
+| EI-309 | La lógica funcional no deberá utilizar Service Locator como mecanismo ordinario de resolución. |
+| EI-310 | Los consumidores deberán depender de Contracts cuando exista una frontera arquitectónica que requiera sustituibilidad o desacoplamiento. |
+| EI-311 | Los Modules no deberán inyectar APIs internas de otros Modules fuera de los mecanismos públicos permitidos. |
+| EI-312 | Las dependencias circulares deberán detectarse y rechazarse cuando no estén explícitamente soportadas por un modelo válido. |
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 2871
+
+```text
+>>> How MEF's Service Container
+registers, scopes, resolves,
+builds and disposes dependencies
+```
+
+Por tanto:
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 2884
+      ▼
+ENG-019
+>>> Service Container
+```
+
+---
+
+# 225. Relación con ENG-020
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 2923
+# 227. Principio Rector
+
+>>> > **Dependency Injection en MEF deberá hacer explícitas las colaboraciones entre componentes, permitir sustituibilidad y composición controlada, y preservar los límites arquitectónicos sin convertir el Service Container en una dependencia global del sistema.**
+
+---
+
+# 228. Conclusión
+
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 3001
+Dependency Injection
+      ↓
+>>> Service Container
+      ↓
+Runtime Composition
+```
+
+sin invertir la relación y convertir al Container en la arquitectura del Framework.
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 3016
+- ARQ-004 — Modules
+- ARQ-006 — Registry
+>>> - ARQ-007 — Service Container
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 3037
+- ENG-015 — Architectural State Machine
+- ENG-016 — Compatibility
+>>> - ENG-019 — Service Container
+- ENG-020 — Registry Engineering
+- ENG-021 — Contracts Engineering
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 3
+---
+id: ENG-019
+>>> titulo: Service Container
+tipo: Engineering
+nivel: L2
+categoria: Ingeniería
+subcategoria: Runtime Engineering
+estado: Accepted
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 37
+  - ENG-027
+keywords:
+>>>   - service container
+  - dependency injection
+  - bindings
+  - service resolution
+  - scopes
+  - lifecycle
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 53
+# ENG-019
+
+>>> # Service Container
+
+## Estado
+
+Accepted.
+
+
+
+============================================================
+CONCEPTO: Event Bus
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 346
+   │
+   ▼
+>>> Event Bus
+   │
+   ├── Module B
+   └── Module C
+```
+
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 663
+                      │
+                      ▼
+>>>                  Event Bus
+```
+
+- Discovery localiza Modules.
+- Registry conserva sus metadatos.
+- Kernel coordina su inicialización.
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 669
+- Registry conserva sus metadatos.
+- Kernel coordina su inicialización.
+>>> - Event Bus facilita su comunicación desacoplada.
+- Platform proporciona servicios compartidos.
+
+---
+
+# 29. Evolución
+
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 713
+- ARQ-005 — Kernel
+- ARQ-006 — Registry
+>>> - ARQ-008 — Event Bus
+- ARQ-014 — Lifecycle
+- ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-008-EVENT_BUS.md
+LINEA: 3
+---
+id: ARQ-008
+>>> titulo: Event Bus
+tipo: Architecture
+nivel: L1
+categoria: Núcleo
+subcategoria: Comunicación
+estado: Accepted
+
+ARCHIVO: ARQ-008-EVENT_BUS.md
+LINEA: 21
+  - ARQ-015
+keywords:
+>>>   - event bus
+  - events
+  - messaging
+  - communication
+  - integration
+---
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 723
+# 31. Eventos como Desacoplamiento
+
+>>> Cuando un componente necesite comunicar un hecho sin requerir una respuesta directa podrá utilizarse el Event Bus definido por Arquitectura.
+
+```text
+Module A
+   │
+   ▼
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 732
+   │
+   ▼
+>>> Event Bus
+   │
+   ├── Module B
+   └── Module C
+```
+
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 883
+```text
+ARQ-008
+>>> Event Bus
+   │
+   ▼
+ENG Specification
+   │
+   ▼
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 1069
+- ARQ-006 — Registry
+- ARQ-007 — Service Container
+>>> - ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-015 — Extension Model
+
+## Ingeniería
+
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 1153
+- ARQ-004 — Modules
+- ARQ-006 — Registry
+>>> - ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+
+ARCHIVO: ENG-004-CONVENCIONES.md
+LINEA: 1573
+
+- ARQ-004 — Modules
+>>> - ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 2542
+- ARQ-004 — Modules
+- ARQ-006 — Registry
+>>> - ARQ-008 — Event Bus
+- ARQ-009 — Builders
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+- ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 222
+```text
+Container + Registry
+>>> Module + Event Bus
+Repository + Database Adapter
+CLI + Validator
+```
+
+Su objetivo será comprobar que las integraciones funcionan conforme a Contracts y configuración.
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1775
+- ARQ-004 — Modules
+- ARQ-007 — Service Container
+>>> - ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 126
+---
+
+>>> # 5. Logging no es Event Bus
+
+El Event Bus definido en `ARQ-008` permite comunicación desacoplada.
+
+Logging proporciona observabilidad técnica.
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 128
+# 5. Logging no es Event Bus
+
+>>> El Event Bus definido en `ARQ-008` permite comunicación desacoplada.
+
+Logging proporciona observabilidad técnica.
+
+No deberá utilizarse:
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 308
+Estos identificadores pertenecen al sistema de Logging.
+
+>>> No deberán confundirse con `EVT-*` del Event Bus.
+
+---
+
+# 14. Niveles de Logging
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 482
+          │
+          ├── Module A
+>>>           ├── Event Bus
+          ├── Module B
+          └── Adapter
+```
+
+Esto permitirá vincular Logs relacionados sin acoplar funcionalmente los componentes.
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 819
+---
+
+>>> # 47. Logging del Event Bus
+
+Podrá registrar:
+
+- fallo de dispatch;
+- listener fallido;
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1646
+|----|------------|
+| EI-146 | Logging deberá utilizarse para observabilidad técnica y no como mecanismo de comunicación funcional. |
+>>> | EI-147 | Logging no sustituirá al Event Bus, Audit, Metrics o Tracing. |
+| EI-148 | Los Logs persistentes deberán incluir timestamp y severidad cuando corresponda. |
+| EI-149 | Los secretos no deberán registrarse en texto claro. |
+| EI-150 | La información sensible deberá minimizarse y protegerse antes de alcanzar un Sink. |
+| EI-151 | Los Logs estructurados deberán utilizar nombres de campos consistentes. |
+| EI-152 | Los componentes deberán depender de una abstracción de Logging cuando la arquitectura requiera desacoplamiento del proveedor. |
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1714
+Asumir garantías que los Logs ordinarios no proporcionan.
+
+>>> ## Logging as Event Bus
+
+Acoplar comportamiento funcional a lectura de Logs.
+
+## Vendor Lock-in
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1812
+
+- ARQ-003 — Platform
+>>> - ARQ-008 — Event Bus
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 1072
+---
+
+>>> # 70. Event Bus Injection
+
+ARQ-008 podrá proporcionar Event Bus mediante Contract.
+
+Los componentes que publiquen Events podrán recibir:
+
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 1074
+# 70. Event Bus Injection
+
+>>> ARQ-008 podrá proporcionar Event Bus mediante Contract.
+
+Los componentes que publiquen Events podrán recibir:
+
+```text
+EventPublisher
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 2636
+Registry
+Configuration
+>>> Event Bus
+Modules
+Adapters
+```
+
+sin dependencias globales ocultas.
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 3017
+- ARQ-006 — Registry
+- ARQ-007 — Service Container
+>>> - ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 1102
+Logger
+Registry
+>>> Event Bus
+Security
+```
+
+podrán resolverse anticipadamente.
+
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 2367
+---
+
+>>> # 214. Event Bus Integration
+
+ENG-022 podrá registrar:
+
+```text
+EventPublisher
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 2674
+# 229. Relación con ENG-022
+
+>>> El Event Bus utilizará Services resueltos mediante Container, pero conservará su propio Lifecycle y Registry de handlers/subscribers.
+
+---
+
+# 230. Relación con ENG-027
+
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 2788
+- ARQ-006 — Registry
+- ARQ-007 — Service Container
+>>> - ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 2809
+- ENG-020 — Registry Engineering
+- ENG-021 — Contracts Engineering
+>>> - ENG-022 — Event Bus Engineering
+- ENG-023 — Error Handling
+- ENG-024 — Security Engineering
+- ENG-027 — Runtime Engineering
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 1583
+---
+
+>>> # 136. Event Bus Dependency
+
+El Bootstrap deberá evitar ciclos entre:
+
+```text
+Registry
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 1589
+```text
+Registry
+>>> Event Bus
+Container
+```
+
+---
+
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 1597
+# 137. Bootstrap Events
+
+>>> Antes del Event Bus completo podrá utilizarse una estrategia mínima o diferida.
+
+---
+
+# 138. Event Delivery
+
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 2711
+---
+
+>>> # 253. Event Bus Integration
+
+ENG-022 podrá utilizar Registry para conocer:
+
+```text
+Event Types
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 3074
+# 269. Relación con ENG-022
+
+>>> Event Bus podrá utilizar Registry metadata para Discovery de Handlers/Subscribers.
+
+No deberá almacenar el Event Bus como “la instancia” dentro del Registry.
+
+---
+
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 3076
+Event Bus podrá utilizar Registry metadata para Discovery de Handlers/Subscribers.
+
+>>> No deberá almacenar el Event Bus como “la instancia” dentro del Registry.
+
+---
+
+# 270. Relación con ENG-027
+
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 3205
+- ARQ-006 — Registry
+- ARQ-007 — Service Container
+>>> - ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 3231
+- ENG-019 — Service Container
+- ENG-021 — Contracts Engineering
+>>> - ENG-022 — Event Bus Engineering
+- ENG-023 — Error Handling
+- ENG-024 — Security Engineering
+- ENG-027 — Runtime Engineering
+
+
+============================================================
+CONCEPTO: Builders
+============================================================
+ARCHIVO: FND-000-Carta_del_Proyecto.md
+LINEA: 132
+- Sistema de eventos
+- Inyección de dependencias
+>>> - Builders
+- CLI
+- SDK
+- Documentación oficial
+- Herramientas de ingeniería
+
+
+ARCHIVO: ARQ-009-BUILDERS.md
+LINEA: 3
+---
+id: ARQ-009
+>>> titulo: Builders
+tipo: Architecture
+nivel: L1
+categoria: Servicios Fundamentales
+subcategoria: Construction
+estado: Accepted
+
+ARCHIVO: ARQ-009-BUILDERS.md
+LINEA: 21
+  - ARQ-012
+keywords:
+>>>   - builders
+  - construction
+  - factory
+  - composition
+  - artifacts
+---
+
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 118
+- DTO;
+- Providers;
+>>> - Builders;
+- Pipelines;
+- Configuration;
+- Manifest;
+- Documentation;
+- Tests.
+
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 248
+
+```text
+>>> Builders
+      │
+      ▼
+Template Engine
+      │
+      ▼
+
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 260
+```
+
+>>> Los Builders definen el proceso de construcción.
+
+El Template Engine materializa dicho proceso mediante plantillas.
+
+---
+
+
+ARCHIVO: ARQ-010-TEMPLATE_ENGINE.md
+LINEA: 283
+
+- ARQ-003 — Platform
+>>> - ARQ-009 — Builders
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 282
+- ARQ-002 — Core
+- ARQ-007 — Service Container
+>>> - ARQ-009 — Builders
+- ARQ-012 — Dependency Injection
+- ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-012-DEPENDENCY_INJECTION.md
+LINEA: 265
+
+- ARQ-007 — Service Container
+>>> - ARQ-009 — Builders
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+- ARQ-014 — Lifecycle
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 112
+- Extensions;
+- Templates;
+>>> - Builders;
+- Providers;
+- Contracts;
+- Configuration;
+- Documentation;
+- Assets.
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 445
+- registrar listeners;
+- proporcionar configuración;
+>>> - registrar Builders;
+- declarar Extension Points.
+
+El Provider no deberá contener lógica de negocio.
+
+---
+
+ARCHIVO: ENG-004-CONVENCIONES.md
+LINEA: 620
+---
+
+>>> # 32. Convención de Builders
+
+Un Builder deberá utilizarse cuando la construcción implique:
+
+- múltiples etapas;
+- composición compleja;
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 62
+- Services;
+- Providers;
+>>> - Builders;
+- Adapters;
+- Extension Points;
+- Packages;
+- configuración;
+- artefactos;
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 548
+---
+
+>>> # 21. Builders
+
+Los Builders deberán utilizar:
+
+```text
+<Artifact>Builder
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 550
+# 21. Builders
+
+>>> Los Builders deberán utilizar:
+
+```text
+<Artifact>Builder
+```
+
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 2543
+- ARQ-006 — Registry
+- ARQ-008 — Event Bus
+>>> - ARQ-009 — Builders
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+- ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 263
+```text
+src/Platform/
+>>> ├── Builders/
+├── Templates/
+├── Configuration/
+├── Logging/
+└── Support/
+```
+
+ARCHIVO: ENG-008-GENERADORES.md
+LINEA: 110
+---
+
+>>> # 5. Relación con Builders
+
+La separación conceptual será:
+
+```text
+Builder
+
+ARCHIVO: ENG-008-GENERADORES.md
+LINEA: 1488
+## Arquitectura
+
+>>> - ARQ-009 — Builders
+- ARQ-010 — Template Engine
+- ARQ-011 — Contracts
+- ARQ-015 — Extension Model
+
+## Ingeniería
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 203
+- Validators;
+- Policies;
+>>> - Builders;
+- Resolvers;
+- Services;
+- Parsers;
+- Normalizers;
+- comportamiento interno.
+
+ARCHIVO: ENG-012-BUILD_SYSTEM.md
+LINEA: 1853
+## Arquitectura
+
+>>> - ARQ-009 — Builders
+- ARQ-010 — Template Engine
+- ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 2328
+# 214. Snapshot Tests
+
+>>> Dos Builders equivalentes deberán producir Snapshots equivalentes.
+
+---
+
+# 215. Fingerprint Tests
+
+
+ARCHIVO: ENG-037-CACHING_ENGINEERING.md
+LINEA: 2216
+# 248. Property-Based Testing
+
+>>> Podrá utilizarse para Cache Key Builders.
+
+---
+
+# 249. Collision Testing
+
+
+ARCHIVO: ENG-043-DATA_ACCESS_ENGINEERING.md
+LINEA: 2992
+|----|------------|
+| EI-806 | Todo acceso persistente deberá atravesar una Data Access Boundary explícita, segura y observable. |
+>>> | EI-807 | Domain no deberá depender de SQL, ORM Query Builders, Database Connections ni detalles físicos de Storage. |
+| EI-808 | Repositories deberán representar conceptos del Domain/Aggregate y no utilizarse por Default como wrappers genéricos de tablas. |
+| EI-809 | Query Services y Read Models podrán evitar reconstruir Aggregates completos cuando el Use Case sea exclusivamente de lectura. |
+| EI-810 | Data Mappers no deberán introducir Business Rules ni ocultar datos persistidos incompatibles con Domain Invariants. |
+| EI-811 | Filtering y Sorting expuestos a Input deberán utilizar Allowlist, tipos y Operators explícitos. |
+| EI-812 | Toda Pagination deberá poseer Page Size acotado y Ordering determinístico. |
+
+
+============================================================
+CONCEPTO: Framework Lifecycle
+============================================================
+ARCHIVO: ARQ-014-FRAMEWORK_LIFECYCLE.md
+LINEA: 3
+---
+id: ARQ-014
+>>> titulo: Framework Lifecycle
+tipo: Architecture
+nivel: L1
+categoria: Ciclo de Vida
+subcategoria: Lifecycle
+estado: Accepted
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 708
+        └── ENG-011 Configuration Files
+
+>>> ARQ-014 Framework Lifecycle
+        │
+        └── ENG-015 Architectural State Machine
+
+ARQ-015 Extension Model
+        │
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 836
+- ARQ-004 — Modules
+- ARQ-010 — Template Engine
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 236
+   │
+   ▼
+>>> Framework Lifecycle
+```
+
+El punto de entrada deberá permitir al Framework:
+
+- identificar el Module;
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 477
+# 22. Ciclo de Vida
+
+>>> Todo Module participará en el Framework Lifecycle.
+
+Como mínimo deberá poder atravesar estados equivalentes a:
+
+```text
+Discovered
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 1156
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1408
+- ARQ-006 — Registry
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 1582
+- ARQ-005 — Kernel
+- ARQ-006 — Registry
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1777
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1814
+- ARQ-008 — Event Bus
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-011-CONFIGURATION_FILES.md
+LINEA: 2518
+- ARQ-006 — Registry
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-012-BUILD_SYSTEM.md
+LINEA: 1855
+- ARQ-009 — Builders
+- ARQ-010 — Template Engine
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-013-PACKAGE_MANAGER.md
+LINEA: 3028
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-014-VERSIONADO.md
+LINEA: 2763
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-015-ARCHITECTURAL_STATE_MACHINE.md
+LINEA: 499
+---
+
+>>> # 26. Framework Lifecycle
+
+Conceptualmente:
+
+```text
+Created
+
+ARCHIVO: ENG-015-ARCHITECTURAL_STATE_MACHINE.md
+LINEA: 3169
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-016-COMPATIBILITY.md
+LINEA: 3281
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-017-RELEASE_PROCESS.md
+LINEA: 3296
+
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-018-DEPENDENCY_INJECTION.md
+LINEA: 3021
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-019-SERVICE_CONTAINER.md
+LINEA: 2792
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-020-REGISTRY_ENGINNEERING.md
+LINEA: 3209
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-021-CONTRACTS_ENGINNEERING.md
+LINEA: 3271
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-022-EVENT_BUS_ENGINNEERING.md
+LINEA: 3501
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-023-ERROR_HANDLING.md
+LINEA: 3396
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-024-SECURITY_ENGINEERING.md
+LINEA: 4127
+- ARQ-011 — Contracts
+- ARQ-012 — Dependency Injection
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-025-OBSERVABILITY_ENGINEERING.md
+LINEA: 3255
+- ARQ-007 — Service Container
+- ARQ-008 — Event Bus
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-026-RUNTIME_PERFORMANCE_ENGINEERING.md
+LINEA: 3526
+-   ARQ-007 --- Service Container
+-   ARQ-008 --- Event Bus
+>>> -   ARQ-014 --- Framework Lifecycle
+
+## Ingeniería
+
+-   ENG-000 --- Ingeniería General
+-   ENG-004 --- Convenciones
+
+ARCHIVO: ENG-027-RUNTIME_ENGINEERING.md
+LINEA: 3751
+- ARQ-007 — Service Container
+- ARQ-008 — Event Bus
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-028-MODULE_ENGINEERING.md
+LINEA: 3429
+- ARQ-007 — Service Container
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-002 — Especificación de Modules
+
+ARCHIVO: ENG-029-EXTENSION_ENGINEERING.md
+LINEA: 2628
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-003 — Manifest
+
+ARCHIVO: ENG-030-PERSISTENCE_ENGINEERING.md
+LINEA: 3073
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+ARCHIVO: ENG-031-SERIALIZATION_ENGINEERING.md
+LINEA: 3242
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-003 — Manifest
+
+ARCHIVO: ENG-032-TRANSPORT_ENGINEERING.md
+LINEA: 3256
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+ARCHIVO: ENG-033-INTERFACE_ENGINEERING.md
+LINEA: 1729
+ARQ-011 — Contracts
+
+>>> ARQ-014 — Framework Lifecycle
+
+ARQ-016 — Security
+
+Ingeniería
+
+
+ARCHIVO: ENG-034-APPLICATION_ENGINEERING.md
+LINEA: 3023
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+ARCHIVO: ENG-035-DOMAIN_ENGINEERING.md
+LINEA: 3526
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+ARCHIVO: ENG-036-VALIDATION_ENGINEERING.md
+LINEA: 2983
+- ARQ-006 — Registry
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+ARCHIVO: ENG-037-CACHING_ENGINEERING.md
+LINEA: 3260
+- ARQ-007 — Service Container
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+ARCHIVO: ENG-038-CONCURRENCY_ENGINEERING.md
+LINEA: 3277
+- ARQ-007 — Service Container
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+ARCHIVO: ENG-039-RESILIENCE_ENGINEERING.md
+LINEA: 3182
+- ARQ-007 — Service Container
+- ARQ-011 — Contracts
+>>> - ARQ-014 — Framework Lifecycle
+- ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-005 — Nomenclatura
+
+
+============================================================
+CONCEPTO: Extension Model
+============================================================
+ARCHIVO: ARQ-004-MODULES.md
+LINEA: 715
+- ARQ-008 — Event Bus
+- ARQ-014 — Lifecycle
+>>> - ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-011-CONTRACTS.md
+LINEA: 284
+- ARQ-009 — Builders
+- ARQ-012 — Dependency Injection
+>>> - ARQ-015 — Extension Model
+
+ARCHIVO: ARQ-015-EXTENSION_MODEL.md
+LINEA: 3
+---
+id: ARQ-015
+>>> titulo: Extension Model
+tipo: Architecture
+nivel: L1
+categoria: Ciclo de Vida
+subcategoria: Extensibilidad
+estado: Accepted
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 303
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+>>> - ARQ-015 — Extension Model
+- ARQ-016 — Security
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 712
+        └── ENG-015 Architectural State Machine
+
+>>> ARQ-015 Extension Model
+        │
+        └── ENG-016 Extension SDK
+
+ARQ-017 Packaging
+        │
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 837
+- ARQ-010 — Template Engine
+- ARQ-014 — Framework Lifecycle
+>>> - ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+ARCHIVO: ENG-001-ORGANIZACION_DEL_CODIGO.md
+LINEA: 1071
+- ARQ-008 — Event Bus
+- ARQ-011 — Contracts
+>>> - ARQ-015 — Extension Model
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+- ENG-002 — Especificación de Modules
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 1157
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+>>> - ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1409
+- ARQ-011 — Contracts
+- ARQ-014 — Framework Lifecycle
+>>> - ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-004-CONVENCIONES.md
+LINEA: 1577
+- ARQ-012 — Dependency Injection
+- ARQ-013 — Configuration
+>>> - ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+ARCHIVO: ENG-005-NOMENCLATURA.md
+LINEA: 2546
+- ARQ-011 — Contracts
+- ARQ-013 — Configuration
+>>> - ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 1661
+- ARQ-003 — Platform
+- ARQ-004 — Modules
+>>> - ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 1364
+# 75. Manifest Integration
+
+>>> Un Package podrá declarar capacidades CLI si el Extension Model lo permite.
+
+Estas deberán validarse antes de activarse.
+
+---
+
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 1583
+- ARQ-006 — Registry
+- ARQ-014 — Framework Lifecycle
+>>> - ARQ-015 — Extension Model
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-008-GENERADORES.md
+LINEA: 1491
+- ARQ-010 — Template Engine
+- ARQ-011 — Contracts
+>>> - ARQ-015 — Extension Model
+
+## Ingeniería
+
+- ENG-003 — Manifest
+- ENG-004 — Convenciones
+
+ARCHIVO: README.md
+LINEA: 196
+| ARQ-013 — Configuration | ENG-011 — Configuration Files |
+| ARQ-014 — Framework Lifecycle | ENG-015 — Architectural State Machine |
+>>> | ARQ-015 — Extension Model | ENG-016 — Extension SDK |
+| ARQ-017 — Packaging | ENG-013 / ENG-017 |
+
+No existe necesariamente una correspondencia uno a uno entre documentos `ARQ` y `ENG`.
+
+Una especificación de Ingeniería podrá implementar requisitos provenientes de múltiples documentos arquitectónicos.
+
+ARCHIVO: README.md
+LINEA: 591
+- ARQ-010 — Template Engine
+- ARQ-014 — Framework Lifecycle
+>>> - ARQ-015 — Extension Model
+- ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+
+
+============================================================
+CONCEPTO: Security
+============================================================
+ARCHIVO: ARQ-013-CONFIGURATION.md
+LINEA: 144
+| CFG-004 | Environment Configuration | Configuración por entorno. |
+| CFG-005 | Runtime Configuration | Configuración dinámica de ejecución. |
+>>> | CFG-006 | Security Configuration | Configuración de seguridad. |
+
+---
+
+# 9. Políticas de Configuración
+
+
+ARCHIVO: ARQ-016-SECURITY.md
+LINEA: 3
+---
+id: ARQ-016
+>>> titulo: Security
+tipo: Architecture
+nivel: L1
+categoria: Ciclo de Vida
+subcategoria: Security
+estado: Accepted
+
+ARCHIVO: ARQ-016-SECURITY.md
+LINEA: 7
+nivel: L1
+categoria: Ciclo de Vida
+>>> subcategoria: Security
+estado: Accepted
+version: 2.0.0
+responsable: MEF Architecture Team
+ultima_revision: 2026-08-06
+dependencias:
+
+ARCHIVO: ARQ-016-SECURITY.md
+LINEA: 22
+  - ENG-017
+keywords:
+>>>   - security
+  - architecture
+  - trust
+  - authorization
+  - integrity
+---
+
+ARCHIVO: ARQ-017-PACKAGING.md
+LINEA: 304
+- ARQ-013 — Configuration
+- ARQ-015 — Extension Model
+>>> - ARQ-016 — Security
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 444
+- Architecture Tests;
+- Compatibility Tests;
+>>> - Security Tests;
+- End-to-End Tests.
+
+La estrategia detallada se establecerá en **ENG-009 — Testing**.
+
+---
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 517
+# 20. Seguridad de Ingeniería
+
+>>> La implementación deberá aplicar los principios establecidos en **ARQ-016 — Security**.
+
+La Ingeniería podrá definir posteriormente mecanismos concretos para:
+
+- autenticación;
+- autorización;
+
+ARCHIVO: ENG-000-INGENIERIA_GENERAL.md
+LINEA: 838
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+>>> - ARQ-016 — Security
+- ARQ-017 — Packaging
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 731
+- requisitos de confianza.
+
+>>> La implementación deberá respetar **ARQ-016 — Security**.
+
+---
+
+# 37. Observabilidad
+
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 846
+- Breaking Changes;
+- Deprecations;
+>>> - Security Changes.
+
+---
+
+# 44. Package
+
+
+ARCHIVO: ENG-002-ESPECIFICACION_DE_MODULES.md
+LINEA: 1158
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+>>> - ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 654
+```json
+{
+>>>   "security": {
+    "permissions": [
+      "crm.customer.read",
+      "crm.customer.write"
+    ]
+  }
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 901
+  },
+
+>>>   "security": {
+    "permissions": [
+      "crm.customer.read",
+      "crm.customer.write"
+    ]
+  },
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1144
+```
+
+>>> La implementación concreta será definida por las especificaciones de Packaging y Security.
+
+---
+
+# 54. Registry Fingerprint
+
+
+ARCHIVO: ENG-003-MANIFEST.md
+LINEA: 1410
+- ARQ-014 — Framework Lifecycle
+- ARQ-015 — Extension Model
+>>> - ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-004-CONVENCIONES.md
+LINEA: 1578
+- ARQ-013 — Configuration
+- ARQ-015 — Extension Model
+>>> - ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 652
+├── Architecture/
+├── Compatibility/
+>>> ├── Security/
+└── EndToEnd/
+```
+
+Las pruebas estrictamente pertenecientes a un Module podrán residir dentro del mismo Module según el perfil adoptado.
+
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 767
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+>>> SECURITY.md
+mef.manifest.json
+```
+
+No todos serán obligatorios para todo tipo de Package.
+
+
+ARCHIVO: ENG-006-ESTRUCTURA_DE_DIRECTORIOS.md
+LINEA: 1337
+---
+
+>>> # 73. Security Boundaries
+
+La estructura física podrá reforzar límites de seguridad.
+
+Ejemplos:
+
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 692
+4   Compatibility failure
+5   Dependency failure
+>>> 6   Security failure
+7   Not found
+8   Conflict
+```
+
+La taxonomía definitiva deberá documentarse y mantenerse estable.
+
+ARCHIVO: ENG-007-CLI.md
+LINEA: 1233
+---
+
+>>> # 66. Security
+
+Los comandos sensibles deberán considerar autorización cuando el entorno lo requiera.
+
+Ejemplo:
+
+
+ARCHIVO: ENG-008-GENERADORES.md
+LINEA: 922
+---
+
+>>> # 56. Security
+
+Los Generators no deberán:
+
+- insertar secretos;
+- copiar credenciales;
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 39
+  - architecture testing
+  - compatibility
+>>>   - security testing
+  - quality
+  - compliance
+  - mef
+---
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 137
+            Compatibility
+                 ▲
+>>>               Security
+                 ▲
+            Architecture
+                 ▲
+             Contract
+                 ▲
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 165
+| TST-004 | Architecture Test |
+| TST-005 | Compatibility Test |
+>>> | TST-006 | Security Test |
+| TST-007 | End-to-End Test |
+| TST-008 | Lifecycle Test |
+| TST-009 | Performance Test |
+| TST-010 | Smoke Test |
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 369
+---
+
+>>> # 18. Security Tests
+
+Los Security Tests deberán verificar controles relevantes derivados de `ARQ-016`.
+
+Podrán incluir:
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 371
+# 18. Security Tests
+
+>>> Los Security Tests deberán verificar controles relevantes derivados de `ARQ-016`.
+
+Podrán incluir:
+
+- autorización;
+- validación de entrada;
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 385
+---
+
+>>> # 19. Security Negative Tests
+
+Las pruebas de seguridad deberán incluir escenarios donde la operación **debe fallar**.
+
+Ejemplos:
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 515
+├── Architecture/
+├── Compatibility/
+>>> ├── Security/
+├── Lifecycle/
+├── Performance/
+└── EndToEnd/
+```
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 900
+- Manifest Validator;
+- Package Manager;
+>>> - Security;
+- Lifecycle.
+
+---
+
+# 57. Test Pyramid
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 960
+Architecture
+Integration
+>>> Security
+Compatibility
+```
+
+según el cambio.
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1001
+contract
+architecture
+>>> security
+slow
+```
+
+No deberán depender de nombres arbitrarios de archivos para clasificación cuando exista metadata más adecuada.
+
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1283
+error generates expected log
+request preserves correlation id
+>>> security operation generates audit event
+```
+
+---
+
+# 86. Log Assertions
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1586
+Architecture
+  ↓
+>>> Security
+  ↓
+Package
+```
+
+Un fallo crítico deberá detener el pipeline.
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1713
+
+```text
+>>> Security
+Compatibility
+Lifecycle
+End-to-End
+Performance
+```
+
+ARCHIVO: ENG-009-TESTING.md
+LINEA: 1778
+- ARQ-011 — Contracts
+- ARQ-014 — Framework Lifecycle
+>>> - ARQ-016 — Security
+- ARQ-017 — Packaging
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 31
+  - correlation
+  - structured logging
+>>>   - security
+  - runtime
+  - mef
+---
+
+# ENG-010
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 709
+---
+
+>>> # 39. Security Logging
+
+Los eventos técnicos relacionados con seguridad podrán registrarse.
+
+Ejemplos:
+
+
+ARCHIVO: ENG-010-LOGGING.md
+LINEA: 1815
+- ARQ-013 — Configuration
+- ARQ-014 — Framework Lifecycle
+>>> - ARQ-016 — Security
+
+## Ingeniería
+
+- ENG-000 — Ingeniería General
+- ENG-004 — Convenciones
+
+ARCHIVO: ENG-011-CONFIGURATION_FILES.md
+LINEA: 675
+cache
+events
+>>> security
+registry
+```
+
+según la arquitectura.
+
+

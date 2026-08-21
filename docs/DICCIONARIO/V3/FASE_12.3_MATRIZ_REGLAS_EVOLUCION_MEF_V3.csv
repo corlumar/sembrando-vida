@@ -1,0 +1,14 @@
+﻿tipo_cambio,clase,nuevo_id,regla_identidad,precondicion,regla_id,regla_trazabilidad,prohibicion
+NUEVO_CONCEPTO,ALTA,SI,"Nueva identidad conceptual demostrada; no alias, variante, renombre ni duplicado.",APROBACION + evidencia suficiente + validación de duplicidad,Asignar sólo después de aprobación,Crear trazabilidad nueva,PROHIBIDO preasignar ID
+NUEVO_ID,ALTA,SI,Asignación material de ID a candidato ya aprobado como nueva identidad.,CHANGE_ID aprobado y candidato validado,Siguiente ID disponible; nunca reutilizar,Registrar origen y evidencia,ID_REUSE=FORBIDDEN
+CAMBIO_NOMBRE_CANONICO,MODIFICACION,NO,La identidad permanece; cambia su denominación preferida.,Demostrar equivalencia semántica y motivo,Conservar ID,Nombre anterior pasa a histórico/alias si procede,No usar para encubrir concepto nuevo
+CAMBIO_DEFINICION,MODIFICACION,DEPENDE,Cambio semántico controlado.,Análisis de impacto e identidad,Conservar ID sólo si identidad permanece,Actualizar trazabilidad y versión,"Si cambia identidad materialmente, evaluar nuevo concepto"
+NUEVO_ALIAS,MODIFICACION,NO,Nueva forma equivalente no ambigua.,Vinculación inequívoca a un único ID,Conservar ID,Añadir alias controlado,Alias ambiguo no se incorpora
+ELIMINACION_ALIAS,MODIFICACION,NO,Retiro de alias sin borrar historia.,Justificación y revisión de referencias,Conservar ID,Marcar alias retirado/histórico,No borrar evidencia histórica
+CAMBIO_AUTORIDAD,MODIFICACION,NO,Cambio en autoridad normativa resuelta.,Evidencia FND/ARQ/ENG + análisis de impacto,Conservar ID salvo cambio identitario,Actualizar autoridad y trazabilidad,No resolver silenciosamente
+CAMBIO_TRAZABILIDAD,MODIFICACION,NO,"Alta, baja o corrección de vínculos documentales.",Referencia verificable,Conservar ID,Actualizar vínculos bidireccionales,No alterar autoridad por mera frecuencia
+CORRECCION_METADATA,MODIFICACION,NO,Corrección no semántica.,Evidencia de error,Conservar ID,Registrar corrección,No usar para cambio conceptual
+DEPRECACION,DEPRECACION,NO,"Concepto deja de ser recomendado/activo, pero conserva identidad histórica.",Motivo + impacto + reemplazo si existe,ID queda reservado permanentemente,Mantener trazabilidad histórica,Nunca borrar ni reutilizar
+REEMPLAZO,DEPRECACION/ALTA,DEPENDE,Un concepto deja paso a otro.,Relación explícita origen→destino,IDs históricos se conservan,Registrar reemplazo bidireccional,No reasignar ID antiguo
+FUSION,TRANSFORMACION,SI_PUEDE_REQUERIR,Dos o más identidades se consolidan.,"Análisis semántico, autoridad e impacto",IDs anteriores permanecen reservados; resultado según decisión aprobada,Registrar predecesores,No eliminar identidades históricas
+DIVISION,TRANSFORMACION,SI_PUEDE_REQUERIR,Una identidad se separa en dos o más conceptos.,Demostrar identidades distintas,ID original conserva historia; nuevas identidades reciben IDs nuevos tras aprobación,Registrar sucesores,No reciclar ID original

@@ -1,0 +1,8 @@
+﻿mef_v3_id,termino_canonico,forma_observada,decision_11_3,vinculo_concepto_existente,estado_vinculacion_11_4
+MEF-V3-DIC-0069,Componentes,Component,ALIAS_CONTROLADO,SI,PASS
+MEF-V3-DIC-0071,Configuration,/Configuration,ALIAS_CONTROLADO,SI,PASS
+MEF-V3-DIC-0075,Contracts,/Contracts,ALIAS_CONTROLADO,SI,PASS
+MEF-V3-DIC-0075,Contracts,Contract,ALIAS_CONTROLADO,SI,PASS
+MEF-V3-DIC-0088,Dependencias circulares,dependencia circular,ALIAS_CONTROLADO,SI,PASS
+MEF-V3-DIC-0124,Modules,/modules,ALIAS_CONTROLADO,SI,PASS
+MEF-V3-DIC-0161,Compromisos,Compromiso,ALIAS_CONTROLADO,SI,PASS

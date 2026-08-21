@@ -1,0 +1,21 @@
+﻿validation_id,nombre,dominio,severidad,regla,accion_fallo
+VAL-001,IDs únicos,CATALOGO,ERROR,MEF_V3_ID no puede repetirse,Bloquear cambio
+VAL-002,IDs con formato válido,CATALOGO,ERROR,MEF_V3_ID debe cumplir patrón configurado,Bloquear cambio
+VAL-003,No reutilización de IDs,HISTORICO,ERROR,Un ID histórico no puede asignarse a otra identidad,Bloquear cambio
+VAL-004,Nombre canónico presente,CATALOGO,ERROR,Toda identidad activa debe tener nombre canónico,Bloquear cambio
+VAL-005,Nombres canónicos no duplicados,CATALOGO,ERROR,No permitir duplicidad normalizada sin resolución,Bloquear cambio
+VAL-006,Alias no ambiguos,ALIASES,ERROR,Un alias normalizado no puede apuntar a múltiples IDs activos,Bloquear cambio
+VAL-007,Alias no idéntico a otro canónico,ALIASES,ERROR,Alias no debe colisionar con nombre canónico de otra identidad,Bloquear cambio
+VAL-008,Autoridad definida,AUTORIDAD,ERROR,Todo concepto activo debe poseer autoridad resuelta,Bloquear cambio
+VAL-009,Jerarquía de autoridad válida,AUTORIDAD,ERROR,Autoridad debe respetar FND→ARQ→ENG,Bloquear cambio
+VAL-010,Trazabilidad mínima,TRAZABILIDAD,ERROR,Concepto activo debe poseer evidencia/vínculo requerido,Bloquear cambio
+VAL-011,Referencias de fuente existentes,TRAZABILIDAD,ERROR,Toda referencia declarada debe resolver a fuente válida,Bloquear cambio
+VAL-012,Trazabilidad bidireccional,TRAZABILIDAD,ERROR,Concepto→fuente y fuente→concepto deben ser consistentes,Bloquear cambio
+VAL-013,ENG-only no promovido silenciosamente,GOBERNANZA,ERROR,Promoción ENG-only exige CHANGE_ID aprobado,Bloquear cambio
+VAL-014,CHANGE_ID obligatorio,GOBERNANZA,ERROR,Cambio canónico requiere expediente,Bloquear cambio
+VAL-015,CHANGE_ID único,GOBERNANZA,ERROR,CHANGE_ID no puede reutilizarse,Bloquear cambio
+VAL-016,Aplicación sólo aprobada,GOBERNANZA,ERROR,No aplicar solicitudes no aprobadas,Bloquear cambio
+VAL-017,Cierre sólo validado,GOBERNANZA,ERROR,No cerrar sin validación posterior,Bloquear cierre
+VAL-018,Deprecado conserva ID,HISTORICO,ERROR,Deprecación no elimina ni libera ID,Bloquear cambio
+VAL-019,No reescritura fases cerradas,HISTORICO,ERROR,FASE 10/11 cerradas no se reescriben retroactivamente,Bloquear cambio
+VAL-020,Commit trazable,VERSIONADO,ERROR,Cambio aplicado a artefactos versionados requiere commit,Bloquear cierre

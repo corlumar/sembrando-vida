@@ -1,0 +1,11 @@
+﻿origen,destino,condicion,puede_mutar_catalogo
+PROPUESTO,EN_VALIDACION,Registro mínimo completo,NO
+EN_VALIDACION,EVALUADO,Prevalidación PASS,NO
+EVALUADO,APROBADO,Decisión APROBAR,NO
+EVALUADO,RECHAZADO,Decisión RECHAZAR,NO
+EVALUADO,DIFERIDO,Decisión DIFERIR,NO
+DIFERIDO,EN_VALIDACION,Nueva evidencia,NO
+APROBADO,APLICADO,Aplicación autorizada,SI
+APLICADO,VALIDADO,Postvalidación PASS,NO
+VALIDADO,CERRADO,Commit/version trazables,NO
+RECHAZADO,CERRADO,Evidencia preservada,NO

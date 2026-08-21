@@ -1,0 +1,4 @@
+﻿nivel,criterio
+PATCH,Metadata/trazabilidad sin cambio de identidad
+MINOR,Altas y ampliaciones compatibles
+MAJOR,Cambio estructural incompatible
