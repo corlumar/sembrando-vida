@@ -1,127 +1,120 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Iniciar sesión — Sembrando Vida</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<x-guest-layout>
 
-  <!-- Opcional: Bootstrap para estilos rápidos -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <div
+        class="w-full max-w-md rounded-lg bg-white p-8 shadow-lg"
+        style="background-image: none;"
+    >
 
-  <style>
-    html, body {
-      height: 100%;
-    }
-    body {
-      margin: 0;
-      /* ✅ Fondo repetido */
-      background-image: url('{{ asset("img/fondosv.jpg") }}');
-      background-repeat: repeat;
-      background-size: auto;
-      background-position: top left;
-      display: flex;
-      align-items: center;     /* ✅ Centrar vertical */
-      justify-content: center; /* ✅ Centrar horizontal */
-      font-size: 16px;
-    }
-    .login-box {
-      width: 100%;
-      max-width: 420px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.2);
-      padding: 28px;
-    }
-    .brand {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .brand img {
-      max-height: 70px;
-      width: auto;
-    }
-    .small-text { font-size: .875rem; }
-  </style>
-</head>
-<body>
+        <div class="mb-6 text-center">
+            <img
+                src="{{ asset('img/logosv.png') }}"
+                alt="Sembrando Vida"
+                class="mx-auto h-20 w-auto"
+            >
 
-  <div class="login-box">
-    <div class="brand">
-      <img src="{{ asset('img/logosv.png') }}" alt="Sembrando Vida">
-      <h5 class="mt-2 mb-0">Sembrando Vida</h5>
-      <small class="text-muted">Acceso al sistema</small>
+            <h1 class="mt-4 text-xl font-semibold text-gray-900">
+                Sembrando Vida
+            </h1>
+
+            <p class="mt-1 text-sm text-gray-500">
+                Acceso al sistema
+            </p>
+        </div>
+
+        @if (session('status'))
+            <div
+                class="mb-4 rounded-md bg-green-50 p-4 text-sm text-green-700"
+            >
+                {{ session('status') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div
+                class="mb-4 rounded-md bg-red-50 p-4 text-sm text-red-700"
+            >
+                <ul class="list-disc space-y-1 pl-5">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <div>
+                <x-input-label
+                    for="email"
+                    :value="__('Email')"
+                />
+
+                <x-text-input
+                    id="email"
+                    class="mt-1 block w-full"
+                    type="email"
+                    name="email"
+                    :value="old('email')"
+                    required
+                    autofocus
+                    autocomplete="username"
+                />
+            </div>
+
+            <div class="mt-4">
+                <x-input-label
+                    for="password"
+                    :value="__('Password')"
+                />
+
+                <x-text-input
+                    id="password"
+                    class="mt-1 block w-full"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="current-password"
+                />
+            </div>
+
+            <div class="mt-4">
+                <label
+                    for="remember"
+                    class="inline-flex items-center"
+                >
+                    <input
+                        id="remember"
+                        type="checkbox"
+                        name="remember"
+                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                    >
+
+                    <span class="ms-2 text-sm text-gray-600">
+                        Recordarme
+                    </span>
+                </label>
+            </div>
+
+            <div class="mt-6 flex items-center justify-between">
+
+                @if (Route::has('password.request'))
+                    <a
+                        href="{{ route('password.request') }}"
+                        class="text-sm text-gray-600 underline hover:text-gray-900"
+                    >
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                @endif
+
+                <x-primary-button>
+                    Entrar
+                </x-primary-button>
+
+            </div>
+
+        </form>
+
     </div>
 
-    {{-- Mensaje de estado (por ej. password reset) --}}
-    @if (session('status'))
-      <div class="alert alert-success small-text">
-        {{ session('status') }}
-      </div>
-    @endif
-
-    {{-- Errores de validación --}}
-    @if ($errors->any())
-      <div class="alert alert-danger small-text">
-        <ul class="mb-0 pl-3">
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
-
-    <form method="POST" action="{{ route('login') }}">
-      @csrf
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          value="{{ old('email') }}"
-          class="form-control"
-          required
-          autofocus
-        >
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          class="form-control"
-          required
-          autocomplete="current-password"
-        >
-      </div>
-
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="remember" name="remember">
-        <label class="form-check-label" for="remember">Recordarme</label>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center">
-        @if (Route::has('password.request'))
-          <a class="small-text" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
-        @endif>
-        
-        {{-- Link para administradores: acceso rápido a gestión/creación de usuarios (visible solo si ya estás autenticado como Administrativo) --}}
-        @can('manage-users')
-          <a class="small-text" href="{{ route('usuarios.create') }}">¿Eres administrador? Crear usuario</a>
-        @endcan
-
-        <button type="submit" class="btn btn-success">
-          Entrar
-        </button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Opcional: JS de Bootstrap -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</x-guest-layout>
