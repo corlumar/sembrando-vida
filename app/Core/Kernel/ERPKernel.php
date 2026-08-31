@@ -65,7 +65,7 @@ final class ERPKernel implements ERPKernelContract
                 $this->registerModule($manifest, $modulePath);
             } catch (Throwable $exception) {
                 $this->app->make('log')->error(
-                    'No fue posible registrar un mÃ³dulo del ERP.',
+                    'No fue posible registrar un módulo del ERP.',
                     [
                         'module_path' => $modulePath,
                         'exception' => $exception->getMessage(),
@@ -108,7 +108,7 @@ final class ERPKernel implements ERPKernelContract
             );
         } catch (JsonException $exception) {
             throw new InvalidModuleManifestException(
-                "El manifiesto {$manifestPath} contiene JSON invÃ¡lido.",
+                "El manifiesto {$manifestPath} contiene JSON inválido.",
                 previous: $exception
             );
         }
@@ -138,7 +138,7 @@ final class ERPKernel implements ERPKernelContract
                 || trim($manifest[$requiredField]) === ''
             ) {
                 throw new InvalidModuleManifestException(
-                    "El manifiesto {$manifestPath} no contiene el campo vÃ¡lido ".
+                    "El manifiesto {$manifestPath} no contiene el campo válido ".
                     "\"{$requiredField}\"."
                 );
             }
@@ -165,13 +165,13 @@ final class ERPKernel implements ERPKernelContract
 
         if (isset($this->modules[$name])) {
             throw new InvalidModuleManifestException(
-                "El mÃ³dulo {$name} estÃ¡ registrado mÃ¡s de una vez."
+                "El módulo {$name} está registrado más de una vez."
             );
         }
 
         if (! class_exists($provider)) {
             throw new InvalidModuleManifestException(
-                "El Service Provider {$provider} del mÃ³dulo {$name} no existe."
+                "El Service Provider {$provider} del módulo {$name} no existe."
             );
         }
 
