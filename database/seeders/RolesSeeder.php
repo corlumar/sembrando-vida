@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
+use App\Enums\RoleName;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 
@@ -9,14 +12,9 @@ class RolesSeeder extends Seeder
 {
     public function run(): void
     {
-        $roles = [
-            'Administrador',
-            'Usuario',
-        ];
-
-        foreach ($roles as $role) {
+        foreach (RoleName::cases() as $role) {
             Role::firstOrCreate([
-                'name' => $role,
+                'name' => $role->value,
             ]);
         }
     }
