@@ -1,58 +1,221 @@
-# Copilot / AI helper guidance for this repository
+﻿# Guía para Copilot y asistentes de IA
 
-This file contains concise, repo-specific instructions to help an AI coding assistant be productive immediately.
+Este archivo describe el baseline técnico actual y las convenciones activas del repositorio.
 
-## Quick context
-- Framework: Laravel 12 (PHP backend) with Vite + Tailwind/Alpine frontend.
-- Main tech: PHP ^8.2, MySQL (development), SQLite in-memory for tests, Node/Vite for assets.
+No se debe inferir la arquitectura actual a partir de documentación histórica, código eliminado o scaffolding anterior.
 
-## Quick start (common developer commands)
-- Install PHP deps: `composer install`
-- Install JS deps: `npm install`
-- Local build (prod style): `npm run build`
-- Dev (assets + server + queue): run `composer dev` — it uses `concurrently` to start `php artisan serve`, `php artisan queue:listen`, `php artisan pail` and `npm run dev`.
-- Run migrations: `php artisan migrate` (the repo also ships migrations under `database/migrations`).
-- Run tests: `composer test` or `php artisan test` (phpunit config uses an in-memory SQLite DB).
+## Baseline técnico actual
 
-## Important files & where to look
-- Routes and role-based dashboard routing: `routes/web.php` (see the `/dashboard` route that redirects based on `Auth::user()->role->name`).
-- Role enforcement middleware: `app/Http/Middleware/RoleMiddleware.php` — used across dashboard routes.
-- Models: `app/Models/` (e.g. `User.php`, `Role.php`). Note relationships are set on models (e.g. `User::role()` and `Role::users()`).
-- Controllers: `app/Http/Controllers/` — add new request handling logic here.
-- Views: `resources/views/` — blade templates and dashboards.
-- Migrations and seeders: `database/migrations/` and `database/seeders/`.
-- Frontend assets: `resources/js`, `resources/css` and `vite.config.js` / `tailwind.config.js`.
+- Framework: Laravel 13.20.0.
+- Runtime PHP: PHP 8.4.5.
+- Restricción PHP en Composer: PHP ^8.3.
+- Base de datos de desarrollo: MySQL.
+- Base de datos de pruebas: SQLite en memoria cuando así lo configure el entorno de testing.
+- Frontend: Vite + Tailwind CSS + Alpine.js.
+- Cliente HTTP frontend: Axios.
+- Entorno local: Windows + XAMPP.
+- Zona horaria: America/Mexico_City.
+- Idioma principal de la aplicación: español.
 
-## Project-specific conventions & gotchas
-- Role checks are string-based: middleware compares `Auth::user()->role->name` to literal role names (e.g. `Administrativo`). When adding roles, keep database `roles.name` values consistent.
-- Tests expect an in-memory SQLite DB (see `phpunit.xml`). Preserve this when writing/adjusting tests — do not assume a MySQL test DB.
-- Dev helper script: `composer dev` orchestrates multiple processes with `concurrently`. Use it for a full dev environment.
-- Background jobs: dev script runs `php artisan queue:listen`. Many features expect synchronous processing in tests (`QUEUE_CONNECTION=sync`) but background workers run in dev.
-- User model uses a `role()` relationship; update factories and seeders accordingly (see `database/factories` and migration files that add roles to users).
-- Note: `User.php` defines casts via a `protected function casts(): array` instead of the more common `protected $casts` property — be mindful when changing model attributes or refactoring casting behavior.
+## Estado actual de la aplicación
 
-## Integration points & external deps
-- Auth scaffolding: Breeze/Fortify (auth routes come from `routes/auth.php`).
-- Frontend: Vite + Tailwind + Alpine.
-- Useful composer/dev packages in the repo: `laravel/pail` (runtime helper used in dev script), `laravel/pint`, `laravel/sail`.
+El repositorio se encuentra en una etapa de reconstrucción limpia y controlada.
 
-## Working on features & tests — concrete examples
-- Add a role-protected route:
+No se debe asumir que módulos funcionales históricos continúan activos.
 
-  - Update `routes/web.php` and add `->middleware(['auth', 'role:MyRole'])` or use `RoleMiddleware` if you prefer explicit middleware class usage.
+Los modelos persistentes del baseline son:
 
-- To write an integration test for a dashboard redirect:
+- App\Models\User
+- App\Models\Role
 
-  - Create a user with the appropriate `role_id` via the factories in `database/factories`, `actingAs($user)` and `get('/dashboard')` expecting redirect to the role route.
+Los roles base se definen mediante App\Enums\RoleName.
 
-## When to look at these files for PRs
-- Structural/auth changes: `routes/`, `app/Http/Middleware/`, `app/Models/`, `database/migrations/`
-- Build / assets issues: `package.json`, `vite.config.js`, `resources/js`, `resources/css`, `tailwind.config.js`
-- CI / tests problems: `phpunit.xml`, `composer.json` (scripts), `tests/`
+Casos actualmente disponibles:
 
-## Safety & style notes for AI assistants
-- Preserve literal role names stored in DB when updating authentication/authorization logic.
-- Do not assume test DB is MySQL; use the current `phpunit.xml` settings for tests.
-- Keep migrations and model `$fillable` fields in sync when generating new seeder/factory code.
+- ADMINISTRATOR => Administrador
+- USER => Usuario
 
-If any of these sections are incomplete or you'd like me to expand examples (e.g., an example test or a small task scaffold), tell me which area to expand.
+Los roles no deben comprobarse mediante IDs numéricos ni mediante cadenas de texto duplicadas.
+
+Debe utilizarse el enum RoleName y la API centralizada de autorización.
+
+## Baseline de base de datos
+
+El esquema base se mantiene deliberadamente pequeño.
+
+Las migraciones actuales proporcionan infraestructura para:
+
+- roles
+- users
+- password reset tokens
+- cache
+- cache locks
+- jobs
+- job batches
+- failed jobs
+
+No se deben crear tablas de dominio funcional antes de diseñar el módulo correspondiente.
+
+Las migraciones, modelos, factories, seeders y pruebas deben mantenerse consistentes entre sí.
+
+El flujo base de roles es:
+
+RoleName -> RolesSeeder -> tabla roles -> User.role_id
+
+## Baseline frontend
+
+Puntos de entrada actuales:
+
+- resources\css\app.css
+- resources\js\app.js
+- resources\js\bootstrap.js
+
+Tecnologías frontend activas:
+
+- Vite
+- Tailwind CSS
+- Alpine.js
+- Axios
+- PostCSS
+- Autoprefixer
+
+Comandos principales:
+
+npm install
+npm run dev
+npm run build
+
+Los archivos generados por Vite dentro de public\build no son código fuente y no deben incluirse en Git.
+
+La vista predeterminada welcome.blade.php fue retirada porque la ruta raíz redirige al flujo del dashboard autenticado.
+
+## Rutas
+
+Archivos principales:
+
+- routes\web.php
+- routes\auth.php
+- routes\console.php
+
+La ruta raíz redirige al dashboard.
+
+El dashboard requiere autenticación.
+
+No crear dashboards separados por rol salvo que exista un requerimiento funcional que lo justifique.
+
+Para autorización de rutas debe preferirse el middleware centralizado.
+
+## Providers y bootstrap
+
+El provider principal de la aplicación es:
+
+- app\Providers\AppServiceProvider.php
+
+Los alias de middleware se configuran en:
+
+- bootstrap\app.php
+
+La configuración debe respetar la estructura actual de Laravel 13.
+
+No recrear patrones de registro de middleware correspondientes a versiones anteriores de Laravel.
+
+## Dependencias
+
+Dependencias PHP principales:
+
+- laravel/framework
+- laravel/tinker
+
+Dependencias de desarrollo principales:
+
+- fakerphp/faker
+- laravel/pail
+- laravel/pint
+- mockery/mockery
+- nunomaduro/collision
+- phpunit/phpunit
+
+Laravel Breeze y Laravel Sail no forman parte del baseline actual.
+
+No deben reintroducirse únicamente porque documentación histórica o ejemplos antiguos los mencionen.
+
+Evitar actualizaciones generales de dependencias durante trabajos de arquitectura o saneamiento.
+
+No ejecutar comandos automáticos de corrección de dependencias sin revisar previamente su impacto.
+
+## Pruebas
+
+La suite completa se ejecuta mediante:
+
+php artisan test
+
+Cuando se modifique autenticación o autorización, deben agregarse o actualizarse pruebas específicas.
+
+El baseline actual contempla pruebas para:
+
+- autenticación correcta;
+- credenciales incorrectas;
+- rechazo de usuarios inactivos;
+- recuperación y cambio de contraseña;
+- actualización de perfil;
+- autorización mediante middleware de roles.
+
+No utilizar la base MySQL de desarrollo para pruebas destructivas.
+
+Las reconstrucciones de base de datos para validación deben realizarse en un entorno de testing aislado.
+
+Para validar migraciones desde cero puede utilizarse SQLite en memoria mediante variables de entorno temporales.
+
+## Convenciones de código
+
+Preferir:
+
+- declare(strict_types=1) en las clases PHP donde corresponda al baseline actual;
+- tipos de retorno explícitos;
+- relaciones Eloquent para relaciones ordinarias entre modelos;
+- enums para valores controlados de roles;
+- middleware para autorización a nivel de rutas;
+- cambios pequeños, explícitos y acompañados de pruebas.
+
+Evitar:
+
+- IDs de rol escritos directamente en el código;
+- nombres de roles duplicados como cadenas literales;
+- código de scaffolding obsoleto;
+- dependencias sin uso;
+- abstracciones arquitectónicas prematuras;
+- código funcional antes de aprobar el diseño del módulo;
+- eliminación física silenciosa de identidades controladas.
+
+## Política de saneamiento del repositorio
+
+El repositorio ha pasado por un proceso de saneamiento y reconstrucción controlada.
+
+Cuando se encuentre documentación o código histórico:
+
+1. No asumir que representa la arquitectura activa.
+2. Verificar primero la implementación actual.
+3. Conservar documentación histórica cuando constituya evidencia de auditoría.
+4. Eliminar residuos de código activo únicamente después de verificar sus referencias.
+5. Mantener los cambios de saneamiento pequeños, verificables e independientes.
+
+## Flujo seguro para realizar cambios
+
+Antes de modificar la arquitectura:
+
+1. Inspeccionar la implementación actual.
+2. Verificar referencias y dependencias.
+3. Realizar un cambio controlado.
+4. Ejecutar pruebas específicas cuando corresponda.
+5. Ejecutar la suite completa.
+6. Ejecutar git diff --check.
+7. Revisar git status.
+8. Hacer commit únicamente de los archivos previstos.
+
+No combinar saneamiento, actualizaciones de dependencias, rediseño de base de datos y desarrollo funcional en un mismo commit.
+
+## Principio de reconstrucción
+
+El baseline activo debe permanecer pequeño, explícito, comprobable y libre de supuestos provenientes de implementaciones históricas.
+
+Los nuevos módulos funcionales deben diseñarse e incorporarse deliberadamente sobre este baseline, en lugar de reconstruirse copiando código obsoleto.
