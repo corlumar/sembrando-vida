@@ -1,4 +1,4 @@
-﻿# Guía para Copilot y asistentes de IA
+# Guía para Copilot y asistentes de IA
 
 Este archivo describe el baseline técnico actual y las convenciones activas del repositorio.
 
@@ -12,7 +12,6 @@ No se debe inferir la arquitectura actual a partir de documentación histórica,
 - Base de datos de desarrollo: MySQL.
 - Base de datos de pruebas: SQLite en memoria cuando así lo configure el entorno de testing.
 - Frontend: Vite + Tailwind CSS + Alpine.js.
-- Cliente HTTP frontend: Axios.
 - Entorno local: Windows + XAMPP.
 - Zona horaria: America/Mexico_City.
 - Idioma principal de la aplicación: español.
@@ -68,14 +67,12 @@ Puntos de entrada actuales:
 
 - resources\css\app.css
 - resources\js\app.js
-- resources\js\bootstrap.js
 
 Tecnologías frontend activas:
 
 - Vite
 - Tailwind CSS
 - Alpine.js
-- Axios
 - PostCSS
 - Autoprefixer
 
